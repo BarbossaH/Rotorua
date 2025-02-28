@@ -2,12 +2,9 @@
 {
     private static T _instance;
 
-    private Singleton()
-    {
-        _instance = new T();
-    }
-    public static T Instance
-    {
-        get { return _instance; }
-    }
+    public static T Instance => _instance ??= new T();
+
+    public virtual void Init() { }
+    public virtual void OnDestroy() { }
+    public virtual void OnUpdate(float dt) { }
 }
