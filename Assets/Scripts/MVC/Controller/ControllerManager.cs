@@ -39,6 +39,9 @@ public class ControllerManager
     }
     public void InitAllControllers()
     {
-
+        foreach(var controller in _controllers)
+        {
+            controller.Value.InitController();
+        }
     }
 }

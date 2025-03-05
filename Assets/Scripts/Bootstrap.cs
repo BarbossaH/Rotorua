@@ -9,6 +9,6 @@ public class Bootstrap : MonoBehaviour
         GameManager.Instance.Init();
 
         //here I can jump to the login scene directly because it's just starter scene
-        SceneManager.LoadScene(Scename.LoginScene);
+        //SceneManager.LoadScene(Scename.LoginScene);
     }
 }

@@ -17,6 +17,7 @@ public class ViewManager
     private readonly Dictionary<ViewType, BaseView> _viewsOpened = new();
     private readonly Dictionary<ViewType, ViewInfo> _viewsInfo = new();
 
+    //we must be clear that view registration involves basic information, not the view object.
     public void RegisterView(ViewType viewType, BaseController controller, int sortingOrder=0, bool isInScene=false)
     {
         ViewInfo info = new ViewInfo()
@@ -46,8 +47,29 @@ public class ViewManager
         }
     }
 
+    public IBaseView GetView(ViewType viewType)
+    {
+        if(_viewsOpened.TryGetValue(viewType, out var view))
+        {
+            return view;
+        }
+        return _views.GetValueOrDefault(viewType);
+    }
     public void ShowView(ViewType viewType)
     {
+        ViewInfo viewInfo = _viewsInfo.GetValueOrDefault(viewType);
+        if (viewInfo == null)
+        {
+            Debug.LogFormat("View {0} doesn't exist", viewType);
+            //Debug.Log(string.Format("View {0} doesn't exist", viewType));
+            return;
+        }
         //check if it's in the views, if not, then create it
+        IBaseView view = GetView(viewType);
+
+        if (view == null) 
+        {
+
+        }
     }
 }
