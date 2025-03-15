@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 public class BaseController 
 {
-    private readonly Dictionary<string, Action<object[]>> _eventDictonary = new();
+    private readonly Dictionary<string, Action<object[]>> _eventDictionary = new();
     protected BaseModel _model;
 
     //initialize controller and initialize model in this method,but sometime model is dynamic, so I don't have to set model in this method
     //The external interface requires only a call to InitController,
-    //and subclasses are then responsibe for the specific implementation details within this method;
+    //and subclasses are then responsible for the specific implementation details within this method;
     internal virtual void InitController() 
     {
         InitRelatedViews();
@@ -25,44 +25,44 @@ public class BaseController
     }
     public void RegisterControllerEvent(string eventName, Action<object[]> action)
     {
-        if(!_eventDictonary.TryAdd(eventName, action))
+        if(!_eventDictionary.TryAdd(eventName, action))
         {
-            _eventDictonary[eventName]+= action;
+            _eventDictionary[eventName]+= action;
         }
     }
 
     public void UnregisterControllerEvent(string eventName)
     {
-        if (_eventDictonary.ContainsKey(eventName))
+        if (_eventDictionary.ContainsKey(eventName))
         {
-            _eventDictonary.Remove(eventName);
+            _eventDictionary.Remove(eventName);
         }
     }
 
     public void UnregisterControllerEvent(string eventName, Action<object[]> action) 
     { 
-        if(_eventDictonary.TryGetValue(eventName, out var existingAction))
+        if(_eventDictionary.TryGetValue(eventName, out var existingAction))
         {
             existingAction -= action;
             if(existingAction == null)
             {
-                _eventDictonary.Remove(eventName);
+                _eventDictionary.Remove(eventName);
             }
             else
             {
-                _eventDictonary[eventName] = existingAction;
+                _eventDictionary[eventName] = existingAction;
             }
         }
     }
 
-    //call the callback functions belong to this contoller
+    //call the callback functions belong to this controller
     public void TriggerControllerEvent(string eventName, params object[] args) 
     {
-        //if (_eventDictonary.ContainsKey(eventName))
+        //if (_eventDictionary.ContainsKey(eventName))
         //{
-        //    _eventDictonary[eventName].Invoke(args);
+        //    _eventDictionary[eventName].Invoke(args);
         //}
-        if (_eventDictonary.TryGetValue(eventName, out var action)) 
+        if (_eventDictionary.TryGetValue(eventName, out var action)) 
         { 
             action(args);
         }
@@ -88,12 +88,12 @@ public class BaseController
         return _model;
     }
 
-    public virtual void InitRelatedViews() { }
-    public virtual void DestroyRelatedViews() { }
+    protected virtual void InitRelatedViews() { }
+    protected virtual void DestroyRelatedViews() { }
     //via the method to register event in the child class and bind the specific event method
-    public virtual void InitControllerEvent() { }
+    protected virtual void InitControllerEvent() { }
     //this is to register event into the event center manager as a global event
-    public virtual void InitGlobalControllerEvent() { }
-    public virtual void RemoveControllerEvent() { }
-    public virtual void RemoveGlobalControllerEvent() { }
+    protected virtual void InitGlobalControllerEvent() { }
+    protected virtual void RemoveControllerEvent() { }
+    protected virtual void RemoveGlobalControllerEvent() { }
 }

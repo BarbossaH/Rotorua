@@ -1,6 +1,7 @@
 ﻿
-using System.Collections.Generic;
+
 using UnityEngine;
+
 
 public class GameManager : Singleton<GameManager>
 {
@@ -8,14 +9,31 @@ public class GameManager : Singleton<GameManager>
     public static SceneLoaderManager loaderManager;
     public static ControllerManager controllerManager;
     
-    public override async void Init()
+    public override void Init()
     {
         //initialize other managers
         resourceManager = new();
         loaderManager = new();
         controllerManager = new();
 
-        //await resourceManager.LoadAssetAsync<GameObject>("test2", (per) => { Debug.Log(123); });
-        await resourceManager.LoadAssetsAsync<GameObject>("testPre", (pre) => { Debug.Log(pre); });
+        //LoadLoginScene();
+        RegisterControllers();
     }
+
+    private void RegisterControllers()
+    {
+        //register controllers
+
+        //after the registration of all controllers, then initialize them
+        InitAllControllers();
+    }
+
+    private void InitAllControllers() 
+    {
+        GameManager.controllerManager.InitAllControllers();
+    }
+    //private async void LoadLoginScene()
+    //{
+    //   //await resourceManager.LoadSceneAsync("Login");
+    //}
 }

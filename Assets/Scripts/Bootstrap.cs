@@ -1,14 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class Bootstrap : MonoBehaviour
 {
     private void Awake()
     {
-        //start,update game, and then login¡£Õâ¸öÀà´æÔÚµÄÒâÒå¾ÍÊÇ¿ÉÒÔÔÚÆô¶¯ÓÎÏ·µÄÊ±ºò×öÒ»Ğ©¸üĞÂµÄÊÂÇé
+        //start,update game, and then loginï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ò»Ğ©ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
 
         GameManager.Instance.Init();
 
-        //here I can jump to the login scene directly because it's just starter scene
-        //SceneManager.LoadScene(Scename.LoginScene);
+    }
+
+    private async void Start()
+    {
+
+        //loading the next scene which is login, but here, I should can change the scene name so that I can load any scene
+
+        await GameManager.loaderManager.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.LoginScene);
     }
 }

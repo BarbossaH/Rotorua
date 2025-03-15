@@ -1,0 +1,13 @@
+{
+  "gameName": "Roguelike Adventure",
+  "version": "1.0.0",
+  "player": {
+    "maxHealth": 100,
+    "attackPower": 20,
+    "speed": 5.5
+  },
+  "audioSettings": {
+    "bgmVolume": 0.8,
+    "sfxVolume": 0.6
+  }
+}

@@ -11,19 +11,19 @@ public class ViewInfo
 public class ViewManager
 {
     private readonly Transform _UICanvas = GameObject.Find("UICanvas").transform;
-    private readonly Transform _SceneCanvas = GameObject.Find("SceneCavans").transform;
+    private readonly Transform _SceneCanvas = GameObject.Find("SceneCanvas").transform;
 
-    private readonly Dictionary<ViewType, BaseView> _views = new();
-    private readonly Dictionary<ViewType, BaseView> _viewsOpened = new();
     private readonly Dictionary<ViewType, ViewInfo> _viewsInfo = new();
+    private readonly Dictionary<ViewType, BaseView> _views = new();
+    private readonly HashSet<ViewType> _viewsOpened = new(); //to store views that have been instantiated
+
 
     //we must be clear that view registration involves basic information, not the view object.
-    public void RegisterView(ViewType viewType, BaseController controller, int sortingOrder=0, bool isInScene=false)
+    public void RegisterView(ViewType viewType,  int sortingOrder=0, bool isInScene=false)
     {
         ViewInfo info = new ViewInfo()
         {
             UIPrefabName = viewType.ToString(),
-            Controller = controller,
             SortingOrder = sortingOrder,
             Parent = isInScene ? _SceneCanvas : _UICanvas,
         };
@@ -37,7 +37,7 @@ public class ViewManager
         {
             _viewsInfo.Remove(viewType);
         }
-        if (_viewsOpened.ContainsKey(viewType))
+        if (_viewsOpened.Contains(viewType))
         {
             _viewsOpened.Remove(viewType);
         }
@@ -49,11 +49,17 @@ public class ViewManager
 
     public IBaseView GetView(ViewType viewType)
     {
-        if(_viewsOpened.TryGetValue(viewType, out var view))
+        //if(_viewsOpened.TryGetValue(viewType, out var view))
+        //{
+        //    return view;
+        //}
+        //return _views.GetValueOrDefault(viewType);
+        if (_viewsOpened.Contains(viewType))
         {
-            return view;
+            return _views.GetValueOrDefault(viewType);
         }
-        return _views.GetValueOrDefault(viewType);
+
+        return null;
     }
     public void ShowView(ViewType viewType)
     {

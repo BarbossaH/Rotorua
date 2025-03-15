@@ -4,17 +4,22 @@ using System;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine;
-using Unity.VisualScripting;
+using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
+    private bool _isGameInitialized = false;
+
+    public bool IsGameInitialized=> _isGameInitialized;
     // 单个资源缓存 (按地址存储)
     private readonly Dictionary<string, AsyncOperationHandle> loadedAssets = new();
 
     // 多个资源缓存 (按 Label 存储)
     private readonly Dictionary<string, object> loadedLabels = new();
 
-    public async Task<T> LoadAssetAsync<T>(string address, Action<float> onProgress = null) where T : UnityEngine.Object
+    public async UniTask<T> LoadAssetByAddressAsync<T>(string address, Action<float> onProgress = null) where T : UnityEngine.Object
     {
         if (loadedAssets.TryGetValue(address, out var value))
         {
@@ -22,11 +27,7 @@ public class ResourceManager : Singleton<ResourceManager>
         }
 
         var handle = Addressables.LoadAssetAsync<T>(address);
-        while (!handle.IsDone)
-        {
-            onProgress?.Invoke(handle.PercentComplete);
-            await Task.Yield();
-        }
+        await handle.Task;
 
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -36,7 +37,16 @@ public class ResourceManager : Singleton<ResourceManager>
         return null;
     }
 
-    public async Task<IList<T>> LoadAssetsAsync<T>(string label, Action<float> onProgress = null)
+    public async UniTask LoadAssetsByAddressAsync(string[] addresses, Action<float> onProgress = null)
+    {
+        if (addresses == null || addresses.Length == 0) return;
+
+        foreach (var address in addresses)
+        {
+            await LoadAssetByAddressAsync<UnityEngine.Object>(address, onProgress);
+        }
+    }
+    public async UniTask<IList<T>> LoadAssetsByLabelAsync<T>(string label, Action<float> onProgress = null)
     {
         if (loadedLabels.TryGetValue(label, out var handleList))
         {
@@ -45,7 +55,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
         AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(label, (res) =>
         {
-            Debug.Log("加载了一个资源：" + res.ToString());
+            Debug.Log("loaded a resource：" + res.ToString());
         });
 
         while (!handle.IsDone)
@@ -56,8 +66,6 @@ public class ResourceManager : Singleton<ResourceManager>
 
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
-            //loadedLabels[label] = handle; // 存入 object 避免泛型转换问题
-            //return handle.Result;
             loadedLabels[label] = handle;
             return handle.Result;
         }
@@ -69,6 +77,12 @@ public class ResourceManager : Singleton<ResourceManager>
         }
     }
 
+    public async UniTask PreloadAssetAsync()
+    {
+        if(_isGameInitialized) return;
+        //加载json文件
+        await LoadAssetByAddressAsync<AudioClip>("");
+    }
     public void UnloadAsset(string address)
     {
         if (loadedAssets.TryGetValue(address, out var value))
