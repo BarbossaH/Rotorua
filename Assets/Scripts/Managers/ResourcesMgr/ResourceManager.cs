@@ -12,11 +12,11 @@ public class ResourceManager : Singleton<ResourceManager>
 {
     private bool _isGameInitialized = false;
 
-    public bool IsGameInitialized=> _isGameInitialized;
-    // 单个资源缓存 (按地址存储)
+    public bool IsGameInitialized => _isGameInitialized;
+
     private readonly Dictionary<string, AsyncOperationHandle> loadedAssets = new();
 
-    // 多个资源缓存 (按 Label 存储)
+
     private readonly Dictionary<string, object> loadedLabels = new();
 
     public async UniTask<T> LoadAssetByAddressAsync<T>(string address, Action<float> onProgress = null) where T : UnityEngine.Object
@@ -55,7 +55,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
         AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(label, (res) =>
         {
-            Debug.Log("loaded a resource：" + res.ToString());
+            Debug.Log("loaded a resource" + res.ToString());
         });
 
         while (!handle.IsDone)
@@ -79,8 +79,8 @@ public class ResourceManager : Singleton<ResourceManager>
 
     public async UniTask PreloadAssetAsync()
     {
-        if(_isGameInitialized) return;
-        //加载json文件
+        if (_isGameInitialized) return;
+        //锟斤拷锟斤拷json锟侥硷拷
         await LoadAssetByAddressAsync<AudioClip>("");
     }
     public void UnloadAsset(string address)

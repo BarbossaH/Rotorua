@@ -1,0 +1,109 @@
+{
+    "Fire": {
+      "SkillID": "Fireball_001",
+      "Name": "Fireball",
+      "EffectClass": "SkillEffect.CompositeEffect",
+      "Levels": [
+        {
+          "Level": 1,
+          "Cooldown": 3,
+          "Cost": {
+            "Mana": 20
+          },
+          "Effects": [
+            {
+              "EffectType": "Damage",
+              "Parameters": {
+                "Amount": 50,
+                "Element": "Fire"
+              }
+            },
+            {
+              "EffectType": "Burn",
+              "Parameters": {
+                "Duration": 3,
+                "DamagePerSecond": 5
+              }
+            }
+          ]
+        },
+        {
+          "Level": 2,
+          "Cooldown": 3,
+          "Cost": {
+            "Mana": 25
+          },
+          "Effects": [
+            {
+              "EffectType": "Damage",
+              "Parameters": {
+                "Amount": 70,
+                "Element": "Fire"
+              }
+            },
+            {
+              "EffectType": "Burn",
+              "Parameters": {
+                "Duration": 4,
+                "DamagePerSecond": 8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "Ice": {
+      "SkillID": "IceArrow_002",
+      "Name": "IceArrow",
+      "EffectClass": "SkillEffect.CompositeEffect",
+      "Levels": [
+        {
+          "Level": 1,
+          "Cooldown": 3,
+          "Cost": {
+            "Mana": 20
+          },
+          "Effects": [
+            {
+              "EffectType": "Damage",
+              "Parameters": {
+                "Amount": 50,
+                "Element": "Ice"
+              }
+            },
+            {
+              "EffectType": "Frozen",
+              "Parameters": {
+                "Duration": 3,
+                "DamagePerSecond": 5
+              }
+            }
+          ]
+        },
+        {
+          "Level": 2,
+          "Cooldown": 3,
+          "Cost": {
+            "Mana": 25
+          },
+          "Effects": [
+            {
+              "EffectType": "Damage",
+              "Parameters": {
+                "Amount": 70,
+                "Element": "Ice"
+              }
+            },
+            {
+              "EffectType": "Frozen",
+              "Parameters": {
+                "Duration": 4,
+                "DamagePerSecond": 8
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

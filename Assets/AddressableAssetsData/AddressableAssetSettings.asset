@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 5bd051344d2e43244bd8a6d00ffeaa10
   m_currentHash:
     serializedVersion: 2
-    Hash: 734ba539c1ed341e2d20a1e7076e8fc0
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -61,6 +61,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 124917958dfe14a47a3e366774fac57f, type: 2}
   - {fileID: 11400000, guid: 0e1605a5ca4fd6c4bb58da576623b718, type: 2}
+  - {fileID: 11400000, guid: 4a7415bff7d016e498852405a75c5e07, type: 2}
   - {fileID: 11400000, guid: 310159a6b554268458516669b33220ec, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
@@ -103,6 +104,7 @@ MonoBehaviour:
     - default
     - scene
     - testPre
+    - json_data
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 9dd4f6a605915374592056a4903e4d8e, type: 2}

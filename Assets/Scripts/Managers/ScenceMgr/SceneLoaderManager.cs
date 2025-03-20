@@ -7,13 +7,13 @@ using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 
-public class SceneLoaderManager
+public class SceneLoaderManager : Singleton<SceneLoaderManager>
 {
-        //current scene
+    //current scene
     public readonly Dictionary<string, AsyncOperationHandle<SceneInstance>> loadedScenes = new();
 
     public event Action<float, string> OnSceneLoading;
-    public async UniTask SwitchSceneAsync(string fromScene,string nextScene, string[] unloadedAssets=null, string[] loadedAssets=null)
+    public async UniTask SwitchSceneAsync(string fromScene, string nextScene, string[] unloadedAssets = null, string[] loadedAssets = null)
     {
         //send event, ready to unload a scene
         EventCenterManager.Instance.PublishEvent(GameEvents.SceneSwitching);
@@ -23,7 +23,7 @@ public class SceneLoaderManager
         await LoadSceneAsync(SceneName.LoadingScene);
 
         //release unnecessary resources
-        UpdateLoadingProgress(0.2f,"Starting");
+        UpdateLoadingProgress(0.2f, "Starting");
         //unload the current scene
         await UnloadSceneAsync(fromScene);
         UpdateLoadingProgress(1f, "Completed");
@@ -32,11 +32,11 @@ public class SceneLoaderManager
         var toSceneHandle = await LoadSceneAsync(nextScene);
         await UniTask.NextFrame();
 
-        if(toSceneHandle.IsValid()) 
+        if (toSceneHandle.IsValid())
         {
             await UnloadSceneAsync(SceneName.LoadingScene);
         }
-        
+
         //send an event, finished loading a scene
         EventCenterManager.Instance.PublishEvent(GameEvents.SceneSwitched);
 
@@ -65,7 +65,7 @@ public class SceneLoaderManager
 
             return default;
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"Exception loading scene {sceneName}: {e.Message}");
             return default;
@@ -74,7 +74,7 @@ public class SceneLoaderManager
 
     public async UniTask UnloadSceneAsync(string sceneName)
     {
-        if(loadedScenes.TryGetValue(sceneName, out var handle))
+        if (loadedScenes.TryGetValue(sceneName, out var handle))
         {
             //if handle is valid then remove it from the memory
             if (!handle.IsValid())
@@ -84,7 +84,7 @@ public class SceneLoaderManager
                 return;
             }
             //ensure handle completely loaded
-           await handle.Task;
+            await handle.Task;
 
             try
             {
@@ -120,6 +120,6 @@ public class SceneLoaderManager
 
     private void UpdateLoadingProgress(float progress, string des = "")
     {
-        OnSceneLoading?.Invoke(progress,des);
+        OnSceneLoading?.Invoke(progress, des);
     }
 }

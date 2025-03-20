@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-public class BaseController 
+public class BaseController
 {
     private readonly Dictionary<string, Action<object[]>> _eventDictionary = new();
     protected BaseModel _model;
@@ -11,7 +11,7 @@ public class BaseController
     //initialize controller and initialize model in this method,but sometime model is dynamic, so I don't have to set model in this method
     //The external interface requires only a call to InitController,
     //and subclasses are then responsible for the specific implementation details within this method;
-    internal virtual void InitController() 
+    internal virtual void InitController()
     {
         InitRelatedViews();
         InitControllerEvent();
@@ -25,9 +25,9 @@ public class BaseController
     }
     public void RegisterControllerEvent(string eventName, Action<object[]> action)
     {
-        if(!_eventDictionary.TryAdd(eventName, action))
+        if (!_eventDictionary.TryAdd(eventName, action))
         {
-            _eventDictionary[eventName]+= action;
+            _eventDictionary[eventName] += action;
         }
     }
 
@@ -39,12 +39,12 @@ public class BaseController
         }
     }
 
-    public void UnregisterControllerEvent(string eventName, Action<object[]> action) 
-    { 
-        if(_eventDictionary.TryGetValue(eventName, out var existingAction))
+    public void UnregisterControllerEvent(string eventName, Action<object[]> action)
+    {
+        if (_eventDictionary.TryGetValue(eventName, out var existingAction))
         {
             existingAction -= action;
-            if(existingAction == null)
+            if (existingAction == null)
             {
                 _eventDictionary.Remove(eventName);
             }
@@ -56,14 +56,14 @@ public class BaseController
     }
 
     //call the callback functions belong to this controller
-    public void TriggerControllerEvent(string eventName, params object[] args) 
+    public void TriggerControllerEvent(string eventName, params object[] args)
     {
         //if (_eventDictionary.ContainsKey(eventName))
         //{
         //    _eventDictionary[eventName].Invoke(args);
         //}
-        if (_eventDictionary.TryGetValue(eventName, out var action)) 
-        { 
+        if (_eventDictionary.TryGetValue(eventName, out var action))
+        {
             action(args);
         }
     }
@@ -71,7 +71,7 @@ public class BaseController
     //call the callback functions belong to other controller
     public void TriggerOtherControllerEvent(ControllerType type, string eventName, params object[] args)
     {
-        GameManager.controllerManager.TriggerControllerEvent(type, eventName, args);
+        ControllerManager.Instance.TriggerControllerEvent(type, eventName, args);
     }
 
     public void SetModel(BaseModel baseModel)

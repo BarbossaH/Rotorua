@@ -17,26 +17,26 @@ public class LoadingView : MonoBehaviour
     {
         _bgImg = transform.Find("BG_Loading").GetComponent<Image>();
         _loadingTMP = transform.Find("LoadingTMP").GetComponent<TextMeshProUGUI>();
-        _slider = transform.Find("Slider").GetComponent <Slider>();
+        _slider = transform.Find("Slider").GetComponent<Slider>();
         _loadingTMP.text = "Win";
     }
 
     private void OnEnable()
     {
-        GameManager.loaderManager.OnSceneLoading += UpdateProgress;
+        SceneLoaderManager.Instance.OnSceneLoading += UpdateProgress;
     }
     private void OnDisable()
     {
-        GameManager.loaderManager.OnSceneLoading -= UpdateProgress;
+        SceneLoaderManager.Instance.OnSceneLoading -= UpdateProgress;
     }
 
     private void UpdateProgress(float percentage, string des)
     {
-        UpdateSliderAsync(percentage,des).Forget();
+        UpdateSliderAsync(percentage, des).Forget();
     }
     private async UniTask UpdateSliderAsync(float targetValue, string des)
     {
-        while(_currentValue < targetValue)
+        while (_currentValue < targetValue)
         {
             _currentValue += Time.deltaTime;
             _slider.value = _currentValue;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public class ControllerManager
+public class ControllerManager : Singleton<ControllerManager>
 {
     private readonly Dictionary<ControllerType, BaseController> _controllers = new();
 
@@ -22,7 +22,7 @@ public class ControllerManager
     public void TriggerControllerEvent(ControllerType type, string eventName, params object[] args)
     {
         if (_controllers.TryGetValue(type, out var controller))
-        { 
+        {
             controller.TriggerControllerEvent(eventName, args);
         }
     }
@@ -30,8 +30,8 @@ public class ControllerManager
     {
         List<ControllerType> keys = _controllers.Keys.ToList();
 
-        for (int i = 0; i < keys.Count; i++) 
-        { 
+        for (int i = 0; i < keys.Count; i++)
+        {
             //unregister the related events
             _controllers[keys[i]].DestroyController();
             _controllers.Remove(keys[i]);
@@ -39,7 +39,7 @@ public class ControllerManager
     }
     public void InitAllControllers()
     {
-        foreach(var controller in _controllers)
+        foreach (var controller in _controllers)
         {
             controller.Value.InitController();
         }

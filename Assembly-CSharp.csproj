@@ -65,30 +65,42 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.40f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Logic\GameMananger.cs" />
+    <Compile Include="Assets\Scripts\Managers\CoreMgr\GameMananger.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
-    <Compile Include="Assets\Scripts\Managers\EventCenterManager.cs" />
     <Compile Include="Assets\Scripts\Defs\ViewType.cs" />
+    <Compile Include="Assets\Scripts\Managers\CoreMgr\EventCenterManager.cs" />
     <Compile Include="Assets\Scripts\Defs\GameEvents.cs" />
     <Compile Include="Assets\Scripts\Features\Loading\LoadingView.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\HealEffect.cs" />
+    <Compile Include="Assets\Scripts\Managers\DataMgr\PersistentDataManager.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillController.cs" />
     <Compile Include="Assets\Scripts\UIFuncExtern\UnityFuncExtern.cs" />
-    <Compile Include="Assets\Scripts\Managers\PersistentDataManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\JsonManager.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
     <Compile Include="Assets\Scripts\MVC\Controller\ControllerManager.cs" />
+    <Compile Include="Assets\Scripts\Data\testdata.cs" />
     <Compile Include="Assets\Scripts\Data\GameConfig\GameConfig.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillData.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
+    <Compile Include="Assets\Scripts\Managers\ViewMgr\ViewManager.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\DamageEffect.cs" />
+    <Compile Include="Assets\Scripts\Managers\ResourcesMgr\StreamingAssetsManager.cs" />
+    <Compile Include="Assets\Scripts\Data\IGameData.cs" />
     <Compile Include="Assets\Scripts\MVC\View\BaseView.cs" />
+    <Compile Include="Assets\Scripts\Features\Character\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\MVC\Controller\BaseController.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\EffectBase.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillBase.cs" />
     <Compile Include="Assets\Scripts\Defs\ControllerType.cs" />
-    <Compile Include="Assets\Scripts\Managers\ResourceManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\SceneLoaderManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Util\UtilTools.cs" />
-    <Compile Include="Assets\Scripts\MVC\View\ViewManager.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\EffectFactory.cs" />
     <Compile Include="Assets\Scripts\MVC\View\IBaseView.cs" />
-    <Compile Include="Assets\Scripts\Managers\StreamingAssetsManager.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\Managers\ScenceMgr\SceneLoaderManager.cs" />
     <Compile Include="Assets\Scripts\Bootstrap.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

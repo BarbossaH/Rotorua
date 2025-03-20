@@ -18,6 +18,12 @@ public class Bootstrap : MonoBehaviour
         //     playerName="Test"
         //   },"player_save.json");
 
+        await JsonManager.Instance.LoadAllJsonByLabelAsync("json_data");
+
+        TestData testData = JsonManager.Instance.GetData<TestData>("TestData");
+
+        Debug.Log(testData.var1);
+
         GameVersion version = await StreamingAssetsManager.Instance.LoadJsonFromStreamingAssets<GameVersion>("version.json");
         // Debug.Log(version.changelog[0]);
         // Debug.Log(version.changelog[1]);
@@ -26,7 +32,7 @@ public class Bootstrap : MonoBehaviour
         // Debug.Log(data.playerName);
         //loading the next scene which is login, but here, I should can change the scene name so that I can load any scene
 
-        await GameManager.loaderManager.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.LoginScene);
+        await SceneLoaderManager.Instance.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.LoginScene);
 
     }
 
