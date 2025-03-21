@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class ViewInfo
 {
-    public string UIPrefabName; 
+    public string UIPrefabName;
     public Transform Parent; //some uis are displayed at the very top of the screen and some are displayed in the scene
     public int SortingOrder;
     public BaseController Controller;
 }
+// public class ViewManager : Singleton<ViewManager>
+//TODO: it cannot inherit from Singleton now, because there is not canvas for now, I will add them later.
 public class ViewManager
 {
     private readonly Transform _UICanvas = GameObject.Find("UICanvas").transform;
@@ -19,7 +21,7 @@ public class ViewManager
 
 
     //we must be clear that view registration involves basic information, not the view object.
-    public void RegisterView(ViewType viewType,  int sortingOrder=0, bool isInScene=false)
+    public void RegisterView(ViewType viewType, int sortingOrder = 0, bool isInScene = false)
     {
         ViewInfo info = new ViewInfo()
         {
@@ -31,7 +33,7 @@ public class ViewManager
         _viewsInfo.TryAdd(viewType, info);
     }
 
-    public void UnregisterView(ViewType viewType) 
+    public void UnregisterView(ViewType viewType)
     {
         if (_viewsInfo.ContainsKey(viewType))
         {
@@ -73,7 +75,7 @@ public class ViewManager
         //check if it's in the views, if not, then create it
         IBaseView view = GetView(viewType);
 
-        if (view == null) 
+        if (view == null)
         {
 
         }

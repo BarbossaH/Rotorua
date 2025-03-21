@@ -30,6 +30,7 @@ public class JsonManager : Singleton<JsonManager>
             {
                 var data = JsonUtility.FromJson(json.text, type) as IGameData;
                 loadData[className] = data;
+                Debug.Log(className + " has been loaded.");
             }
             else
             {
@@ -41,6 +42,7 @@ public class JsonManager : Singleton<JsonManager>
 
     public T GetData<T>(string key) where T : class, IGameData
     {
+
         if (loadData.TryGetValue(key, out var data))
         {
             return data as T;

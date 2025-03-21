@@ -1,0 +1,42 @@
+{
+    "Skills": [
+      {
+        "SkillID": "10001",
+        "Name": "Fireball",
+
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 3,
+            "Cost": [
+              { "Type": "Mana", "Value": 20 }
+            ],
+            "Effects": [
+              { "EffectType": "Damage", "Parameters": { "Amount": 50, "Element": "Fire" } },
+              { "EffectType": "Burn", "Parameters": { "TurnsAmount": 3, "Damage": 5 } }
+            ]
+          }
+        ]
+      },
+      {
+        "SkillID": "10011",
+        "Name": "IceArrow",
+
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 3,
+            "Cost": [
+              { "Type": "Mana", "Value": 20 },
+              { "Type": "ActionPoints", "Value": 1 }
+            ],
+            "Effects": [
+              { "EffectType": "Damage", "Parameters": { "Amount": 50, "Element": "Ice" } },
+              { "EffectType": "Frozen", "Parameters": { "TurnsAmount": 3, "Damage": 0 } }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

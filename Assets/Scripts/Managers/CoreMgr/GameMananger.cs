@@ -1,42 +1,4 @@
-﻿
-// //here is a big problem to solve, because I want GameManager become all managers' manager, but if each manager inherits from Singleton, then they would be independent, which means they are not managed by GameManager
-// public class GameManager : Singleton<GameManager>
-// {
-//     private ResourceManager _resourceManager;
-//     private SceneLoaderManager _loaderManager;
-//     private ControllerManager _controllerManager;
-
-//     public override void Init()
-//     {
-//         //initialize other managers
-//         _resourceManager = ResourceManager.Instance;
-//         _loaderManager = SceneLoaderManager.Instance;
-//         _controllerManager = ControllerManager.Instance;
-
-//         //LoadLoginScene();
-//         RegisterControllers();
-//     }
-
-//     private void RegisterControllers()
-//     {
-//         //register controllers
-//         // _controllerManager.RegisterController(ControllerType.Loading, controller);
-
-//         //after the registration of all controllers, then initialize them
-//         InitAllControllers();
-//     }
-
-//     private void InitAllControllers()
-//     {
-//         _controllerManager.InitAllControllers();
-//     }
-//     //private async void LoadLoginScene()
-//     //{
-//     //   //await resourceManager.LoadSceneAsync("Login");
-//     //}
-// }
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -64,7 +26,7 @@ public class GameManager : Singleton<GameManager>
                         && !t.IsAbstract
                         && t.BaseType != null
                         && t.BaseType.IsGenericType
-                        && t.BaseType.GetGenericTypeDefinition() == typeof(Singleton<>)); // 确保是 Singleton<T> 的子类
+                        && t.BaseType.GetGenericTypeDefinition() == typeof(Singleton<>)); // ensure it is the child of class Singleton<T>
 
         Debug.Log($"Found {managerTypes.Count()} potential manager types");
 
@@ -72,7 +34,6 @@ public class GameManager : Singleton<GameManager>
         {
             // Debug.Log($"Checking type: {type.FullName}");
 
-            // 直接访问 Singleton<T>.Instance
             var instanceProp = type.BaseType.GetProperty("Instance",
                 System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 

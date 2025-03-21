@@ -80,8 +80,11 @@
     <Compile Include="Assets\Scripts\UIFuncExtern\UnityFuncExtern.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\Skill.cs" />
+    <Compile Include="Assets\Scripts\Features\Skill\SkillTest.cs" />
     <Compile Include="Assets\Scripts\Data\testdata.cs" />
     <Compile Include="Assets\Scripts\Data\GameConfig\GameConfig.cs" />
+    <Compile Include="Assets\Scripts\Defs\SkillType.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
     <Compile Include="Assets\Scripts\Managers\ViewMgr\ViewManager.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\DamageEffect.cs" />
