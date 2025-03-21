@@ -55,7 +55,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
         AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(label, (res) =>
         {
-            Debug.Log("loaded a resource" + res.ToString());
+            // Debug.Log("loaded a resource" + res.ToString());
         });
 
         while (!handle.IsDone)
@@ -103,4 +103,5 @@ public class ResourceManager : Singleton<ResourceManager>
             UnloadAsset(address);
         }
     }
+
 }

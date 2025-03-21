@@ -14,6 +14,7 @@ public class ControllerManager : Singleton<ControllerManager>
     {
         if (_controllers.ContainsKey(type))
         {
+            _controllers[type].DestroyController();
             _controllers.Remove(type);
         }
     }
@@ -37,11 +38,22 @@ public class ControllerManager : Singleton<ControllerManager>
             _controllers.Remove(keys[i]);
         }
     }
-    public void InitAllControllers()
+    private void InitAllControllers()
     {
         foreach (var controller in _controllers)
         {
             controller.Value.InitController();
         }
     }
+
+
+    public override void Init()
+    {
+        base.Init();
+        //TODO: register controller here, and then initialize them.
+
+        InitAllControllers(); //TODO: initialize all controllers here tomorrow and continue to optimize the manager classes
+
+    }
+
 }

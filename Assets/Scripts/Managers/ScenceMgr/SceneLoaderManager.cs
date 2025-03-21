@@ -122,4 +122,5 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         OnSceneLoading?.Invoke(progress, des);
     }
+
 }

@@ -67,20 +67,21 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Managers\CoreMgr\GameMananger.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
+    <Compile Include="Assets\Scripts\Managers\CoreMgr\ControllerManager.cs" />
     <Compile Include="Assets\Scripts\Defs\ViewType.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\EventCenterManager.cs" />
+    <Compile Include="Assets\Scripts\Features\AudioManager\AudioListenerManager.cs" />
     <Compile Include="Assets\Scripts\Defs\GameEvents.cs" />
     <Compile Include="Assets\Scripts\Features\Loading\LoadingView.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\HealEffect.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\PersistentDataManager.cs" />
+    <Compile Include="Assets\Scripts\Data\SkillData\SkillData.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillController.cs" />
     <Compile Include="Assets\Scripts\UIFuncExtern\UnityFuncExtern.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
-    <Compile Include="Assets\Scripts\MVC\Controller\ControllerManager.cs" />
     <Compile Include="Assets\Scripts\Data\testdata.cs" />
     <Compile Include="Assets\Scripts\Data\GameConfig\GameConfig.cs" />
-    <Compile Include="Assets\Scripts\Features\Skill\SkillData.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
     <Compile Include="Assets\Scripts\Managers\ViewMgr\ViewManager.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\DamageEffect.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Scripts\Features\Skill\SkillBase.cs" />
     <Compile Include="Assets\Scripts\Defs\ControllerType.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\CoreMgr\IGameManger.cs" />
     <Compile Include="Assets\Scripts\Util\UtilTools.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\EffectFactory.cs" />
     <Compile Include="Assets\Scripts\MVC\View\IBaseView.cs" />

@@ -22,7 +22,7 @@ public class Bootstrap : MonoBehaviour
 
         TestData testData = JsonManager.Instance.GetData<TestData>("TestData");
 
-        Debug.Log(testData.var1);
+        // Debug.Log(testData.var1);
 
         GameVersion version = await StreamingAssetsManager.Instance.LoadJsonFromStreamingAssets<GameVersion>("version.json");
         // Debug.Log(version.changelog[0]);

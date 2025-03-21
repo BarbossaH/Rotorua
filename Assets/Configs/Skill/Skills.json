@@ -1,5 +1,6 @@
 {
-    "Fire": {
+    "Skill": [
+    {
       "SkillID": "Fireball_001",
       "Name": "Fireball",
       "EffectClass": "SkillEffect.CompositeEffect",
@@ -52,7 +53,7 @@
         }
       ]
     },
-    "Ice": {
+    {
       "SkillID": "IceArrow_002",
       "Name": "IceArrow",
       "EffectClass": "SkillEffect.CompositeEffect",
@@ -105,5 +106,6 @@
         }
       ]
     }
+    ]
   }
   

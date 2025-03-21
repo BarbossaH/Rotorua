@@ -18,7 +18,7 @@ public class EventCenterManager : Singleton<EventCenterManager>
     {
         if (_eventDic.ContainsKey(eventName))
         {
-            _eventDic[eventName]-=callback;
+            _eventDic[eventName] -= callback;
             if (_eventDic[eventName] == null)
             {
                 _eventDic.Remove(eventName);
@@ -26,8 +26,9 @@ public class EventCenterManager : Singleton<EventCenterManager>
         }
     }
 
-    public void PublishEvent(string eventName, params object[] args) { 
-        if(_eventDic.TryGetValue(eventName, out Action<object[]> callback))
+    public void PublishEvent(string eventName, params object[] args)
+    {
+        if (_eventDic.TryGetValue(eventName, out Action<object[]> callback))
         {
             //callback(args);
             callback.Invoke(args);

@@ -19,7 +19,7 @@ public class StreamingAssetsManager : Singleton<StreamingAssetsManager>
     public async UniTask<T> LoadJsonFromStreamingAssets<T>(string fileName)
     {
         string path = Path.Combine(Application.streamingAssetsPath, fileName);
-        Debug.Log("path: " + path);
+        // Debug.Log("path: " + path);
 
         string json;
 
@@ -58,6 +58,5 @@ public class StreamingAssetsManager : Singleton<StreamingAssetsManager>
             return default;
         }
     }
-
 
 }
