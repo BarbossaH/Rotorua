@@ -21,7 +21,11 @@ public class SkillData
 {
     public string ID;
     public string Name;
+    public string Description;
+    public string SkillType;
     public SkillLevel[] Levels;
+
+    public SkillTypeEnum GetSkillTypeEnum() => Enum.TryParse(SkillType, out SkillTypeEnum result) ? result : SkillTypeEnum.Active;
 }
 
 
@@ -29,7 +33,7 @@ public class SkillData
 public class SkillLevel
 {
     public string Level;
-    public string CoolDown;
+    public int CoolDown;
     public CostData[] Cost;
     public EffectData[] Effects;
 }
@@ -47,6 +51,8 @@ public class CostData
 public class EffectData
 {
     public string EffectType;
+    public string TriggerCondition;//TODO:cast to enum
+    public string Target;//TODO:cast to enum
     public EffectParameters Parameters;
 
     public EffectTypeEnum GetEffectType() =>
@@ -56,8 +62,12 @@ public class EffectData
 [Serializable]
 public class EffectParameters
 {
+    public int Duration;
+    public float Damage;
     public string Element;
-    public int Value;
+    public float Multiplier;
+    public float SpeedReduction;
+    public float Chance;
 
     public ElementEnum GetElementEnum() => Enum.TryParse(Element, out ElementEnum result) ? result : ElementEnum.None;
 }

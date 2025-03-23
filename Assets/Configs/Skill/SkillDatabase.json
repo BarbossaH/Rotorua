@@ -1,38 +1,113 @@
 {
     "Skills": [
       {
-        "SkillID": "10001",
+        "ID": "10001",
         "Name": "Fireball",
+        "SkillType":"Active",
+        "Description":"造成{Damage}点伤害,并有{Chance}%概率点燃目标{Duration}回合",
 
         "Levels": [
           {
             "Level": 1,
-            "CoolDown": 3,
+            "CoolDown": 3,    
             "Cost": [
               { "Type": "Mana", "Value": 20 }
             ],
             "Effects": [
-              { "EffectType": "Damage", "Parameters": { "Amount": 50, "Element": "Fire" } },
-              { "EffectType": "Burn", "Parameters": { "TurnsAmount": 3, "Damage": 5 } }
+              { "EffectType": "Damage", "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "Duration": 1,"Damage": 50, "Element": "Fire" }},
+              { "EffectType": "Dot", "TriggerCondition": "OnCast", "Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Element": "Fire","Chance":50 } }
             ]
           }
         ]
       },
       {
-        "SkillID": "10011",
-        "Name": "IceArrow",
-
+        "ID": "10011",
+        "Name": "Ice Arrow",
+        "SkillType":"Active",
+        "Description":"造成所有目标{Damage}点伤害,并有{Chance}%概率冻结目标{Duration}回合",
+       
         "Levels": [
           {
             "Level": 1,
             "CoolDown": 3,
+
             "Cost": [
               { "Type": "Mana", "Value": 20 },
               { "Type": "ActionPoints", "Value": 1 }
             ],
             "Effects": [
-              { "EffectType": "Damage", "Parameters": { "Amount": 50, "Element": "Ice" } },
-              { "EffectType": "Frozen", "Parameters": { "TurnsAmount": 3, "Damage": 0 } }
+              { "EffectType": "Aoe",  "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "Duration": 1,"Damage": 50, "Element": "Ice" }} ,
+              { "EffectType": "Control",  "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Chance":50,"Element": "Ice" } }
+            ]
+          }
+        ]
+      },
+      {
+        "ID": "20001",
+        "Name": "Berserker Rage",
+        "SkillType":"Passive",
+        "Description":"增加自己{Multiplier}倍攻击力，持续目标{Duration}回合",
+        
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 0,            
+            "Effects": [
+              { "EffectType": "AttackBuff", "TriggerCondition": "OnTakeDamage","Target":"Self","Parameters":{"Multiplier": 1.5, "Duration": 3 }}
+            ]
+          }
+        ]
+      }
+      ,
+      {
+        "ID": "20002",
+        "Name": "Shield",
+        "SkillType":"Passive",
+        "Description":"增加自身防御{Multiplier}倍",
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 0,   
+            "Target":"Self",  
+            "Effects": [
+              { "EffectType": "DefendBuff", "TriggerCondition": "Permanent","Target":"Self","Parameters":{"Multiplier": 2.5 }}
+            ]
+          }
+        ]
+      }
+      ,
+      {
+        "ID": "30001",
+        "Name": "Regeneration",
+        "SkillType":"Active",
+        "Stackable": true,
+        "Description":"增加自身攻击{Multiplier}倍",
+        
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 0,     
+            "Effects": [
+              { "EffectType": "Hot", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"Multiplier": 2.5 }}
+            ]
+          }
+        ]
+      }
+      ,
+      {
+        "ID": "40001",
+        "Name": "Frostbite",
+        "SkillType":"Active",
+        "Stackable": true,
+        "Description":"使目标减速{SpeedReduction}%",
+        
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 0,     
+            "Target":"Enemy",
+            "Effects": [
+              { "EffectType": "SpeedDebuff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"SpeedReduction": 30 }}
             ]
           }
         ]

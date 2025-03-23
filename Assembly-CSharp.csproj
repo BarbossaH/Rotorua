@@ -75,13 +75,13 @@
     <Compile Include="Assets\Scripts\Features\Loading\LoadingView.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillEffects\HealEffect.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\PersistentDataManager.cs" />
-    <Compile Include="Assets\Scripts\Data\SkillData\SkillData.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillController.cs" />
     <Compile Include="Assets\Scripts\UIFuncExtern\UnityFuncExtern.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Features\Skill\SkillTest.cs" />
+    <Compile Include="Assets\Scripts\Data\SkillData\SkillDatabase.cs" />
     <Compile Include="Assets\Scripts\Data\testdata.cs" />
     <Compile Include="Assets\Scripts\Data\GameConfig\GameConfig.cs" />
     <Compile Include="Assets\Scripts\Defs\SkillType.cs" />

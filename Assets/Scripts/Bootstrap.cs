@@ -32,7 +32,7 @@ public class Bootstrap : MonoBehaviour
         // Debug.Log(data.playerName);
         //loading the next scene which is login, but here, I should can change the scene name so that I can load any scene
 
-        await SceneLoaderManager.Instance.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.LoginScene);
+        await SceneLoaderManager.Instance.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.TestScene);
 
     }
 

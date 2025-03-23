@@ -1,8 +1,13 @@
 public abstract class EffectBase
 {
-    public string EffectName { get; protected set; }
-    public float Value { get; protected set; }
-    public int RemainingTurns { get; protected set; }
+    // public EffectTypeEnum effectType;
+    protected EffectParameters effectParameters;
 
-    public abstract void ApplyEffect(CharacterBase character);
+    //when creating a concrete subclass, the subclass needs to pass parameters to the constructor of the parent class
+    public EffectBase(EffectParameters effect)
+    {
+        effectParameters = effect;
+    }
+
+    public abstract void ApplyEffect(CharacterBase target);
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 2c49bbfb6c942b048a9bf533da9fd784
   m_SerializeEntries:
   - m_GUID: e852cd6e36c2dd041bff31398dbbc9c9
-    m_Address: Login
+    m_Address: TestScene
     m_ReadOnly: 0
     m_SerializedLabels:
     - scene
