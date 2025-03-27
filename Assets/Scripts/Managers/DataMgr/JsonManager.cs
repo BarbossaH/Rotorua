@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -10,6 +11,26 @@ using UnityEngine;
 public class JsonManager : Singleton<JsonManager>
 {
     private readonly Dictionary<string, IGameData> loadData = new();
+    private UniTaskCompletionSource jsonLoadCompletion = new UniTaskCompletionSource();
+    public override void PreInit()
+    {
+        base.PreInit();
+
+        // _ = LoadJsonFile();
+    }
+
+    public async UniTask LoadJsonFile()
+    {
+        await LoadAllJsonByLabelAsync("json_data");
+        Debug.Log("json_data has been loaded");
+        jsonLoadCompletion.TrySetResult(); // 标记 JSON 加载完成
+
+    }
+
+    public async UniTask WaitForJsonLoad()
+    {
+        await jsonLoadCompletion.Task;
+    }
     public async UniTask<T> LoadJsonAsync<T>(string address)
     {
         TextAsset jsonText = await ResourceManager.Instance.LoadAssetByAddressAsync<TextAsset>(address);
@@ -17,7 +38,7 @@ public class JsonManager : Singleton<JsonManager>
         return JsonUtility.FromJson<T>(jsonText.text);
     }
 
-    public async UniTask LoadAllJsonByLabelAsync(string label)
+    private async UniTask LoadAllJsonByLabelAsync(string label)
     {
         var jsonFiles = await ResourceManager.Instance.LoadAssetsByLabelAsync<TextAsset>(label);
 

@@ -13,7 +13,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     public readonly Dictionary<string, AsyncOperationHandle<SceneInstance>> loadedScenes = new();
 
     public event Action<float, string> OnSceneLoading;
-    public async UniTask SwitchSceneAsync(string fromScene, string nextScene, string[] unloadedAssets = null, string[] loadedAssets = null)
+    public async UniTask SwitchSceneAsync(string fromScene, string nextScene, Func<UniTask> OnLoadResource = null)
     {
         //send event, ready to unload a scene
         EventCenterManager.Instance.PublishEvent(GameEvents.SceneSwitching);
@@ -24,6 +24,13 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
         //release unnecessary resources
         UpdateLoadingProgress(0.2f, "Starting");
+
+        if (OnLoadResource != null)
+        {
+            await OnLoadResource();
+            UpdateLoadingProgress(0.7f, "Resources Loaded");
+            await UniTask.Delay(5000);
+        }
         //unload the current scene
         await UnloadSceneAsync(fromScene);
         UpdateLoadingProgress(1f, "Completed");

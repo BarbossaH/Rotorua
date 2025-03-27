@@ -36,11 +36,12 @@ public class LoadingView : MonoBehaviour
     }
     private async UniTask UpdateSliderAsync(float targetValue, string des)
     {
+        _loadingTMP.text = des;
+
         while (_currentValue < targetValue)
         {
             _currentValue += Time.deltaTime;
             _slider.value = _currentValue;
-
             //await UniTask.Delay(50);
             await UniTask.Yield();
         }

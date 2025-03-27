@@ -15,7 +15,54 @@
             ],
             "Effects": [
               { "EffectType": "Damage", "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "Duration": 1,"Damage": 50, "Element": "Fire" }},
-              { "EffectType": "Dot", "TriggerCondition": "OnCast", "Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Element": "Fire","Chance":50 } }
+              { "EffectType": "Debuff", "TriggerCondition": "OnCast", "Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Element": "Fire","Chance":50 } }
+            ]
+          }
+        ]
+      }, 
+      {
+        "ID": "10002",
+        "Name": "Healing Light",
+        "SkillType":"Active",
+        "Description":"恢复{HealAmount}点生命",
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 2,
+            "Cost": [{ "Type": "Mana", "Value": 15 }],
+            "Effects": [
+              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "Parameters": { "HealAmount": 30 } }
+            ]
+          }
+        ]
+      },
+      {
+        "ID": "10003",
+        "Name": "Divine Shield",
+        "SkillType":"Active",
+        "Description":"获得{ShieldAmount}点护盾，持续{Duration}回合",
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 4,
+            "Cost": [{ "Type": "Mana", "Value": 20 }],
+            "Effects": [
+              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "Parameters": { "ShieldAmount": 40, "Duration": 3 } }
+            ]
+          }
+        ]
+      },
+      {
+        "ID": "10004",
+        "Name": "Draw Power",
+        "SkillType":"Active",
+        "Description":"抽取 {DrawAmount} 张牌",
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 2,
+            "Effects": [
+              { "EffectType": "Action", "TriggerCondition": "OnCast", "Target":"Self", "Parameters": { "DrawAmount": 2 } }
             ]
           }
         ]
@@ -37,7 +84,7 @@
             ],
             "Effects": [
               { "EffectType": "Aoe",  "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "Duration": 1,"Damage": 50, "Element": "Ice" }} ,
-              { "EffectType": "Control",  "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Chance":50,"Element": "Ice" } }
+              { "EffectType": "Debuff",  "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Chance":50,"Element": "Ice" } }
             ]
           }
         ]
@@ -53,12 +100,11 @@
             "Level": 1,
             "CoolDown": 0,            
             "Effects": [
-              { "EffectType": "AttackBuff", "TriggerCondition": "OnTakeDamage","Target":"Self","Parameters":{"Multiplier": 1.5, "Duration": 3 }}
+              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"Multiplier": 1.5, "Duration": 3 }}
             ]
           }
         ]
-      }
-      ,
+      },
       {
         "ID": "20002",
         "Name": "Shield",
@@ -70,7 +116,22 @@
             "CoolDown": 0,   
             "Target":"Self",  
             "Effects": [
-              { "EffectType": "DefendBuff", "TriggerCondition": "Permanent","Target":"Self","Parameters":{"Multiplier": 2.5 }}
+              { "EffectType": "Buff", "TriggerCondition": "Permanent","Target":"Self","Parameters":{"Multiplier": 2.5 }}
+            ]
+          }
+        ]
+      },
+      {
+        "ID": "21001",
+        "Name": "Vampiric Touch",
+        "SkillType":"Passive",
+        "Description":"攻击时吸取{Lifesteal}%生命",
+        "Levels": [
+          {
+            "Level": 1,
+            "CoolDown": 0,
+            "Effects": [
+              { "EffectType": "LifeSteal", "TriggerCondition": "OnHit", "Target":"Self", "Parameters": { "Lifesteal": 10 } }
             ]
           }
         ]
@@ -88,7 +149,7 @@
             "Level": 1,
             "CoolDown": 0,     
             "Effects": [
-              { "EffectType": "Hot", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"Multiplier": 2.5 }}
+              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"Multiplier": 2.5 }}
             ]
           }
         ]
@@ -107,7 +168,7 @@
             "CoolDown": 0,     
             "Target":"Enemy",
             "Effects": [
-              { "EffectType": "SpeedDebuff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"SpeedReduction": 30 }}
+              { "EffectType": "Debuff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"SpeedReduction": 30 }}
             ]
           }
         ]

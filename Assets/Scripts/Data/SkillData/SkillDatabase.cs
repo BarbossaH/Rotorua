@@ -53,21 +53,58 @@ public class EffectData
     public string EffectType;
     public string TriggerCondition;//TODO:cast to enum
     public string Target;//TODO:cast to enum
-    public EffectParameters Parameters;
+    public EffectParameterBase Parameters;
 
     public EffectTypeEnum GetEffectType() =>
     Enum.TryParse(EffectType, out EffectTypeEnum result) ? result : EffectTypeEnum.Damage;
 }
 
+#region Skill Effect Parameter Classes
+
 [Serializable]
-public class EffectParameters
+public abstract class EffectParameterBase { }
+
+public class DamageParameter : EffectParameterBase
 {
-    public int Duration;
     public float Damage;
+    public float CriticalChance;
     public string Element;
-    public float Multiplier;
-    public float SpeedReduction;
-    public float Chance;
 
     public ElementEnum GetElementEnum() => Enum.TryParse(Element, out ElementEnum result) ? result : ElementEnum.None;
 }
+
+public class HealParameter : EffectParameterBase
+{
+    public float HealAmount;
+    public int Duration;
+}
+
+public class MultipleDamage : EffectParameterBase
+{
+    public float Multiplier;
+}
+
+public class MultipleDefense : EffectParameterBase
+{
+    public float Multiplier;
+}
+
+public class Shield : EffectParameterBase
+{
+    public float ShieldValue;
+    public int Duration;
+}
+
+public class SpeedReduction : EffectParameterBase
+{
+    public float Reduction;
+    public int Duration;
+    public float Chance = 100;
+}
+public class Frozen : EffectParameterBase
+{
+    public int Duration;
+    public float Chance = 100;
+}
+
+#endregion

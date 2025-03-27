@@ -6,10 +6,13 @@ public class GameManager : Singleton<GameManager>
 {
     private List<IGameManger> _managers = new();
 
+    public override void PreInit()
+    {
+        RegisterAllManagers();
+    }
     public override void Init()
     {
         base.Init();
-        RegisterAllManagers();
         InitAllManagers();
     }
 
@@ -56,6 +59,7 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
+
 
     private void InitAllManagers()
     {
