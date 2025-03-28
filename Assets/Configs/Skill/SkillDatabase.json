@@ -114,7 +114,6 @@
           {
             "Level": 1,
             "CoolDown": 0,   
-            "Target":"Self",  
             "Effects": [
               { "EffectType": "Buff", "TriggerCondition": "Permanent","Target":"Self","Parameters":{"Multiplier": 2.5 }}
             ]
@@ -160,15 +159,13 @@
         "Name": "Frostbite",
         "SkillType":"Active",
         "Stackable": true,
-        "Description":"使目标减速{SpeedReduction}%",
-        
+        "Description":"使目标减速{SpeedReduction}%",        
         "Levels": [
           {
             "Level": 1,
             "CoolDown": 0,     
-            "Target":"Enemy",
             "Effects": [
-              { "EffectType": "Debuff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"SpeedReduction": 30 }}
+              { "EffectType": "Debuff", "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{"SpeedReduction": 30 }}
             ]
           }
         ]

@@ -33,6 +33,7 @@ public class Bootstrap : MonoBehaviour
             async () =>
             {
                 await JsonManager.Instance.LoadJsonFile();
+                await SkillManager.Instance.LoadSkillDataAsync();
             }
         );
 

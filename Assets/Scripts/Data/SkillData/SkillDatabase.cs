@@ -21,9 +21,10 @@ public class SkillData
 {
     public string ID;
     public string Name;
-    public string Description;
     public string SkillType;
+    public string Description;
     public SkillLevel[] Levels;
+    public bool Stackable;
 
     public SkillTypeEnum GetSkillTypeEnum() => Enum.TryParse(SkillType, out SkillTypeEnum result) ? result : SkillTypeEnum.Active;
 }
@@ -51,12 +52,16 @@ public class CostData
 public class EffectData
 {
     public string EffectType;
-    public string TriggerCondition;//TODO:cast to enum
-    public string Target;//TODO:cast to enum
+    public string TriggerCondition;
+    public string Target;
     public EffectParameterBase Parameters;
 
     public EffectTypeEnum GetEffectType() =>
-    Enum.TryParse(EffectType, out EffectTypeEnum result) ? result : EffectTypeEnum.Damage;
+    Enum.TryParse(EffectType, out EffectTypeEnum result) ? result : EffectTypeEnum.None;
+    public TriggerConditionEnum GetTriggerConditionEnum() =>
+    Enum.TryParse(TriggerCondition, out TriggerConditionEnum result) ? result : TriggerConditionEnum.None;
+    public TargetEnum GetTargetEnum() =>
+    Enum.TryParse(Target, out TargetEnum result) ? result : TargetEnum.None;
 }
 
 #region Skill Effect Parameter Classes
@@ -64,47 +69,57 @@ public class EffectData
 [Serializable]
 public abstract class EffectParameterBase { }
 
-public class DamageParameter : EffectParameterBase
+public class DamageParameterEffect : EffectParameterBase
 {
     public float Damage;
-    public float CriticalChance;
+    public float CriticalChance = 0;
     public string Element;
 
     public ElementEnum GetElementEnum() => Enum.TryParse(Element, out ElementEnum result) ? result : ElementEnum.None;
 }
 
-public class HealParameter : EffectParameterBase
+public class HealParameterEffect : EffectParameterBase
 {
     public float HealAmount;
     public int Duration;
 }
 
-public class MultipleDamage : EffectParameterBase
+public class MultipleDamageEffect : EffectParameterBase
 {
     public float Multiplier;
 }
 
-public class MultipleDefense : EffectParameterBase
+public class MultipleDefenseEffect : EffectParameterBase
 {
     public float Multiplier;
 }
 
-public class Shield : EffectParameterBase
+public class ShieldEffect : EffectParameterBase
 {
-    public float ShieldValue;
+    public float ShieldAmount;
     public int Duration;
 }
 
-public class SpeedReduction : EffectParameterBase
+public class SpeedReductionEffect : EffectParameterBase
 {
     public float Reduction;
     public int Duration;
     public float Chance = 100;
 }
-public class Frozen : EffectParameterBase
+public class FrozenEffect : EffectParameterBase
 {
     public int Duration;
     public float Chance = 100;
+}
+
+public class DrawCardEffect : EffectParameterBase
+{
+    public int DrawAmount { get; set; }
+}
+
+public class LifeStealEffect : EffectParameterBase
+{
+    public int Lifesteal { get; set; }
 }
 
 #endregion

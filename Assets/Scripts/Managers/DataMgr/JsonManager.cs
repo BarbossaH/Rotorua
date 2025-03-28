@@ -22,8 +22,8 @@ public class JsonManager : Singleton<JsonManager>
     public async UniTask LoadJsonFile()
     {
         await LoadAllJsonByLabelAsync("json_data");
-        Debug.Log("json_data has been loaded");
         jsonLoadCompletion.TrySetResult(); // 标记 JSON 加载完成
+        Debug.Log("json_data has been loaded");
 
     }
 
