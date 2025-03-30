@@ -1,8 +1,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json;
 using UnityEngine;
 
 /// <summary>
@@ -35,7 +35,13 @@ public class JsonManager : Singleton<JsonManager>
     {
         TextAsset jsonText = await ResourceManager.Instance.LoadAssetByAddressAsync<TextAsset>(address);
         if (jsonText == null) return default;
-        return JsonUtility.FromJson<T>(jsonText.text);
+        // return JsonUtility.FromJson<T>(jsonText.text);
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto
+        };
+
+        return JsonConvert.DeserializeObject<T>(jsonText.text, settings);
     }
 
     private async UniTask LoadAllJsonByLabelAsync(string label)
@@ -49,7 +55,13 @@ public class JsonManager : Singleton<JsonManager>
             Type type = Type.GetType(className);
             if (type != null)
             {
-                var data = JsonUtility.FromJson(json.text, type) as IGameData;
+                // var data = JsonUtility.FromJson(json.text, type) as IGameData;
+                var settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                };
+
+                var data = JsonConvert.DeserializeObject(json.text, type, settings) as IGameData;
                 loadData[className] = data;
                 Debug.Log(className + " has been loaded.");
             }

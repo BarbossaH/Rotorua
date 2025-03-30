@@ -14,8 +14,7 @@
               { "Type": "Mana", "Value": 20 }
             ],
             "Effects": [
-              { "EffectType": "Damage", "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "Duration": 1,"Damage": 50, "Element": "Fire" }},
-              { "EffectType": "Debuff", "TriggerCondition": "OnCast", "Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Element": "Fire","Chance":50 } }
+              { "EffectType": "Damage", "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "$type": "DamageParameterEffect", "Duration": 1,"Damage": 50, "Element": "Fire" }}
             ]
           }
         ]
@@ -31,7 +30,7 @@
             "CoolDown": 2,
             "Cost": [{ "Type": "Mana", "Value": 15 }],
             "Effects": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "Parameters": { "HealAmount": 30 } }
+              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "Parameters":{ "$type": "HealParameterEffect", "HealAmount": 30 } }
             ]
           }
         ]
@@ -47,7 +46,7 @@
             "CoolDown": 4,
             "Cost": [{ "Type": "Mana", "Value": 20 }],
             "Effects": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "Parameters": { "ShieldAmount": 40, "Duration": 3 } }
+              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "Parameters":{ "$type": "ShieldEffect", "ShieldAmount": 40, "Duration": 3 } }
             ]
           }
         ]
@@ -62,7 +61,7 @@
             "Level": 1,
             "CoolDown": 2,
             "Effects": [
-              { "EffectType": "Action", "TriggerCondition": "OnCast", "Target":"Self", "Parameters": { "DrawAmount": 2 } }
+              { "EffectType": "Action", "TriggerCondition": "OnCast", "Target":"Self", "Parameters":{ "$type": "DrawCardEffect", "DrawAmount": 2 } }
             ]
           }
         ]
@@ -83,8 +82,8 @@
               { "Type": "ActionPoints", "Value": 1 }
             ],
             "Effects": [
-              { "EffectType": "Aoe",  "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "Duration": 1,"Damage": 50, "Element": "Ice" }} ,
-              { "EffectType": "Debuff",  "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{ "Duration": 3, "Damage": 5, "Chance":50,"Element": "Ice" } }
+              { "EffectType": "Aoe",  "TriggerCondition": "OnCast","Target":"Enemy","Parameters":{ "$type": "DamageParameterEffect", "Duration": 1,"Damage": 50, "Element": "Ice" }} ,
+              { "EffectType": "Debuff",  "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{ "$type": "FrozenEffect", "Duration": 3, "Damage": 5, "Chance":50,"Element": "Ice" } }
             ]
           }
         ]
@@ -100,7 +99,7 @@
             "Level": 1,
             "CoolDown": 0,            
             "Effects": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"Multiplier": 1.5, "Duration": 3 }}
+              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{ "$type": "MultipleDamageEffect","Multiplier": 1.5, "Duration": 3 }}
             ]
           }
         ]
@@ -115,7 +114,7 @@
             "Level": 1,
             "CoolDown": 0,   
             "Effects": [
-              { "EffectType": "Buff", "TriggerCondition": "Permanent","Target":"Self","Parameters":{"Multiplier": 2.5 }}
+              { "EffectType": "Buff", "TriggerCondition": "Permanent","Target":"Self","Parameters":{ "$type": "MultipleDefenseEffect","Multiplier": 2.5 }}
             ]
           }
         ]
@@ -124,13 +123,13 @@
         "ID": "21001",
         "Name": "Vampiric Touch",
         "SkillType":"Passive",
-        "Description":"攻击时吸取{Lifesteal}%生命",
+        "Description":"攻击时吸取{LifeSteal}%生命",
         "Levels": [
           {
             "Level": 1,
             "CoolDown": 0,
             "Effects": [
-              { "EffectType": "LifeSteal", "TriggerCondition": "OnHit", "Target":"Self", "Parameters": { "Lifesteal": 10 } }
+              { "EffectType": "LifeSteal", "TriggerCondition": "OnHit", "Target":"Self", "Parameters":{ "$type": "LifeStealEffect", "LifeSteal": 10 } }
             ]
           }
         ]
@@ -148,7 +147,7 @@
             "Level": 1,
             "CoolDown": 0,     
             "Effects": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{"Multiplier": 2.5 }}
+              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","Parameters":{ "$type": "MultipleDamageEffect","Multiplier": 2.5 }}
             ]
           }
         ]
@@ -165,7 +164,7 @@
             "Level": 1,
             "CoolDown": 0,     
             "Effects": [
-              { "EffectType": "Debuff", "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{"SpeedReduction": 30 }}
+              { "EffectType": "Debuff", "TriggerCondition": "OnHit","Target":"Enemy","Parameters":{ "$type": "SpeedReductionEffect","SpeedReduction": 30 }}
             ]
           }
         ]

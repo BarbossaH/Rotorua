@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -50,7 +51,12 @@ public class StreamingAssetsManager : Singleton<StreamingAssetsManager>
                 return default;
             }
 
-            return JsonUtility.FromJson<T>(json);
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto // 支持多态解析
+            };
+
+            return JsonConvert.DeserializeObject<T>(json, settings);
         }
         catch (Exception ex)
         {

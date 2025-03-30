@@ -1,5 +1,6 @@
 using System.IO;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json;
 using UnityEngine;
 
 /// <summary>
@@ -13,7 +14,13 @@ public class PersistentDataManager : Singleton<PersistentDataManager>
         string filePath = Path.Combine(saveDirectory, fileName);
         UtilTools.EnsureDictionary(saveDirectory);
 
-        string json = JsonUtility.ToJson(data, true);
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto, // 保存时包含多态信息
+            Formatting = Formatting.Indented
+        };
+
+        string json = JsonConvert.SerializeObject(data, settings);
 
         await File.WriteAllTextAsync(filePath, json);
 
@@ -33,7 +40,12 @@ public class PersistentDataManager : Singleton<PersistentDataManager>
         try
         {
             string json = await File.ReadAllTextAsync(filePath);
-            T data = JsonUtility.FromJson<T>(json);
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto // 读取时解析多态
+            };
+
+            T data = JsonConvert.DeserializeObject<T>(json, settings);
             Debug.Log("Player data loaded successfully");
             return data;
         }

@@ -30,20 +30,21 @@ public class SkillManager : Singleton<SkillManager>
         if (IsSkillDataLoaded) return;
 
         await JsonManager.Instance.WaitForJsonLoad(); // 确保 JSON 数据已加载
-        SkillData[] skillDatas = JsonManager.Instance.GetData<SkillDatabase>(typeof(SkillDatabase).Name)?.Skills;
 
-        if (skillDatas == null)
+        SkillData[] skillDataArray = JsonManager.Instance.GetData<SkillDatabase>(typeof(SkillDatabase).Name)?.Skills;
+
+        if (skillDataArray == null)
         {
-            Debug.LogError("技能数据解析失败: skillDatas 为空！");
+            Debug.LogError("技能数据解析失败: skillDataArray 为空！");
             return;
         }
-        if (skillDatas.Length == 0)
+        if (skillDataArray.Length == 0)
         {
             Debug.LogError("技能数据为空，没有任何技能！");
             return;
         }
 
-        foreach (var s in skillDatas)
+        foreach (var s in skillDataArray)
         {
             if (s == null)
             {
