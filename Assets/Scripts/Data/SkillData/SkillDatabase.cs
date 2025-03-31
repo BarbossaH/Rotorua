@@ -79,6 +79,7 @@ public class SkillLevel
         if (!UtilTools.ValidatePositiveValue(Level, nameof(Level), skillName)) return false;
         if (!UtilTools.ValidatePositiveValue(CoolDown, nameof(CoolDown), skillName)) return false;
 
+        #region if there is an cost array, it should check the value is more than 0
         // if (UtilTools.ValidateArray(Cost, nameof(Cost), skillName))
         // {
         //     for (int i = 0; i < Cost.Length; i++)
@@ -93,6 +94,7 @@ public class SkillLevel
         // {
         //     return false;
         // }
+        #endregion
 
         if (UtilTools.ValidateArray(Effects, nameof(Effects), skillName))
         {
