@@ -336,7 +336,7 @@ public class EffectParameterConverter : JsonConverter
         {
             throw new Exception($"Unknown or invalid effect type: {typeName}");
         }
-
+        Debug.Log(typeName);
         var effect = Activator.CreateInstance(effectType);
         serializer.Populate(jsonObject.CreateReader(), effect);
         return effect;

@@ -1,9 +1,33 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SkillTest : MonoBehaviour
+public class ButtonClickHandler : MonoBehaviour
 {
-    private void Start()
+    private Button button;
+
+    void Awake()
     {
-        // SkillManager.Instance.LoadSkillData();
+        // 获取当前 GameObject 上的 Button 组件
+        button = GetComponent<Button>();
+
+        if (button != null)
+        {
+            // 绑定点击事件
+            button.onClick.AddListener(OnButtonClick);
+        }
+    }
+
+    private void OnButtonClick()
+    {
+        SkillManager.Instance.CreateSkill("10001").ApplySkill();
+    }
+
+    private void OnDestroy()
+    {
+        // 移除事件，避免内存泄漏
+        if (button != null)
+        {
+            button.onClick.RemoveListener(OnButtonClick);
+        }
     }
 }

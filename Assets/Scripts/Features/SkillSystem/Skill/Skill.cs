@@ -16,5 +16,9 @@ public class Skill : ISkill
     }
     public void ApplySkill()
     {
+        foreach (var e in skillEffects)
+        {
+            e.ApplyEffect();
+        }
     }
 }

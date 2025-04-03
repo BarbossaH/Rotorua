@@ -1,9 +1,12 @@
-public class DamageParams : EffectBase, ISkillEffect
+using UnityEngine;
+
+public class DamageEffect : EffectBase, ISkillEffect
 {
     public float Damage { private set; get; }
     public float CriticalChance { private set; get; }
     public string Element { private set; get; }
-    public DamageParams(EffectData effectData, DamageParameterData damageParameter) : base(effectData)
+
+    public DamageEffect(EffectData effectData, DamageParameterData damageParameter) : base(effectData)
     {
         Damage = damageParameter.Damage;
         CriticalChance = damageParameter.CriticalChance;
@@ -12,6 +15,6 @@ public class DamageParams : EffectBase, ISkillEffect
 
     public void ApplyEffect()
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"attack{Damage}");
     }
 }

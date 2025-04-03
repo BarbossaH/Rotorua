@@ -94,7 +94,6 @@
     <Compile Include="Assets\Scripts\Features\Character\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\MVC\Controller\BaseController.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillEffects\SpecialEffect\HealEffect.cs" />
-    <Compile Include="Assets\Scripts\Features\SkillSystem\SkillEffects\OffensiveEffects\DamageParams.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\SkillController.cs" />
     <Compile Include="Assets\Scripts\Defs\ControllerType.cs" />
@@ -102,6 +101,7 @@
     <Compile Include="Assets\Scripts\Managers\CoreMgr\IGameManger.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Util\UtilTools.cs" />
+    <Compile Include="Assets\Scripts\Features\SkillSystem\SkillEffects\OffensiveEffects\DamageEffect.cs" />
     <Compile Include="Assets\Scripts\MVC\View\IBaseView.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\ISkill.cs" />

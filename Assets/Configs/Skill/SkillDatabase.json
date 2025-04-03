@@ -14,7 +14,7 @@
               { "Type": "Mana", "Value": 20 }
             ],
             "EffectsData": [
-              { "EffectType": "Damage", "TriggerCondition": "OnCast","Target":"Enemy","ParametersData":{ "SubclassName": "DamageParameterEffect", "Duration": 1,"Damage": 50, "Element": "Fire" }}              
+              { "EffectType": "Damage", "TriggerCondition": "OnCast","Target":"Enemy","ParametersData":{ "SubclassName": "DamageParameterData", "Duration": 1,"Damage": 50, "Element": "Fire" }}              
             ]
           }
         ]
@@ -30,7 +30,7 @@
             "CoolDown": 2,
             "Cost": [{ "Type": "Mana", "Value": 15 }],
             "EffectsData": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "ParametersData":{ "SubclassName": "HealParameterEffect", "HealAmount": 30 } }
+              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "ParametersData":{ "SubclassName": "HealParameterData", "HealAmount": 30 } }
             ]
           }
         ]
@@ -46,7 +46,7 @@
             "CoolDown": 4,
             "Cost": [{ "Type": "Mana", "Value": 20 }],
             "EffectsData": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "ParametersData":{ "SubclassName": "ShieldEffect", "ShieldAmount": 40, "Duration": 3 } }
+              { "EffectType": "Buff", "TriggerCondition": "OnCast", "Target":"Self", "ParametersData":{ "SubclassName": "ShieldParameterData", "ShieldAmount": 40, "Duration": 3 } }
             ]
           }
         ]
@@ -61,7 +61,7 @@
             "Level": 1,
             "CoolDown": 2,
             "EffectsData": [
-              { "EffectType": "Action", "TriggerCondition": "OnCast", "Target":"Self", "ParametersData":{ "SubclassName": "DrawCardEffect", "DrawAmount": 2 } }
+              { "EffectType": "Action", "TriggerCondition": "OnCast", "Target":"Self", "ParametersData":{ "SubclassName": "DrawCardParameterData", "DrawAmount": 2 } }
             ]
           }
         ]
@@ -82,8 +82,8 @@
               { "Type": "ActionPoints", "Value": 1 }
             ],
             "EffectsData": [
-              { "EffectType": "Aoe",  "TriggerCondition": "OnCast","Target":"Enemy","ParametersData":{ "SubclassName": "DamageParameterEffect", "Duration": 1,"Damage": 50, "Element": "Ice" }} ,
-              { "EffectType": "Debuff",  "TriggerCondition": "OnHit","Target":"Enemy","ParametersData":{ "SubclassName": "FrozenEffect", "Duration": 3, "Damage": 5, "Chance":50,"Element": "Ice" } }
+              { "EffectType": "Aoe",  "TriggerCondition": "OnCast","Target":"Enemy","ParametersData":{ "SubclassName": "DamageParameterData", "Duration": 1,"Damage": 50, "Element": "Ice" }} ,
+              { "EffectType": "Debuff",  "TriggerCondition": "OnHit","Target":"Enemy","ParametersData":{ "SubclassName": "FrozenParameterData", "Duration": 3, "Damage": 5, "Chance":50,"Element": "Ice" } }
             ]
           }
         ]
@@ -99,7 +99,7 @@
             "Level": 1,
             "CoolDown": 0,            
             "EffectsData": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","ParametersData":{ "SubclassName": "MultipleDamageEffect","Multiplier": 1.5, "Duration": 3 }}
+              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","ParametersData":{ "SubclassName": "MultipleDamageParameterData","Multiplier": 1.5, "Duration": 3 }}
             ]
           }
         ]
@@ -114,7 +114,7 @@
             "Level": 1,
             "CoolDown": 0,   
             "EffectsData": [
-              { "EffectType": "Buff", "TriggerCondition": "Permanent","Target":"Self","ParametersData":{ "SubclassName": "MultipleDefenseEffect","Multiplier": 2.5 }}
+              { "EffectType": "Buff", "TriggerCondition": "Permanent","Target":"Self","ParametersData":{ "SubclassName": "MultipleDefenseParameterData","Multiplier": 2.5 }}
             ]
           }
         ]
@@ -129,7 +129,7 @@
             "Level": 1,
             "CoolDown": 0,
             "EffectsData": [
-              { "EffectType": "LifeSteal", "TriggerCondition": "OnHit", "Target":"Self", "ParametersData":{ "SubclassName": "LifeStealEffect", "LifeSteal": 10 } }
+              { "EffectType": "LifeSteal", "TriggerCondition": "OnHit", "Target":"Self", "ParametersData":{ "SubclassName": "LifeStealParameterData", "LifeSteal": 10 } }
             ]
           }
         ]
@@ -147,7 +147,7 @@
             "Level": 1,
             "CoolDown": 0,     
             "EffectsData": [
-              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","ParametersData":{ "SubclassName": "MultipleDamageEffect","Multiplier": 2.5 }}
+              { "EffectType": "Buff", "TriggerCondition": "OnCast","Target":"Self","ParametersData":{ "SubclassName": "MultipleDamageParameterData","Multiplier": 2.5 }}
             ]
           }
         ]
@@ -164,7 +164,7 @@
             "Level": 1,
             "CoolDown": 0,     
             "EffectsData": [
-              { "EffectType": "Debuff", "TriggerCondition": "OnHit","Target":"Enemy","ParametersData":{ "SubclassName": "SpeedReductionEffect","SpeedReduction": 30 }}
+              { "EffectType": "Debuff", "TriggerCondition": "OnHit","Target":"Enemy","ParametersData":{ "SubclassName": "SpeedReductionParameterData","SpeedReduction": 30 }}
             ]
           }
         ]

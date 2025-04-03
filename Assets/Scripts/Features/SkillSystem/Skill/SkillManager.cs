@@ -17,7 +17,7 @@ public class SkillManager : Singleton<SkillManager>
         base.Init();
 
         //register effect parameter classes
-        EffectFactory.RegisterEffectParameters();
+        EffectFactory.RegisterEffects();
     }
 
     //load data from json
@@ -66,7 +66,7 @@ public class SkillManager : Singleton<SkillManager>
         IsSkillDataLoaded = true;
     }
 
-    public SkillData GetSkillData(string id)
+    public SkillData GetSkillDataById(string id)
     {
         return _SkillDataDict.TryGetValue(id, out var skillData) ? skillData : null;
     }
@@ -93,4 +93,8 @@ public class SkillManager : Singleton<SkillManager>
     // }
     #endregion
     //TODO: create skill and skill effect, before this, thinking how to design the effect trigger type, including active, passive, and buff/debuff.
+    public Skill CreateSkill(string skillId)
+    {
+        return SkillFactory.CreateSkill(GetSkillDataById(skillId), 0);
+    }
 }

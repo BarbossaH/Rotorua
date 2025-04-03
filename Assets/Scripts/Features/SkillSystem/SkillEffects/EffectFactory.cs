@@ -9,15 +9,15 @@ public static class EffectFactory
     private static readonly Dictionary<string, Type> _EffectParamsDict = new();
 
     //when initialize the skill manager, register 
-    public static void RegisterEffectParameters()
+    public static void RegisterEffects()
     {
-        var parameters = Assembly.GetExecutingAssembly().GetTypes()
+        var effects = Assembly.GetExecutingAssembly().GetTypes()
         .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(EffectBase)));
 
-        foreach (var p in parameters)
+        foreach (var e in effects)
         {
-            _EffectParamsDict[p.Name] = p;
-            Debug.Log($"注册 Effect Param:{p.Name}");
+            _EffectParamsDict[e.Name] = e;
+            Debug.Log($"注册 Effect Param:{e.Name}");
         }
     }
 
@@ -28,11 +28,13 @@ public static class EffectFactory
 
         foreach (var data in effectDatas)
         {
-            if (_EffectParamsDict.TryGetValue(data.ParametersData.SubclassName, out var t))
+            string typeName = data.ParametersData.SubclassName.Replace("ParameterData", "Effect");
+            Debug.Log(typeName);
+            if (_EffectParamsDict.TryGetValue(typeName, out var t))
             {
-                EffectParameterDataBase effectParams = Activator.CreateInstance(t) as EffectParameterDataBase;
+                ISkillEffect effect = Activator.CreateInstance(t, new object[] { data, data.ParametersData }) as ISkillEffect;
                 // EffectBase effect = new EffectBase(data, effectParams);
-                // effects.Add(effect);
+                effects.Add(effect);
             }
 
         }
