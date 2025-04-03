@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+
 public static class SkillFactory
 {
     public static Skill CreateSkill(SkillData data, int level)
     {
-        EffectBase effect = EffectFactory.CreateSkillEffect();
-        return new Skill(data, effect);
+        List<ISkillEffect> effects = EffectFactory.CreateSkillEffect(data.LevelsData[level].EffectsData);
+
+        return new Skill(data, effects.ToArray());
     }
 }

@@ -4,4 +4,4 @@ public enum ElementEnum { None, Fire, Ice }
 public enum SkillTypeEnum { None, Active, Passive }
 public enum TriggerConditionEnum { None, OnCast, OnHit, Permanent }
 
-public enum TargetEnum { None, Self, Enemy, All }
+public enum TargetTypeEnum { None, Self, Enemy, All }

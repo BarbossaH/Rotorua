@@ -9,8 +9,7 @@ public class SkillManager : Singleton<SkillManager>
 {
     public bool IsSkillDataLoaded { get; private set; }
     private readonly Dictionary<string, SkillData> _SkillDataDict = new();
-    private readonly Dictionary<string, Type> _EffectsDict = new();
-    private readonly Dictionary<string, Type> _EffectParamsDict = new();
+    // private readonly Dictionary<string, Type> _EffectParamsDict = new();
     // private readonly Dictionary<string, Skill> _SkillDict = new();
 
     public override void Init()
@@ -18,10 +17,7 @@ public class SkillManager : Singleton<SkillManager>
         base.Init();
 
         //register effect parameter classes
-        RegisterParameters();
-        //register effect skill effect classes
-        RegisterEffects();
-
+        EffectFactory.RegisterEffectParameters();
     }
 
     //load data from json
@@ -60,9 +56,9 @@ public class SkillManager : Singleton<SkillManager>
             Debug.Log($"加载技能: {s.ID} - {s.Name}");
             _SkillDataDict[s.ID] = s;
 
-            if (s.Levels == null || s.Levels.Length == 0)
+            if (s.LevelsData == null || s.LevelsData.Length == 0)
             {
-                Debug.LogError($"技能 {s.ID} ({s.Name}) 的 Levels 为空，可能数据有误！");
+                Debug.LogError($"技能 {s.ID} ({s.Name}) 的 LevelsData 为空，可能数据有误！");
             }
         }
 
@@ -77,33 +73,24 @@ public class SkillManager : Singleton<SkillManager>
 
     public SkillLevel GetSkillLevelEffect(string id, int level)
     {
-        return _SkillDataDict[id].Levels[level];
+        return _SkillDataDict[id].LevelsData[level];
     }
 
     #region SkillEffects
 
-    private void RegisterEffects()
-    {
-        var effectTypes = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(EffectBase)));
-        foreach (var type in effectTypes)
-        {
-            _EffectsDict[type.Name] = type;
-            // Debug.Log($"注册 Effect: {type.Name}");
-        }
-    }
 
-    private void RegisterParameters()
-    {
-        var parameters = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(EffectParameterBase)));
 
-        foreach (var p in parameters)
-        {
-            _EffectParamsDict[p.Name] = p;
-            // Debug.Log($"注册 Effect Param:{p.Name}");
-        }
-    }
+    // private void RegisterParameters()
+    // {
+    //     var parameters = Assembly.GetExecutingAssembly().GetTypes()
+    //     .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(EffectParameterBase)));
+
+    //     foreach (var p in parameters)
+    //     {
+    //         _EffectParamsDict[p.Name] = p;
+    //         // Debug.Log($"注册 Effect Param:{p.Name}");
+    //     }
+    // }
     #endregion
     //TODO: create skill and skill effect, before this, thinking how to design the effect trigger type, including active, passive, and buff/debuff.
 }
