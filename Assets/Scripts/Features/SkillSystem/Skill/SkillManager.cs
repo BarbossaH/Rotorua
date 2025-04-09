@@ -27,7 +27,7 @@ public class SkillManager : Singleton<SkillManager>
 
         await JsonManager.Instance.WaitForJsonLoad(); // 确保 JSON 数据已加载
 
-        SkillData[] skillDataArray = JsonManager.Instance.GetData<SkillDatabase>(typeof(SkillDatabase).Name)?.Skills;
+        SkillData[] skillDataArray = JsonManager.Instance.GetData<SkillJsonConfig>(typeof(SkillJsonConfig).Name)?.Skills;
 
         if (skillDataArray == null)
         {
@@ -78,23 +78,10 @@ public class SkillManager : Singleton<SkillManager>
 
     #region SkillEffects
 
-
-
-    // private void RegisterParameters()
-    // {
-    //     var parameters = Assembly.GetExecutingAssembly().GetTypes()
-    //     .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(EffectParameterBase)));
-
-    //     foreach (var p in parameters)
-    //     {
-    //         _EffectParamsDict[p.Name] = p;
-    //         // Debug.Log($"注册 Effect Param:{p.Name}");
-    //     }
-    // }
     #endregion
     //TODO: create skill and skill effect, before this, thinking how to design the effect trigger type, including active, passive, and buff/debuff.
-    public Skill CreateSkill(string skillId)
+    public Skill CreateSkill(string skillId, int level = 0)
     {
-        return SkillFactory.CreateSkill(GetSkillDataById(skillId), 0);
+        return SkillFactory.CreateSkill(GetSkillDataById(skillId), level);
     }
 }

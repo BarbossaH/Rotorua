@@ -19,7 +19,9 @@ public class ButtonClickHandler : MonoBehaviour
 
     private void OnButtonClick()
     {
-        SkillManager.Instance.CreateSkill("10001").ApplySkill();
+        Skill s = SkillManager.Instance.CreateSkill("10001", 1);
+        s.ApplySkill();
+        Debug.Log(s.SkillName);
     }
 
     private void OnDestroy()

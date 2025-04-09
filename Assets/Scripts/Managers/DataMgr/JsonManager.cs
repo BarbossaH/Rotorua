@@ -21,6 +21,7 @@ public class JsonManager : Singleton<JsonManager>
 
     public async UniTask LoadJsonFile()
     {
+        //数据反序列化
         await LoadAllJsonByLabelAsync("json_data");
         jsonLoadCompletion.TrySetResult(); // 标记 JSON 加载完成
         Debug.Log("json_data has been loaded");
@@ -51,6 +52,7 @@ public class JsonManager : Singleton<JsonManager>
         // there is a rule that the json filename must match the name of the corresponding class because the json filename need to be converted into class name by reflection。
         foreach (var json in jsonFiles)
         {
+            //TODO:这里要注意类名与json文件名保持一致，否则出错，明天就从这开始 检查是不是一致的
             string className = json.name;
             Type type = Type.GetType(className);
             if (type != null)

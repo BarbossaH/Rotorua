@@ -1,0 +1,206 @@
+{
+    "Skills": [
+      {
+        "ID": "10001",
+        "Name": "Fireball",
+        "SkillType":"Active",
+        "Description":"造成{Damage}点伤害,并点燃目标{Duration}回合",
+        "TriggerCondition": "OnCast",
+        "Target":"Enemy",
+        "TargetAmount":1,
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 3,    
+            "Cost": [
+              { "Type": "Mana", "Value": 20 }
+            ],
+            "EffectIDs":[ "E_10001_1"],
+            "BuffIDs":["B_10001_1"]
+          },
+          {
+            "Level": 2,
+            "CoolDown": 3,    
+            "Cost": [
+              { "Type": "Mana", "Value": 20 }
+            ],
+            "EffectIDs":[ "E_10001_2"],
+             "BuffIDs":["B_10001_2"]
+          }
+        ]
+      }, 
+      {
+        "ID": "10002",
+        "Name": "Healing Light",
+        "SkillType":"Active",
+        "Target":"Self",
+        "TargetAmount":1,
+        "TriggerCondition": "OnCast",
+        "Description":"恢复{HealAmount}点生命",
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 2,
+            "Cost": [{ "Type": "Mana", "Value": 15 }],
+            "BuffIDs":["B_20001_1"]
+          }
+        ]
+      },
+      {
+        "ID": "10003",
+        "Name": "Divine Shield",
+        "SkillType":"Active",
+        "Target":"Self",
+        "TargetAmount":1,
+        "TriggerCondition": "OnCast",
+        "Description":"获得{ShieldAmount}点护盾，持续{Duration}回合",
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 4,
+            "Cost": [{ "Type": "Mana", "Value": 20 }],
+            "BuffIDs":[ "B_30001_1"]
+          }
+        ]
+      },
+      {
+        "ID": "10004",
+        "Name": "Draw Power",
+        "SkillType":"Active",
+        "Target":"Self",
+        "TargetAmount":1,
+        "TriggerCondition": "OnCast",
+        "Description":"抽取 {DrawAmount} 张牌",
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 2,
+            "EffectIDs":[ "E_20001_1"]
+          }
+        ]
+      },
+      {
+        "ID": "10005",
+        "Name": "Ice Arrow",
+        "SkillType":"Active",
+        "Target":"Enemy",
+        "TargetAmount":-1,
+        "Description":"造成所有目标{Damage}点伤害,并有{Chance}%概率冻结目标{Duration}回合", 
+        "TriggerCondition": "OnCast",      
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 3,
+            "Cost": [
+              { "Type": "Mana", "Value": 20 },
+              { "Type": "ActionPoints", "Value": 1 }
+            ],
+            "EffectIDs":[ "E_10002_1"],
+             "BuffIDs":[ "B_40001_1"]
+          }
+        ]
+      },
+      {
+        "ID": "10006",
+        "Name": "Berserker Rage",
+        "SkillType":"Active",
+        "Target":"Self",
+        "TargetAmount":1,
+        "Description":"增加自己{Multiplier}倍攻击力，持续目标{Duration}回合",
+        "TriggerCondition": "OnCast",
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 0,            
+            "EffectIDs":["E_30001_1"]
+          }
+        ]
+      },
+      {
+        "ID": "10007",
+        "Name": "Vampiric Touch",
+        "SkillType":"Passive",
+        "Target":"Self",
+        "TargetAmount":1,
+        "TriggerCondition": "OnHit",
+        "Description":"攻击造成{Damage}伤害，并吸取{LifeSteal}%生命",
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 0,
+            "EffectIDs": [ "E_10000_1","E_30003_1" ]
+          }
+        ]
+      }
+      ,
+      {
+        "ID": "10008",
+        "Name": "Regeneration",
+        "SkillType":"Active",
+        "Target":"Self",
+        "TargetAmount":1,
+        "TriggerCondition": "OnCast",
+        "Stackable": true,
+        "Description":"增加自身攻击{Multiplier}倍",
+        
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 0,     
+            "EffectIDs": ["E_30001_1" ]
+          }
+        ]
+      }
+      ,
+      {
+        "ID": "10009",
+        "Name": "Frostbite",
+        "SkillType":"Active",
+        "Target":"Enemy",
+        "TargetAmount":1,
+        "TriggerCondition": "OnHit",
+        "Stackable": true,
+        "Description":"使目标减速{SpeedReduction}%",        
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 0,     
+            "BuffIDs": [ "B_40001_1" ]
+          }
+        ]
+      },
+      {
+        "ID": "20001",
+        "Name": "Shield",
+        "SkillType":"Passive",
+        "Target":"Self",
+        "TargetAmount":1,
+        "TriggerCondition": "Permanent",
+        "Description":"增加自身防御{Multiplier}倍",
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 0,   
+            "EffectIDs":["E_30002_1"]
+          }
+        ]
+      },
+      {
+        "ID": "20002",
+        "Name": "CounterAttack",
+        "SkillType":"Passive",
+        "Target":"Self",
+        "TargetAmount":1,
+        "TriggerCondition": "Permanent",
+        "Description":"被攻击时有{Chance}进行反击",
+        "LevelsData": [
+          {
+            "Level": 1,
+            "CoolDown": 0,   
+            "EffectIDs":["E_30004_1"]
+          }
+        ]
+      }
+    ]
+  }
+  

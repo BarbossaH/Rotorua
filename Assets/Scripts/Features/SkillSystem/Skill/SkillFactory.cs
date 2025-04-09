@@ -8,7 +8,9 @@ public static class SkillFactory
         Debug.Log(data);
         Debug.Log(data.Name);
         Debug.Log(data.LevelsData[level]);
-        List<ISkillEffect> effects = EffectFactory.CreateSkillEffect(data.LevelsData[level].EffectsData);
+        //创建配置里面的effect
+        List<SkillEffectBase> effects = EffectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
+        //TODO：创建配置里面的buff
 
         return new Skill(data, effects.ToArray());
     }
