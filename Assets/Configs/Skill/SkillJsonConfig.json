@@ -140,7 +140,7 @@
         "Target":"Self",
         "TargetAmount":1,
         "TriggerCondition": "OnCast",
-        "Stackable": true,
+
         "Description":"增加自身攻击{Multiplier}倍",
         
         "LevelsData": [
@@ -159,7 +159,7 @@
         "Target":"Enemy",
         "TargetAmount":1,
         "TriggerCondition": "OnHit",
-        "Stackable": true,
+
         "Description":"使目标减速{SpeedReduction}%",        
         "LevelsData": [
           {

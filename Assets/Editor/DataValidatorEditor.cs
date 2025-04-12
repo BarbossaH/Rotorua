@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 public class DataValidatorEditor : EditorWindow
 {
@@ -9,7 +10,7 @@ public class DataValidatorEditor : EditorWindow
         bool isValid = true;
         await JsonManager.Instance.LoadJsonFile();
         await JsonManager.Instance.WaitForJsonLoad();
-        SkillData[] allSkills = JsonManager.Instance.GetData<SkillJsonConfig>(typeof(SkillJsonConfig).Name).Skills;
+        List<SkillData> allSkills = JsonManager.Instance.GetData<SkillJsonConfig>(typeof(SkillJsonConfig).Name).Skills;
         foreach (var skill in allSkills)
         {
             if (!skill.Validate())

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public static class EffectFactory
 {
+    //store all effect class types to create the corresponding effect class based on the effect ID, note: the effect ID must match the effect class name and effect classes must inherit from the EffectDataBase class;
     private static readonly Dictionary<string, Type> _EffectsDict = new();
 
     //when initialize the skill manager, register 
@@ -24,6 +24,8 @@ public static class EffectFactory
 
     public static List<SkillEffectBase> CreateSkillEffect(string[] effectIDs)
     {
+        //这里的逻辑要大改，因为技能数据的结构调整，所有的effect数据需要从另外的内存数据中读取，类似skill data，所以应该有一个effect data base 类，而所有的effect数据都在effect data base 类里，这个类可以通过 effect id去获取 effect data，现在我要去确认skill也是这么做的 
+        //TODO：检查skill data 类
         List<EffectDataBase> effectDatas = new();
         List<SkillEffectBase> effects = new();
         // 解析 ParametersData

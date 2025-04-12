@@ -1,7 +1,7 @@
 
 
 using System;
-
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -11,7 +11,7 @@ using UnityEngine;
 [Serializable]
 public class SkillJsonConfig : IGameData
 {
-    public SkillData[] Skills;
+    public List<SkillData> Skills;
     public string GetKey()
     {
         return typeof(SkillJsonConfig).Name;
@@ -29,7 +29,6 @@ public class SkillData
     public string Target;
     public int TargetAmount;
     public SkillLevel[] LevelsData;
-    public bool Stackable;
 
     public TargetTypeEnum GetTargetEnum() =>
        Enum.TryParse(Target, out TargetTypeEnum result) ? result : TargetTypeEnum.None;

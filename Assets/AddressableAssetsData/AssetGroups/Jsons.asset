@@ -16,10 +16,9 @@ MonoBehaviour:
   m_GUID: c4f777706494cb94eb3e539fd53721ea
   m_SerializeEntries:
   - m_GUID: 33f8ecc3e8952154cb357f1e358960e0
-    m_Address: Skill
+    m_Address: SkillJsonConfig
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - json_data
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eecf8f87306403a499972019502cc289, type: 2}
