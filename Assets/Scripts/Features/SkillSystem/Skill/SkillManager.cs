@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class SkillManager : Singleton<SkillManager>
@@ -19,8 +20,11 @@ public class SkillManager : Singleton<SkillManager>
     //TODO: create skill and skill effect, before this, thinking how to design the effect trigger type, including active, passive, and buff/debuff.
     public Skill CreateSkill(string skillId, int level = 0)
     {
-        var skillResp = IoCContainer.GetService<IRepository<SkillData, string>>();
-        Debug.Log(skillResp.IsLoaded);
-        return SkillFactory.CreateSkill(skillResp.GetById(skillId), level);
+        var skillRepo = IoCContainer.GetService<IRepository<SkillData, string>>();
+        if (!skillRepo.IsLoaded)
+        {
+            throw new InvalidOperationException("Skill repository is not loaded yet!");
+        }
+        return SkillFactory.CreateSkill(skillRepo.GetById(skillId), level);
     }
 }

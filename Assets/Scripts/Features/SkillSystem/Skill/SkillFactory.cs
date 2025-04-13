@@ -11,7 +11,7 @@ public static class SkillFactory
         //创建配置里面的effect
         List<SkillEffectBase> effects = EffectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
         //TODO：创建配置里面的buff
-        // List<SkillBuffBase> buffs = BuffFactory.CreateSkillBuff(data.LevelsData[level].BuffIDs);
+        List<SkillBuffBase> buffs = BuffFactory.CreateSkillBuff(data.LevelsData[level].BuffIDs);
         // return new Skill(data, level, effects);
         return null;
 

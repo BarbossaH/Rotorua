@@ -12,8 +12,10 @@ public class Bootstrap : MonoBehaviour
 
     private void RegisterRepository()
     {
-        IoCContainer.Register<IRepository<SkillData, string>, SkillDataRepository>();
-
+        //if there is a static data reading from json files, then register it first. So if any methods want to use data, just need to retrieve it from IocContainer, but to make sure the data has been loaded; 
+        // IoCContainer.Register<IRepository<SkillData, string>, SkillDataRepository>();
+        IoCContainer.AutoRegisterAllRepositories();
+        RepositoryLoader.CollectFromIoC();
     }
     private async void Start()
     {
@@ -31,8 +33,8 @@ public class Bootstrap : MonoBehaviour
             async () =>
             {
                 await JsonManager.Instance.LoadJsonFile();
-                var skillResp = IoCContainer.GetService<IRepository<SkillData, string>>();
-                await skillResp.LoadDataAsync();
+                await RepositoryLoader.LoadAllDataAsync(progress => Debug.Log($"Progress: {progress * 100}%"));
+                Debug.Log("✅ All Repositories Loaded.");
             }
         );
 

@@ -1,19 +1,26 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 public static class IoCContainer
 {
     private static readonly Dictionary<Type, Func<object>> _registrations = new();
     private static readonly Dictionary<Type, object> _services = new();
 
-    public static void Register<TInterface, TImplementation>() where TImplementation : TInterface, new()
-    {
-        _registrations[typeof(TInterface)] = () => new TImplementation();
-    }
+    // public static void Register<TInterface, TImplementation>() where TImplementation : TInterface, new()
+    // {
+    //     _registrations[typeof(TInterface)] = () => new TImplementation();
+    // }
 
-    public static void Register<TInterface>(Func<object> factory)
+    // public static void Register<TInterface>(Func<object> factory)
+    // {
+    //     _registrations[typeof(TInterface)] = factory;
+    // }
+
+    public static void Register(Type interfaceType, Func<object> factory)
     {
-        _registrations[typeof(TInterface)] = factory;
+        _registrations[interfaceType] = factory;
     }
 
     public static T GetService<T>()
@@ -32,9 +39,45 @@ public static class IoCContainer
         }
         throw new InvalidOperationException($"Type {type.Name} is not registered in the container.");
     }
+
+    //for the time being, I don't need the below function, I just write down as study
+    public static T GetTransient<T>()
+    {
+        if (_registrations.TryGetValue(typeof(T), out var factory))
+        {
+            return (T)factory(); // 不缓存，直接 new
+        }
+        throw new InvalidOperationException($"Type {typeof(T).Name} is not registered.");
+    }
+
     public static void ClearResolved<T>()
     {
         _services.Remove(typeof(T));
     }
 
+    public static void AutoRegisterAllRepositories()
+    {
+        var allTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(
+            assembly =>
+            {
+                try { return assembly.GetTypes(); }
+                catch { return Array.Empty<Type>(); }
+            }
+        );
+
+        foreach (var type in allTypes)
+        {
+            if (!type.IsClass || type.IsAbstract)
+            {
+                continue;
+            }
+            var attrs = type.GetCustomAttributes<AutoRegisterRepositoryAttribute>();
+            foreach (var attr in attrs)
+            {
+                var interfaceType = attr.InterfaceType;
+                Register(interfaceType, () => Activator.CreateInstance(type));
+                Console.WriteLine($"[IoC] Auto-registered: {interfaceType.Name} => {type.Name}");
+            }
+        }
+    }
 }

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillEffects\EffectFactory.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\ControllerManager.cs" />
+    <Compile Include="Assets\Scripts\Features\SkillSystem\SkillBuffs\SkillBuffBase.cs" />
     <Compile Include="Assets\Scripts\Defs\ViewType.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\EventCenterManager.cs" />
     <Compile Include="Assets\Scripts\Features\AudioManager\AudioListenerManager.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\Managers\DataMgr\PersistentDataManager.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillBuffs\BuffFactory.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\EffectDatabase.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\AutoRegisterRepositoryAttribute.cs" />
     <Compile Include="Assets\Scripts\UIFuncExtern\UnityFuncExtern.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
     <Compile Include="Assets\Scripts\Models\IGameData.cs" />
@@ -87,9 +89,11 @@
     <Compile Include="Assets\Scripts\Defs\SkillType.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
     <Compile Include="Assets\Scripts\Managers\ViewMgr\ViewManager.cs" />
+    <Compile Include="Assets\Scripts\Features\SkillSystem\SkillRepository\SkillEffectRepository.cs" />
+    <Compile Include="Assets\Scripts\Features\SkillSystem\SkillRepository\SkillBuffRepository.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillTest.cs" />
-    <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillRepository\SkillRepository.cs" />
+    <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Models\GameConfig\GameConfig.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\StreamingAssetsManager.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\SkillModel.cs" />
@@ -97,6 +101,7 @@
     <Compile Include="Assets\Scripts\Features\Character\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\MVC\Controller\BaseController.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillEffects\SpecialEffect\HealEffect.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\RepositoryLoader.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\IRepository.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillEffects\SkillEffectBase.cs" />
@@ -105,7 +110,6 @@
     <Compile Include="Assets\Scripts\Features\SkillSystem\SkillEffects\OffensiveEffects\PhysicalDamageEffect.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\BuffDatabase.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
-    <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\SkillBuffs\SkillBUffBase.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\IGameManger.cs" />
     <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Util\UtilTools.cs" />
@@ -113,7 +117,6 @@
     <Compile Include="Assets\Scripts\Features\SkillSystem\Skill\ISkill.cs" />
     <Compile Include="Assets\Scripts\Managers\ScenceMgr\SceneLoaderManager.cs" />
     <Compile Include="Assets\Scripts\Bootstrap.cs" />
-    <Compile Include="Assets\Scripts\Features\SkillSystem\SkillBuffs\BuffBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

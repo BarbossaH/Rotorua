@@ -3,6 +3,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
+[AutoRegisterRepository(typeof(IRepository<SkillData, string>))]
 public class SkillDataRepository : ISkillRepository
 {
     private readonly Dictionary<string, SkillData> _SkillDataDict = new();

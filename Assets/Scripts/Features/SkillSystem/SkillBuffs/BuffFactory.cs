@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+
 public static class BuffFactory
 {
-    public static BuffBase CreateBuff(string[] buffIDs)
+    public static List<SkillBuffBase> CreateSkillBuff(string[] buffIDs)
     {
         return null;
     }
