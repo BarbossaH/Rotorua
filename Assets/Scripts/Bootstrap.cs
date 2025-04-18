@@ -1,5 +1,7 @@
 
-using System.Threading.Tasks;
+using Common;
+using Managers;
+using Models;
 using UnityEngine;
 public class Bootstrap : MonoBehaviour
 {
@@ -7,9 +9,15 @@ public class Bootstrap : MonoBehaviour
     {
         //start,update game, and then login
         GameManager.Instance.PreInit();
+        //wondering this could be move to the callback method of the fist loading scene method(SwitchSceneAsync)
+        BuildTypeCache();
         RegisterRepository();
     }
 
+    private void BuildTypeCache()
+    {
+        GameTypeCache.BuildTypeCache();
+    }
     private void RegisterRepository()
     {
         //if there is a static data reading from json files, then register it first. So if any methods want to use data, just need to retrieve it from IocContainer, but to make sure the data has been loaded; 
@@ -32,6 +40,7 @@ public class Bootstrap : MonoBehaviour
         await SceneLoaderManager.Instance.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.TestScene,
             async () =>
             {
+                //I think this should store the Type cache here first. and register repository
                 await JsonManager.Instance.LoadJsonFile();
                 await RepositoryLoader.LoadAllDataAsync(progress => Debug.Log($"Progress: {progress * 100}%"));
                 Debug.Log("✅ All Repositories Loaded.");

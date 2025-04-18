@@ -1,46 +1,50 @@
-using UnityEngine;
-
-public class BaseView : MonoBehaviour, IBaseView
+namespace MVC
 {
-    protected Canvas canvas; //each view has a independent canvas as its parent
-    private void Awake()
-    {
-        canvas = GetComponent<Canvas>();
-    }
-    public BaseController BaseController { get; set; }
+    using UnityEngine;
 
-    public void DestroyView()
+    public class BaseView : MonoBehaviour, IBaseView
     {
-        throw new System.NotImplementedException();
-    }
+        protected Canvas canvas; //each view has a independent canvas as its parent
+        private void Awake()
+        {
+            canvas = GetComponent<Canvas>();
+        }
+        public BaseController BaseController { get; set; }
 
-    public void InitData()
-    {
-    }
+        public void DestroyView()
+        {
+            throw new System.NotImplementedException();
+        }
 
-    public void InitUI()
-    {
-    }
+        public void InitData()
+        {
+        }
 
-    public bool IsShown()
-    {
-        //canvas.isActiveAndEnabled, this check the gameobject is active or not
-        return canvas.enabled;
-    }
+        public void InitUI()
+        {
+        }
 
-    public void SetCanvasEnable(bool isEnabled)
-    {
-        canvas.enabled = isEnabled;
-    }
+        public bool IsShown()
+        {
+            //canvas.isActiveAndEnabled, this check the gameobject is active or not
+            return canvas.enabled;
+        }
 
-    public void ShowView(params object[] data)
-    {
-        SetCanvasEnable(true);
-    }
+        public void SetCanvasEnable(bool isEnabled)
+        {
+            canvas.enabled = isEnabled;
+        }
 
-    public void HideView(params object[] data)
-    {
-        SetCanvasEnable(false);
+        public void ShowView(params object[] data)
+        {
+            SetCanvasEnable(true);
+        }
+
+        public void HideView(params object[] data)
+        {
+            SetCanvasEnable(false);
+        }
+
     }
 
 }

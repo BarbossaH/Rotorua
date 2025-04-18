@@ -1,15 +1,18 @@
-﻿public interface IBaseView
+﻿namespace MVC
 {
-    bool IsShown();
-    void InitUI();
-    void InitData();
+    public interface IBaseView
+    {
+        bool IsShown();
+        void InitUI();
+        void InitData();
 
-    void ShowView(params object[] data);
-    void HideView(params object[] data);
+        void ShowView(params object[] data);
+        void HideView(params object[] data);
 
-    void DestroyView();
+        void DestroyView();
 
-    void SetCanvasEnable(bool isEnabled);
+        void SetCanvasEnable(bool isEnabled);
 
-    BaseController BaseController { set; get; }
+        BaseController BaseController { set; get; }
+    }
 }

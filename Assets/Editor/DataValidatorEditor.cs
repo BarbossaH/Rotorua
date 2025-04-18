@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using Managers;
+using Models;
 
 public class DataValidatorEditor : EditorWindow
 {

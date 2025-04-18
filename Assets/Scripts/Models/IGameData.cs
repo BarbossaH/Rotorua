@@ -1,4 +1,7 @@
-public interface IGameData
+namespace Models
 {
-    string GetKey();
+    public interface IGameData
+    {
+        string GetKey();
+    }
 }

@@ -1,7 +1,10 @@
-﻿public class BaseModel
+﻿namespace MVC
 {
-    public BaseController controller;
+    public class BaseModel
+    {
+        public BaseController controller;
 
-    //initialize the data like from configuration files, backend and other places
-    public virtual void InitModel() { }
+        //initialize the data like from configuration files, backend and other places
+        public virtual void InitModel() { }
+    }
 }
