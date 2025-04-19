@@ -8,7 +8,7 @@ namespace Game.SkillSystem
     using Models;
     using UnityEngine;
 
-    [TypeCategory(TypeCategoryEnum.StartUp, typeof(ISkillRepository))]
+    [AutoRegisterRepository(typeof(ISkillRepository))]
     public class SkillDataRepository : ISkillRepository
     {
         private readonly Dictionary<string, SkillData> _SkillDataDict = new();

@@ -5,95 +5,148 @@ namespace Common
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Unity.VisualScripting;
     using UnityEngine;
 
-    public enum TypeCategoryEnum
-    {
-        StartUp, //when the game start up, the types will be created like data repository for storing data
-        Lazy,
-        EditorOnly
-    }
     public static class GameTypeCache
     {
-        // private static readonly Dictionary<TypeCategoryEnum, List<Type>> _typeGroups = new();
-        private static readonly List<Type> _startUpTypes = new();
-        private static readonly Dictionary<string, Type> _delayLoadTypes = new();
 
-        // static GameTypeCache()
-        // {
-        //     foreach (TypeCategoryEnum c in Enum.GetValues(typeof(TargetTypeEnum)))
-        //     {
-        //         _typeGroups[c] = new List<Type>();
-        //     }
-        // }
+        private static readonly Dictionary<string, Type> _typeByName = new();
+        private static readonly Dictionary<string, Type> _typeByFullName = new();
+        private static readonly Dictionary<Type, List<Type>> _subclassCache = new();
+        private static readonly List<Type> _allCachedTypes = new();
 
-        public static void BuildTypeCache(Predicate<Type> filer = null)
+        //these types are for the repositories which need to be created when start the game
+        private static readonly List<Type> _repositoryList = new();
+        private static readonly Dictionary<Type, Type> _repositoryMap = new();
+
+        private static readonly List<Type> _managerList = new();
+
+        //this should be ready before using it, so it should be in the awake method of bootstrap script
+        public static void BuildTypeCache(Predicate<Type> globalFilter = null)
         {
+            _typeByName.Clear();
+            _typeByFullName.Clear();
+            _subclassCache.Clear();
+            _allCachedTypes.Clear();
+            _repositoryList.Clear();
+            _repositoryMap.Clear();
+            _managerList.Clear();
             //get all types in the game
-
             IEnumerable<Type> allTypes;
             try { allTypes = Assembly.GetExecutingAssembly().GetTypes(); }
             catch { allTypes = Array.Empty<Type>(); }
-
 
             //filtering the types, the condition is not class, abstract class, not to meet the conditions of the filter method, then neglect them.
             foreach (var type in allTypes)
             {
                 if (!type.IsClass || type.IsAbstract) continue;
-                if (filer != null && !filer(type)) continue;
+                if (globalFilter != null && !globalFilter(type)) continue;
 
-                //get the attribute of the type by the given type(TypeCategoryAttribute)
-                var attr = type.GetCustomAttribute<TypeCategoryAttribute>();
-                if (attr == null) continue;
-                switch (attr.Category)
+                _typeByName[type.Name] = type;
+                _typeByFullName[type.FullName] = type;
+                _allCachedTypes.Add(type);
+                var attr = type.GetCustomAttribute<AutoRegisterRepositoryAttribute>();
+                if (attr != null)
                 {
-                    case TypeCategoryEnum.StartUp:
-                        _startUpTypes.Add(type);
-                        break;
-
-                    case TypeCategoryEnum.Lazy:
-                        // 注意这里用 type.Name，不包含 namespace，因为你的 json 里就存类名
-                        if (!_delayLoadTypes.ContainsKey(type.Name))
-                            _delayLoadTypes[type.Name] = type;
-                        break;
+                    _repositoryList.Add(type);
+                    _repositoryMap[attr.InterfaceType] = type;
+                    // Debug.Log(type.Name);
                 }
+
+                var managerAttr = type.GetCustomAttribute<AutoRegisterManagerAttribute>();
+                if (managerAttr != null)
+                {
+                    _managerList.Add(type);
+                    // Debug.Log(type.Name);
+                }
+
             }
-            // Console.WriteLine("[TypeCache] Build complete. Type counts:");
-            foreach (var t in _startUpTypes)
+#if UNITY_EDITOR
+            foreach (var t in _repositoryList)
             {
                 Debug.Log(t.Name + ": is the " + t.FullName);
-                // Console.WriteLine($"- {kvp.Key}: {kvp.Value.Count} types");
             }
+#endif
         }
 
-        public static object CreateLazyInstance(string typeName)
+        public static Type GetTypeByName(string typeName)
         {
-            Type type = GetLazyType(typeName);
-            if (type != null)
+            return _typeByName.TryGetValue(typeName, out var t) ? t : null;
+        }
+
+        public static Type GetTypeByFullName(string fullName)
+        {
+            return _typeByFullName.TryGetValue(fullName, out var t) ? t : null;
+        }
+
+        public static object CreateInstanceByClassName(Type baseType, string name, bool throwError = false)
+        {
+            var type = GetTypeByName(name);
+            if (type == null)
             {
-                return Activator.CreateInstance(type);
+                if (throwError)
+                {
+                    throw new Exception($"[TypeCache] Type '{name}' not found.");
+                }
+                return null;
             }
-            return null;
-        }
 
-        public static T CreateLazyInstance<T>(string typeName) where T : class
-        {
-            return CreateLazyInstance(typeName) as T;
-        }
-
-
-        public static Type GetLazyType(string className)
-        {
-            if (_delayLoadTypes.TryGetValue(className, out var type))
+            if (!baseType.IsAssignableFrom(type))
             {
-                return type;
+                if (throwError)
+                {
+                    throw new Exception($"[TypeCache] Type '{name}' is not assignable to {baseType.Name}.");
+                }
+                return null;
             }
-            return null;
+
+            var instance = Activator.CreateInstance(type);
+            if (instance == null && throwError)
+            {
+                throw new Exception($"[TypeCache] Failed to create instance of '{name}'.");
+            }
+            return instance;
         }
 
-        public static List<Type> GetStartUpTypes()
+        public static T CreateInstanceByClassName<T>(string name, bool throwError = false) where T : class
         {
-            return _startUpTypes;
+            return CreateInstanceByClassName(typeof(T), name, throwError) as T;
+        }
+
+        public static List<Type> GetTypesOf(Type baseType, Func<Type, bool> filter = null)
+        {
+            //if this type already be cached in _subclassCache, then return the corresponding list directly
+            if (_subclassCache.TryGetValue(baseType, out var cached))
+            {
+                if (filter == null)
+                {
+                    return cached;
+                }
+                return cached.Where(t => filter(t)).ToList();
+            }
+
+            //if the type is not in _subclassCache, then looking for it in the all type cache. After finding it, store it in _subclassCache
+            var result = _allCachedTypes
+            .Where(t => baseType.IsAssignableFrom(t) && t != baseType)
+            .Where(t => filter == null || filter(t))
+            .ToList();
+            _subclassCache[baseType] = result;
+            return result;
+        }
+
+        public static List<Type> GetTypesOf<T>(Func<Type, bool> filter = null)
+        {
+            return GetTypesOf(typeof(T), filter);
+        }
+        public static Dictionary<Type, Type> GetRepositoryTypeMap()
+        {
+            return _repositoryMap;
+        }
+
+        public static List<Type> GetManagerTypeList()
+        {
+            return _managerList;
         }
     }
 }

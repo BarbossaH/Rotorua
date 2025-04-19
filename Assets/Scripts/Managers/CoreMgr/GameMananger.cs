@@ -9,13 +9,11 @@
     {
         private List<ISingleton> _managers = new();
 
-        public override void PreInit()
-        {
-            RegisterAllManagers();
-        }
+
         public override void Init()
         {
             base.Init();
+            RegisterAllManagers();
             InitAllManagers();
         }
 
@@ -23,20 +21,12 @@
         {
             ReleaseAllManagers();
         }
+
         private void RegisterAllManagers()
         {
-            var managerTypes = typeof(ISingleton).Assembly.GetTypes()
-                .Where(t => typeof(ISingleton).IsAssignableFrom(t)
-                            && t != typeof(GameManager)  //must exclude game manger, otherwise it occurs a dead loop
-                            && !t.IsInterface
-                            && !t.IsAbstract
-                            && t.BaseType != null
-                            && t.BaseType.IsGenericType
-                            && t.BaseType.GetGenericTypeDefinition() == typeof(Singleton<>)); // ensure it is the child of class Singleton<T>
+            var mgrTypes = GameTypeCache.GetManagerTypeList();
 
-            Debug.Log($"Found {managerTypes.Count()} potential manager types");
-
-            foreach (var type in managerTypes)
+            foreach (var type in mgrTypes)
             {
                 // Debug.Log($"Checking type: {type.FullName}");
 
@@ -45,10 +35,10 @@
 
                 if (instanceProp != null)
                 {
-                    var instance = instanceProp.GetValue(null) as ISingleton;
-                    if (instance != null)
+                    if (instanceProp.GetValue(null) is ISingleton instance)
                     {
                         _managers.Add(instance);
+                        // Debug.Log(_managers.Count);
                         // Debug.Log($"Successfully registered manager: {type.Name}");
                     }
                     else

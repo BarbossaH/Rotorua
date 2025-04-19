@@ -9,6 +9,7 @@ namespace Managers
     using Cysharp.Threading.Tasks;
     using Common;
 
+    [AutoRegisterManager]
     public class ResourceManager : Singleton<ResourceManager>
     {
         private bool _isGameInitialized = false;

@@ -4,6 +4,7 @@ namespace Models
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Common;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using UnityEngine;
@@ -75,21 +76,20 @@ namespace Models
     #region newton soft json convert
     public class EffectParameterConverter : JsonConverter
     {
-        private static readonly Dictionary<string, Type> EffectTypeMap = new();
+        // private static readonly Dictionary<string, Type> EffectTypeMap = new();
+        // static EffectParameterConverter()
+        // {
+        //     // 获取所有 EffectParameterBase 的子类，并注册它们的类型映射
+        //     var effectBaseType = typeof(EffectDataBase);
+        //     var subclasses = Assembly.GetExecutingAssembly()
+        //         .GetTypes()
+        //         .Where(t => effectBaseType.IsAssignableFrom(t) && !t.IsAbstract);
 
-        static EffectParameterConverter()
-        {
-            // 获取所有 EffectParameterBase 的子类，并注册它们的类型映射
-            var effectBaseType = typeof(EffectDataBase);
-            var subclasses = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(t => effectBaseType.IsAssignableFrom(t) && !t.IsAbstract);
-
-            foreach (var subclass in subclasses)
-            {
-                EffectTypeMap[subclass.Name] = subclass; // using the name of the class as the key
-            }
-        }
+        //     foreach (var subclass in subclasses)
+        //     {
+        //         EffectTypeMap[subclass.Name] = subclass; // using the name of the class as the key
+        //     }
+        // }
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(EffectDataBase);
@@ -105,13 +105,16 @@ namespace Models
                 throw new Exception("Missing or invalid SubclassName field in JSON.");
             }
 
-            Type effectType = Type.GetType(typeName);
-            if (effectType == null || !typeof(EffectDataBase).IsAssignableFrom(effectType))
-            {
-                throw new Exception($"Unknown or invalid effect type: {typeName}");
-            }
-            Debug.Log(typeName);
-            var effect = Activator.CreateInstance(effectType);
+            // Type effectType = Type.GetType(typeName);
+            // if (effectType == null || !typeof(EffectDataBase).IsAssignableFrom(effectType))
+            // {
+            //     throw new Exception($"Unknown or invalid effect type: {typeName}");
+            // }
+            // Debug.Log(typeName);
+            // var effect = Activator.CreateInstance(effectType);
+
+            var effect = GameTypeCache.CreateInstanceByClassName<EffectDataBase>(typeName, throwError: true);
+
             serializer.Populate(jsonObject.CreateReader(), effect);
             return effect;
         }

@@ -4,6 +4,7 @@ namespace Common
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using UnityEngine;
 
     public static class IoCContainer
     {
@@ -60,18 +61,17 @@ namespace Common
         public static void AutoRegisterAllRepositories()
         {
 
-            var allTypes = GameTypeCache.GetStartUpTypes();
+            var respMap = GameTypeCache.GetRepositoryTypeMap();
 
-            foreach (var type in allTypes)
+            foreach (var pair in respMap)
             {
-
-                var attrs = type.GetCustomAttributes<TypeCategoryAttribute>();
-                foreach (var attr in attrs)
-                {
-                    var interfaceType = attr.InterfaceType;
-                    Register(interfaceType, () => Activator.CreateInstance(type));
-                    Console.WriteLine($"[IoC] Auto-registered: {interfaceType.Name} => {type.Name}");
-                }
+                Register(pair.Key, () => Activator.CreateInstance(pair.Value));
+                Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
+                // foreach (var attr in attrs)
+                // {
+                //     Register(interfaceType, () => Activator.CreateInstance(type));
+                //     Console.WriteLine($"[IoC] Auto-registered: {interfaceType.Name} => {type.Name}");
+                // }
             }
         }
     }

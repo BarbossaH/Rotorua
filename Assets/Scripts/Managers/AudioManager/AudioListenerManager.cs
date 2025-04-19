@@ -1,8 +1,10 @@
 namespace Managers
 {
     using System;
+    using Common;
     using UnityEngine;
 
+    // [AutoRegisterManager]
     public class AudioListenerManager : MonoBehaviour
     {
         public static AudioListenerManager Instance;

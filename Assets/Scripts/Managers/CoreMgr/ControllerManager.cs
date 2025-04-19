@@ -4,7 +4,9 @@
     using System.Linq;
     using Common;
     using MVC;
+    using UnityEngine;
 
+    [AutoRegisterManager]
     public class ControllerManager : Singleton<ControllerManager>
     {
         private readonly Dictionary<ControllerType, BaseController> _controllers = new();
@@ -55,7 +57,6 @@
         {
             base.Init();
             //TODO: register controller here, and then initialize them.
-
             InitAllControllers(); //TODO: initialize all controllers here tomorrow and continue to optimize the manager classes
 
         }

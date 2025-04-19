@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Common;
 
+    [AutoRegisterManager]
     public class EventCenterManager : Singleton<EventCenterManager>
     {
         private readonly Dictionary<string, Action<object[]>> _eventDic = new();

@@ -8,7 +8,6 @@ public class Bootstrap : MonoBehaviour
     private void Awake()
     {
         //start,update game, and then login
-        GameManager.Instance.PreInit();
         //wondering this could be move to the callback method of the fist loading scene method(SwitchSceneAsync)
         BuildTypeCache();
         RegisterRepository();

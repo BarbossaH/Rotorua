@@ -9,6 +9,7 @@ namespace Managers
     using UnityEngine;
     using UnityEngine.Networking;
 
+    [AutoRegisterManager]
     public class StreamingAssetsManager : Singleton<StreamingAssetsManager>
     {
         private const string VERSION_FILE = "version.json";

@@ -10,6 +10,7 @@
     using System;
     using Common;
 
+    [AutoRegisterManager]
     public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         //current scene

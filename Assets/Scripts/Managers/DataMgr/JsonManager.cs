@@ -12,16 +12,14 @@ namespace Managers
     /// <summary>
     /// This class is responsible for reading the json files that contain the static data,like skill, quest and map
     /// </summary>
+    /// 
+
+    [AutoRegisterManager]
     public class JsonManager : Singleton<JsonManager>
     {
         private readonly Dictionary<string, IGameData> loadData = new();
         private UniTaskCompletionSource jsonLoadCompletion = new UniTaskCompletionSource();
-        public override void PreInit()
-        {
-            base.PreInit();
 
-            // _ = LoadJsonFile();
-        }
 
         public async UniTask LoadJsonFile()
         {
@@ -57,8 +55,7 @@ namespace Managers
             foreach (var json in jsonFiles)
             {
                 string className = json.name;
-                Type type = Type.GetType("Models." + className);
-                // Type type = GameTypeCache.GetLazyType(className);
+                Type type = GameTypeCache.GetTypeByName(className);
                 if (type != null)
                 {
                     Debug.Log(type.FullName);

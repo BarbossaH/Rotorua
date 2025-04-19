@@ -9,6 +9,8 @@ namespace Managers
     /// <summary>
     /// this class is for storing and reading some changeable data, like game setting, user save, and so on
     /// </summary>
+
+    [AutoRegisterManager]
     public class PersistentDataManager : Singleton<PersistentDataManager>
     {
         private readonly string saveDirectory = Application.persistentDataPath;

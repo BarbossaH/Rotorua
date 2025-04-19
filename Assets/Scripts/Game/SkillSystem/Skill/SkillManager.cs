@@ -3,20 +3,12 @@ namespace Game.SkillSystem
 
     using System;
     using Common;
-    using Models;
-    using UnityEngine;
 
+    [AutoRegisterManager]
     public class SkillManager : Singleton<SkillManager>
     {
         // private readonly Dictionary<string, Type> _EffectParamsDict = new();
         // private readonly Dictionary<string, Skill> _SkillDict = new();
-        public override void Init()
-        {
-            base.Init();
-            //register effect parameter classes
-            EffectFactory.RegisterEffects();
-        }
-
 
         #region SkillEffects
 
