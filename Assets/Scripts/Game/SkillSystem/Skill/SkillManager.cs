@@ -21,7 +21,8 @@ namespace Game.SkillSystem
             {
                 throw new InvalidOperationException("Skill repository is not loaded yet!");
             }
-            return SkillFactory.CreateSkill(skillRepo.GetById(skillId), level);
+            var skillFactory = IoCContainer.GetService<ISkillFactory>();
+            return skillFactory.CreateSkill(skillRepo.GetById(skillId), level);
         }
     }
 }

@@ -2,24 +2,12 @@ namespace Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using UnityEngine;
 
     public static class IoCContainer
     {
         private static readonly Dictionary<Type, Func<object>> _registrations = new();
         private static readonly Dictionary<Type, object> _services = new();
-
-        // public static void Register<TInterface, TImplementation>() where TImplementation : TInterface, new()
-        // {
-        //     _registrations[typeof(TInterface)] = () => new TImplementation();
-        // }
-
-        // public static void Register<TInterface>(Func<object> factory)
-        // {
-        //     _registrations[typeof(TInterface)] = factory;
-        // }
 
         public static void Register(Type interfaceType, Func<object> factory)
         {
@@ -58,20 +46,27 @@ namespace Common
             _services.Remove(typeof(T));
         }
 
-        public static void AutoRegisterAllRepositories()
+        public static void AutoRegisterServiceInContainer()
         {
-
+            AutoRegisterAllFactories();
+            AutoRegisterAllRepositories();
+        }
+        private static void AutoRegisterAllFactories()
+        {
+            var facMap = GameTypeCache.GetFactoryTypeMap();
+            foreach (var pair in facMap)
+            {
+                Register(pair.Key, () => Activator.CreateInstance(pair.Value));
+            }
+        }
+        private static void AutoRegisterAllRepositories()
+        {
             var respMap = GameTypeCache.GetRepositoryTypeMap();
 
             foreach (var pair in respMap)
             {
                 Register(pair.Key, () => Activator.CreateInstance(pair.Value));
                 Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
-                // foreach (var attr in attrs)
-                // {
-                //     Register(interfaceType, () => Activator.CreateInstance(type));
-                //     Console.WriteLine($"[IoC] Auto-registered: {interfaceType.Name} => {type.Name}");
-                // }
             }
         }
     }

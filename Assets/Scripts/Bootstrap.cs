@@ -10,7 +10,6 @@ public class Bootstrap : MonoBehaviour
         //start,update game, and then login
         //wondering this could be move to the callback method of the fist loading scene method(SwitchSceneAsync)
         BuildTypeCache();
-        RegisterRepository();
     }
 
     private void BuildTypeCache()
@@ -21,11 +20,12 @@ public class Bootstrap : MonoBehaviour
     {
         //if there is a static data reading from json files, then register it first. So if any methods want to use data, just need to retrieve it from IocContainer, but to make sure the data has been loaded; 
         // IoCContainer.Register<IRepository<SkillData, string>, SkillDataRepository>();
-        IoCContainer.AutoRegisterAllRepositories();
+        IoCContainer.AutoRegisterServiceInContainer();
         RepositoryLoader.CollectFromIoC();
     }
     private async void Start()
     {
+        RegisterRepository();
 
         GameManager.Instance.Init();
 

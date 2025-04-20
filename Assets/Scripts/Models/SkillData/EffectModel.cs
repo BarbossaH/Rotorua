@@ -1,13 +1,10 @@
 namespace Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
+
     using Common;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using UnityEngine;
 
     public class EffectDataJson : IGameData
     {

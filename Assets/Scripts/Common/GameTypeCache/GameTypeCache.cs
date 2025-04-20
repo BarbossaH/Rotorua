@@ -19,7 +19,7 @@ namespace Common
         //these types are for the repositories which need to be created when start the game
         private static readonly List<Type> _repositoryList = new();
         private static readonly Dictionary<Type, Type> _repositoryMap = new();
-
+        private static readonly Dictionary<Type, Type> _factoryMap = new();
         private static readonly List<Type> _managerList = new();
 
         //this should be ready before using it, so it should be in the awake method of bootstrap script
@@ -54,6 +54,13 @@ namespace Common
                     // Debug.Log(type.Name);
                 }
 
+                var factoryAttr = type.GetCustomAttribute<AutoRegisterFactoryAttribute>();
+                if (factoryAttr != null)
+                {
+                    _factoryMap[factoryAttr.InterfaceType] = type;
+                    Debug.Log(type.Name);
+                }
+
                 var managerAttr = type.GetCustomAttribute<AutoRegisterManagerAttribute>();
                 if (managerAttr != null)
                 {
@@ -66,6 +73,11 @@ namespace Common
             foreach (var t in _repositoryList)
             {
                 Debug.Log(t.Name + ": is the " + t.FullName);
+            }
+
+            foreach (var t in _factoryMap)
+            {
+                Debug.Log(t.Key.Name + ": is the " + t.Value.Name + " and the full name is " + t.Value.FullName);
             }
 #endif
         }
@@ -139,14 +151,10 @@ namespace Common
         {
             return GetTypesOf(typeof(T), filter);
         }
-        public static Dictionary<Type, Type> GetRepositoryTypeMap()
-        {
-            return _repositoryMap;
-        }
+        public static Dictionary<Type, Type> GetRepositoryTypeMap() => _repositoryMap;
 
-        public static List<Type> GetManagerTypeList()
-        {
-            return _managerList;
-        }
+        public static List<Type> GetManagerTypeList() => _managerList;
+
+        public static Dictionary<Type, Type> GetFactoryTypeMap() => _factoryMap;
     }
 }

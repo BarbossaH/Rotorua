@@ -1,10 +1,17 @@
 namespace Game.SkillSystem
 {
     using System.Collections.Generic;
+    using Common;
 
-    public static class BuffFactory
+    public interface IBuffFactory
     {
-        public static List<SkillBuffBase> CreateSkillBuff(string[] buffIDs)
+        List<SkillBuffBase> CreateSkillBuff(string[] buffIDs);
+    }
+
+    [AutoRegisterFactory(typeof(IBuffFactory))]
+    public class BuffFactory : IBuffFactory
+    {
+        public List<SkillBuffBase> CreateSkillBuff(string[] buffIDs)
         {
             return null;
         }

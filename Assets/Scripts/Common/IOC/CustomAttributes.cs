@@ -15,5 +15,16 @@ namespace Common
     }
 
     [AttributeUsage(AttributeTargets.Class)]
+    public class AutoRegisterFactoryAttribute : Attribute
+    {
+        public Type InterfaceType { get; }
+
+        public AutoRegisterFactoryAttribute(Type interfaceType)
+        {
+            InterfaceType = interfaceType;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
     public class AutoRegisterManagerAttribute : Attribute { }
 }
