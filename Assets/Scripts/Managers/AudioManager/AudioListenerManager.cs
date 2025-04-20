@@ -82,7 +82,7 @@ namespace Managers
                 if (i == 0)
                 {
                     SetActiveListener(ls[0]);
-                    Debug.Log("Find a listener");
+                    // Debug.Log("Find a listener");
                 }
                 else { ls[i].enabled = false; }
             }

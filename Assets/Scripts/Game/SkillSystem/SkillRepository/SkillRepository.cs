@@ -11,7 +11,8 @@ namespace Game.SkillSystem
     [AutoRegisterRepository(typeof(ISkillRepository))]
     public class SkillDataRepository : ISkillRepository
     {
-        private readonly Dictionary<string, SkillData> _SkillDataDict = new();
+        private readonly Dictionary<string, SkillData> _skillDataDict = new();
+        private List<SkillData> _skillDataList = new();
         // public bool IsSkillDataLoaded { get; private set; }
 
         public bool IsLoaded { get; private set; }
@@ -21,9 +22,9 @@ namespace Game.SkillSystem
         //     return _SkillDataDict.TryGetValue(id, out var skillData) ? skillData : null;
         // }
 
-        public string GetSkillName(string id)
+        public string GetNameById(string id)
         {
-            if (_SkillDataDict.TryGetValue(id, out var skillData))
+            if (_skillDataDict.TryGetValue(id, out var skillData))
             {
                 return skillData.Name;
             }
@@ -83,20 +84,20 @@ namespace Game.SkillSystem
 
             await JsonManager.Instance.WaitForJsonLoad(); // 确保 JSON 数据已加载
 
-            List<SkillData> skillDataList = JsonManager.Instance.GetData<SkillJsonConfig>(typeof(SkillJsonConfig).Name)?.Skills;
+            _skillDataList = JsonManager.Instance.GetData<SkillJsonConfig>(typeof(SkillJsonConfig).Name)?.Skills;
 
-            if (skillDataList == null)
+            if (_skillDataList == null)
             {
                 Debug.LogError("技能数据解析失败: skillDataArray 为空！");
                 return;
             }
-            if (skillDataList.Count == 0)
+            if (_skillDataList.Count == 0)
             {
                 Debug.LogError("技能数据为空，没有任何技能！");
                 return;
             }
 
-            foreach (var s in skillDataList)
+            foreach (var s in _skillDataList)
             {
                 if (s == null)
                 {
@@ -109,8 +110,8 @@ namespace Game.SkillSystem
                     continue;
                 }
 
-                Debug.Log($"加载技能: {s.ID} - {s.Name}");
-                _SkillDataDict[s.ID] = s;
+                // Debug.Log($"加载技能: {s.ID} - {s.Name}");
+                _skillDataDict[s.ID] = s;
 
                 if (s.LevelsData == null || s.LevelsData.Length == 0)
                 {
@@ -124,12 +125,12 @@ namespace Game.SkillSystem
 
         public SkillData GetById(string id)
         {
-            return _SkillDataDict.TryGetValue(id, out var skillData) ? skillData : null;
+            return _skillDataDict.TryGetValue(id, out var skillData) ? skillData : null;
         }
 
         public List<SkillData> GetAll()
         {
-            return _SkillDataDict?.Values.ToList();
+            return _skillDataList;
         }
     }
 }

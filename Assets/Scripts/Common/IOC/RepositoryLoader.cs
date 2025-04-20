@@ -4,6 +4,7 @@ namespace Common
     using System.Collections.Generic;
     using System.Linq;
     using Cysharp.Threading.Tasks;
+    using UnityEngine;
 
     public static class RepositoryLoader
     {
@@ -47,6 +48,7 @@ namespace Common
                 if (instance is IDataRepository repo)
                 {
                     _repositories.Add(repo);
+                    Debug.Log(repo.GetType().Name);
                     IoCContainer.Register(reg.Key, () => instance); // 这句现在安全了
                 }
             }

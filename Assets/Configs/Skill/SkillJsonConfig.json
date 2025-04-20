@@ -15,7 +15,7 @@
             "Cost": [
               { "Type": "Mana", "Value": 20 }
             ],
-            "EffectIDs":[ "E_10001_1"],
+            "EffectIDs":[ "E_10000_1"],
             "BuffIDs":["B_10001_1"]
           },
           {

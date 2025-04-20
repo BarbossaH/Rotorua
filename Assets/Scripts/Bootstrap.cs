@@ -12,17 +12,7 @@ public class Bootstrap : MonoBehaviour
         BuildTypeCache();
     }
 
-    private void BuildTypeCache()
-    {
-        GameTypeCache.BuildTypeCache();
-    }
-    private void RegisterRepository()
-    {
-        //if there is a static data reading from json files, then register it first. So if any methods want to use data, just need to retrieve it from IocContainer, but to make sure the data has been loaded; 
-        // IoCContainer.Register<IRepository<SkillData, string>, SkillDataRepository>();
-        IoCContainer.AutoRegisterServiceInContainer();
-        RepositoryLoader.CollectFromIoC();
-    }
+
     private async void Start()
     {
         RegisterRepository();
@@ -41,12 +31,21 @@ public class Bootstrap : MonoBehaviour
             {
                 //I think this should store the Type cache here first. and register repository
                 await JsonManager.Instance.LoadJsonFile();
-                await RepositoryLoader.LoadAllDataAsync(progress => Debug.Log($"Progress: {progress * 100}%"));
-                Debug.Log("✅ All Repositories Loaded.");
+                await RepositoryLoader.LoadAllDataAsync(progress => Debug.Log($"Progress: {progress * 100}%  and ✅ All Repositories Loaded."));
             }
         );
 
     }
-
+    private void BuildTypeCache()
+    {
+        GameTypeCache.BuildTypeCache();
+    }
+    private void RegisterRepository()
+    {
+        //if there is a static data reading from json files, then register it first. So if any methods want to use data, just need to retrieve it from IocContainer, but to make sure the data has been loaded; 
+        // IoCContainer.Register<IRepository<SkillData, string>, SkillDataRepository>();
+        IoCContainer.AutoRegisterServiceInContainer();
+        RepositoryLoader.CollectFromIoC();
+    }
 
 }

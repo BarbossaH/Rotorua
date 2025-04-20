@@ -1,17 +1,17 @@
 namespace Models
 {
     using System;
-
+    using System.Collections.Generic;
     using Common;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    public class EffectDataJson : IGameData
+    public class EffectJsonConfig : IGameData
     {
-        public EffectDataBase[] Effects;
+        public List<EffectDataBase> Effects;
         public string GetKey()
         {
-            return typeof(EffectDataJson).Name;
+            return typeof(EffectJsonConfig).Name;
         }
     }
 

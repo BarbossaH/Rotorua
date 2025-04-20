@@ -51,7 +51,7 @@ namespace Managers
                 };
 
                 T data = JsonConvert.DeserializeObject<T>(json, settings);
-                Debug.Log("Player data loaded successfully");
+                // Debug.Log("Player data loaded successfully");
                 return data;
             }
             catch (System.Exception e)

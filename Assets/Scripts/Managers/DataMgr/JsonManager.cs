@@ -26,7 +26,6 @@ namespace Managers
             //数据反序列化
             await LoadAllJsonByLabelAsync("json_data");
             jsonLoadCompletion.TrySetResult(); // 标记 JSON 加载完成
-            Debug.Log("json_data has been loaded");
 
         }
 

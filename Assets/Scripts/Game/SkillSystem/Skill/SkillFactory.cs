@@ -21,12 +21,16 @@ namespace Game.SkillSystem
             // List<SkillEffectBase> effects = EffectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
             var effectFactory = IoCContainer.GetService<IEffectFactory>();
             List<SkillEffectBase> effects = effectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
+            //for test
+            // foreach (var e in effects)
+            // {
+            //     e.ApplyEffect();
+            // }
 
             var buffFactory = IoCContainer.GetService<IBuffFactory>();
             //TODO：创建配置里面的buff
             List<SkillBuffBase> buffs = buffFactory.CreateSkillBuff(data.LevelsData[level].BuffIDs);
-            // return new Skill(data, level, effects);
-            return null;
+            return new Skill(data, level, effects, buffs);
 
         }
     }

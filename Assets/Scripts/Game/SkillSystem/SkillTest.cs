@@ -20,11 +20,10 @@ public class ButtonClickHandler : MonoBehaviour
 
     private void OnButtonClick()
     {
-        Skill s = SkillManager.Instance.CreateSkill("10001", 1);
+        Skill s = SkillManager.Instance.CreateSkill("10001", 0);
         if (s != null)
         {
             s.ApplySkill();
-            Debug.Log(s.SkillName);
         }
 
     }

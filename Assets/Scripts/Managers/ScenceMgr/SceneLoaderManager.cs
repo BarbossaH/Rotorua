@@ -33,12 +33,12 @@
             {
                 await OnLoadResource();
                 UpdateLoadingProgress(0.7f, "Resources Loaded");
-                await UniTask.Delay(5000);
+                // await UniTask.Delay(5000);
             }
             //unload the current scene
             await UnloadSceneAsync(fromScene);
             UpdateLoadingProgress(1f, "Completed");
-            await UniTask.Delay(2000);
+            await UniTask.Delay(1000);
 
             var toSceneHandle = await LoadSceneAsync(nextScene);
             await UniTask.NextFrame();
@@ -103,7 +103,7 @@
                     await Addressables.UnloadSceneAsync(handle).Task;
                     //after unloading completely, remove it
                     loadedScenes.Remove(sceneName);
-                    Debug.Log($"Scene {sceneName} has been unloaded via Addressables.");
+                    // Debug.Log($"Scene {sceneName} has been unloaded via Addressables.");
                     return;
                 }
                 catch (Exception e)

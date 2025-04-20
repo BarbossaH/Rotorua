@@ -5,12 +5,11 @@ namespace Common
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using Unity.VisualScripting;
     using UnityEngine;
 
     public static class GameTypeCache
     {
-
+        #region fields
         private static readonly Dictionary<string, Type> _typeByName = new();
         private static readonly Dictionary<string, Type> _typeByFullName = new();
         private static readonly Dictionary<Type, List<Type>> _subclassCache = new();
@@ -21,17 +20,12 @@ namespace Common
         private static readonly Dictionary<Type, Type> _repositoryMap = new();
         private static readonly Dictionary<Type, Type> _factoryMap = new();
         private static readonly List<Type> _managerList = new();
-
+        #endregion
         //this should be ready before using it, so it should be in the awake method of bootstrap script
         public static void BuildTypeCache(Predicate<Type> globalFilter = null)
         {
-            _typeByName.Clear();
-            _typeByFullName.Clear();
-            _subclassCache.Clear();
-            _allCachedTypes.Clear();
-            _repositoryList.Clear();
-            _repositoryMap.Clear();
-            _managerList.Clear();
+            ClearAll();
+
             //get all types in the game
             IEnumerable<Type> allTypes;
             try { allTypes = Assembly.GetExecutingAssembly().GetTypes(); }
@@ -58,7 +52,7 @@ namespace Common
                 if (factoryAttr != null)
                 {
                     _factoryMap[factoryAttr.InterfaceType] = type;
-                    Debug.Log(type.Name);
+                    // Debug.Log(type.Name);
                 }
 
                 var managerAttr = type.GetCustomAttribute<AutoRegisterManagerAttribute>();
@@ -70,16 +64,28 @@ namespace Common
 
             }
 #if UNITY_EDITOR
-            foreach (var t in _repositoryList)
-            {
-                Debug.Log(t.Name + ": is the " + t.FullName);
-            }
+            // foreach (var t in _repositoryList)
+            // {
+            //     Debug.Log(t.Name + ": is the " + t.FullName);
+            // }
 
-            foreach (var t in _factoryMap)
-            {
-                Debug.Log(t.Key.Name + ": is the " + t.Value.Name + " and the full name is " + t.Value.FullName);
-            }
+            // foreach (var t in _factoryMap)
+            // {
+            //     Debug.Log(t.Key.Name + ": is the " + t.Value.Name + " and the full name is " + t.Value.FullName);
+            // }
 #endif
+        }
+
+        private static void ClearAll()
+        {
+            _typeByName.Clear();
+            _typeByFullName.Clear();
+            _subclassCache.Clear();
+            _allCachedTypes.Clear();
+            _repositoryList.Clear();
+            _repositoryMap.Clear();
+            _factoryMap.Clear();
+            _managerList.Clear();
         }
 
         public static Type GetTypeByName(string typeName)
@@ -95,6 +101,7 @@ namespace Common
         public static object CreateInstanceByClassName(Type baseType, string name, bool throwError = false)
         {
             var type = GetTypeByName(name);
+
             if (type == null)
             {
                 if (throwError)
@@ -118,6 +125,7 @@ namespace Common
             {
                 throw new Exception($"[TypeCache] Failed to create instance of '{name}'.");
             }
+            Debug.Log(instance + " is the name of " + type);
             return instance;
         }
 

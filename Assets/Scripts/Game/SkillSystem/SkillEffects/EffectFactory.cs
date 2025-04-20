@@ -35,7 +35,6 @@ namespace Game.SkillSystem
         public List<SkillEffectBase> CreateSkillEffect(string[] effectIDs)
         {
 
-            List<EffectDataBase> effectDataList = new();
             List<SkillEffectBase> effectList = new();
             // 解析 ParametersData
             if (effectIDs == null || effectIDs.Length == 0)
@@ -44,32 +43,30 @@ namespace Game.SkillSystem
                 return null;
             }
 
+            var repository = IoCContainer.GetService<ISkillEffectRepository>();
             for (int i = 0; i < effectIDs.Length; i++)
             {
-                string typeName = effectIDs[i] + "Data";
-                EffectDataBase effectData = GameTypeCache.CreateInstanceByClassName<EffectDataBase>(typeName);
-                if (effectData != null)
-                {
-                    effectDataList.Add(effectData);
-                }
-
-            }
-            foreach (var data in effectDataList)
-            {
-                // string typeName = data.ParametersData.SubclassName.Replace("ParameterData", "Effect");
-                string typeName = data.Name + "Effect";
-                Debug.Log(typeName);
-
-                SkillEffectBase effect = GameTypeCache.CreateInstanceByClassName<SkillEffectBase>(typeName);
+                var effectData = repository.GetById(effectIDs[i]);
+                string effectClassName = repository.GetNameById(effectIDs[i]) + "Effect";
+                //  effectIDs[i] + "Data";
+                //here I need to use id to get the name of effect data class
+                Debug.Log(effectClassName);
+                SkillEffectBase effect = GameTypeCache.CreateInstanceByClassName<SkillEffectBase>(effectClassName, true);
+                Debug.Log(effect);
                 if (effect != null)
                 {
+                    effect.InitializeData(effectData);
                     effectList.Add(effect);
+                }
+                else
+                {
+                    Debug.Log("No effect data");
                 }
 
             }
+
             return effectList;
         }
-
 
     }
 }

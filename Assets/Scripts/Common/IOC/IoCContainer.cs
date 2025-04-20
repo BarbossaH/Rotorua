@@ -66,7 +66,7 @@ namespace Common
             foreach (var pair in respMap)
             {
                 Register(pair.Key, () => Activator.CreateInstance(pair.Value));
-                Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
+                // Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
             }
         }
     }

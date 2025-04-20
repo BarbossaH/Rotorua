@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - json_data
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c28e759c4d79d74e9b953b0bf04eb2f
+    m_Address: EffectJsonConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - json_data
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eecf8f87306403a499972019502cc289, type: 2}
   m_SchemaSet:

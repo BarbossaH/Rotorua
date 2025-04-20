@@ -8,7 +8,8 @@ namespace Game.SkillSystem
         public string ID;
         public string Name;
         public ElementEnum elementEnum;
-        public SkillEffectBase(EffectDataBase effectData)
+        //TODO:这里不能这么获取effect data，要通过repository去获取
+        public virtual void InitializeData(EffectDataBase effectData)
         {
             ID = effectData.ID;
             Name = effectData.Name;
