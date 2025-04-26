@@ -14,7 +14,7 @@ namespace Game.SkillSystem
         public int Level { get; private set; }
         public float CoolDown => SkillLevel.CoolDown;
         public float CoolDownTimer { get; private set; }
-        public SkillTypeEnum skillType { get; private set; }
+        public SkillTypeEnum SkillType { get; private set; }
 
         //skill effects and buffs
         public List<SkillEffectBase> SkillEffects = new();
@@ -26,7 +26,6 @@ namespace Game.SkillSystem
             SkillEffects = effects;
             SkillBuffs = buffs;
             Level = level;
-
         }
         public void ApplySkill()
         {

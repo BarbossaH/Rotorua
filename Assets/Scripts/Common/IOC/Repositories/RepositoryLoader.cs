@@ -9,10 +9,7 @@ namespace Common
     public static class RepositoryLoader
     {
         private static readonly List<IDataRepository> _repositories = new();
-        // public static void RegisterRepository(IDataRepository repo)
-        // {
-        //     _repositories.Add(repo);
-        // }
+
         public static void CollectFromIoC()
         {
             _repositories.Clear();
@@ -49,7 +46,7 @@ namespace Common
                 {
                     _repositories.Add(repo);
                     Debug.Log(repo.GetType().Name);
-                    IoCContainer.Register(reg.Key, () => instance); // 这句现在安全了
+                    IoCContainer.Register(reg.Key, () => instance);
                 }
             }
         }

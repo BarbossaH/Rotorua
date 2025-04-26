@@ -15,7 +15,7 @@ namespace Models
         }
     }
 
-    [JsonConverter(typeof(EffectParameterConverter))]
+    [JsonConverter(typeof(EffectDataConverter))]
     public abstract class EffectDataBase
     {
         public string ID;
@@ -70,8 +70,9 @@ namespace Models
         public float Damage;
         public float Chance;
     }
+
     #region newton soft json convert
-    public class EffectParameterConverter : JsonConverter
+    public class EffectDataConverter : JsonConverter
     {
         // private static readonly Dictionary<string, Type> EffectTypeMap = new();
         // static EffectParameterConverter()

@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - json_data
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eae12f72e0aba184587c61ac49f5687c
+    m_Address: BuffJsonConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - json_data
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eecf8f87306403a499972019502cc289, type: 2}
   m_SchemaSet:

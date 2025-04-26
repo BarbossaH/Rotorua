@@ -41,13 +41,14 @@
             await UniTask.Delay(1000);
 
             var toSceneHandle = await LoadSceneAsync(nextScene);
-            await UniTask.NextFrame();
 
             if (toSceneHandle.IsValid())
             {
+                await UniTask.NextFrame();
                 await UnloadSceneAsync(SceneName.LoadingScene);
             }
-
+            // var entry = GameObject.FindObjectOfType<ISceneEntry>();
+            // entry?.Init(); // 统一接口初始化
             //send an event, finished loading a scene
             EventCenterManager.Instance.PublishEvent(GameEvents.SceneSwitched);
 

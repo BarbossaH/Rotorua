@@ -1,11 +1,7 @@
-namespace Game.SkillSystem
+namespace Common
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using Common;
-    using Models;
+    using Game.SkillSystem;
     using UnityEngine;
 
     public interface IEffectFactory
@@ -52,7 +48,7 @@ namespace Game.SkillSystem
                 //here I need to use id to get the name of effect data class
                 Debug.Log(effectClassName);
                 SkillEffectBase effect = GameTypeCache.CreateInstanceByClassName<SkillEffectBase>(effectClassName, true);
-                Debug.Log(effect);
+                // Debug.Log(effect);
                 if (effect != null)
                 {
                     effect.InitializeData(effectData);

@@ -3,8 +3,7 @@
         {
             "ID":"B_10001_1",
             "Name":"Flame",
-            "Target":"Enemy",
-            "TargetAmount":1,
+
             "Damage":10,
             "Duration":3,
             "Element":"Fire"
@@ -12,8 +11,7 @@
         {
             "ID":"B_10001_2",
             "Name":"Flame",
-            "Target":"Enemy",
-            "TargetAmount":1,
+
             "Damage":15,
             "Duration":3,
             "Element":"Fire"
@@ -21,8 +19,7 @@
         {
             "ID":"B_20001_1",
             "Name":"Rejuvenation",
-            "Target":"Self",
-            "TargetAmount":1,
+    
             "Amount":15,
             "Duration":3,
             "Element":"Nature"
@@ -30,8 +27,7 @@
         {
             "ID":"B_30001_1",
             "Name":"Shied",
-            "Target":"Self",
-            "TargetAmount":1,
+  
             "Amount":15,
             "Duration":3,
             "Element":"Arcane"
@@ -39,8 +35,7 @@
         {
             "ID":"B_30002_1",
             "Name":"MultipleDamage",
-            "Target":"Self",
-            "TargetAmount":1,
+    
             "Amount":2,
             "Duration":3,
             "Element":"None"
@@ -48,8 +43,7 @@
         {
             "ID":"B_40001_1",
             "Name":"Frozen",
-            "Target":"Enemy",
-            "TargetAmount":1,
+
             "Duration":3,
             "Element":"Frost"
         }

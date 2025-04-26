@@ -10,7 +10,7 @@
 卡牌管理 (Draw/Discard) 30000-30999 "30001" 透支
 资源类技能 (Energy, Action Points) 31000-31999 "31001" 精神充能
 
-TODO:檢查一下 type 緩存是否已經都成功了，如果成功了就檢查 skill，並嘗試加載 effect，如果還有時間就加載 buff
+TODO:第一个 effect 创建成功了，明天创建 buff，并且梳理一下创建技能的流程。数据层和逻辑层。下一步创建更多的 effect？还是创建 card 技能，去绑定技能？
 
 TODO:明天先修改 json，把 triggercondition 移出来，然后添加 conditions 为被动技能，添加 trigger controller，添加战斗事件中心；添加条件基类和条件子类，条件类是根据配置创建出来的，条件子类知道怎么去判断，只需要把配置里面的参数传进来。controller 通知技能类，技能类去判断条件类是否满足，满足就施放技能，主动技能直接施放，这里需要触发并满足条件才能释放，而条件是多种多样的。buff 技能在主动技能或者被动技能里去创建，当然是释放的时候创建，主动技能直接创建好了，被动技能也是满足条件创建。
 
@@ -20,3 +20,5 @@ TODO:明天先修改 json，把 triggercondition 移出来，然后添加 condit
 明天从 jsonutiltiy 迁移到 Newtonsoft.Json
 当完成了样本后，就写出技能工厂类，effect 工厂类，还有技能类，当这些完成之后，我就要去做测试。
 明天只要写出 json 的所有样本，创建 effect base 类型，effect factory？使用程序集去创建 effect type
+
+以后升级技能，估计也就是升级卡牌，然后重新创建技能，覆盖原来的技能就行。

@@ -1,4 +1,4 @@
-namespace Game.SkillSystem
+namespace Common
 {
     using System.Collections.Generic;
     using System.Linq;

@@ -1,18 +1,17 @@
 //this class is for retrieving effect data and other methods to get specific data
 //the data is stored in the IocContainer
 using System.Collections.Generic;
-using Common;
 using Cysharp.Threading.Tasks;
 using Managers;
 using Models;
 using UnityEngine;
 
-namespace Game.SkillSystem
+namespace Common
 {
     [AutoRegisterRepository(typeof(ISkillEffectRepository))]
     public class SkillEffectRepository : ISkillEffectRepository
     {
-        private readonly Dictionary<string, EffectDataBase> _effectDataDict = new();
+        private readonly Dictionary<string /*effect ID*/, EffectDataBase> _effectDataDict = new();
         private List<EffectDataBase> _effectDataList = new();
         public bool IsLoaded { get; private set; }
 

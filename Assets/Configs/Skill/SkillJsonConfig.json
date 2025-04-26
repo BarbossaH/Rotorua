@@ -8,22 +8,18 @@
         "TriggerCondition": "OnCast",
         "Target":"Enemy",
         "TargetAmount":1,
+
         "LevelsData": [
           {
             "Level": 1,
             "CoolDown": 3,    
-            "Cost": [
-              { "Type": "Mana", "Value": 20 }
-            ],
-            "EffectIDs":[ "E_10000_1"],
-            "BuffIDs":["B_10001_1"]
+
+            "EffectIDs":[ "E_10002_1"],
+            "BuffIDs":["B_10001_1,B_30002_1"]
           },
           {
             "Level": 2,
             "CoolDown": 3,    
-            "Cost": [
-              { "Type": "Mana", "Value": 20 }
-            ],
             "EffectIDs":[ "E_10001_2"],
              "BuffIDs":["B_10001_2"]
           }
@@ -35,13 +31,14 @@
         "SkillType":"Active",
         "Target":"Self",
         "TargetAmount":1,
+
         "TriggerCondition": "OnCast",
         "Description":"恢复{HealAmount}点生命",
         "LevelsData": [
           {
             "Level": 1,
             "CoolDown": 2,
-            "Cost": [{ "Type": "Mana", "Value": 15 }],
+
             "BuffIDs":["B_20001_1"]
           }
         ]
@@ -53,12 +50,13 @@
         "Target":"Self",
         "TargetAmount":1,
         "TriggerCondition": "OnCast",
+
         "Description":"获得{ShieldAmount}点护盾，持续{Duration}回合",
         "LevelsData": [
           {
             "Level": 1,
             "CoolDown": 4,
-            "Cost": [{ "Type": "Mana", "Value": 20 }],
+
             "BuffIDs":[ "B_30001_1"]
           }
         ]
@@ -69,11 +67,12 @@
         "SkillType":"Active",
         "Target":"Self",
         "TargetAmount":1,
+        "Level": 1,
         "TriggerCondition": "OnCast",
         "Description":"抽取 {DrawAmount} 张牌",
         "LevelsData": [
           {
-            "Level": 1,
+
             "CoolDown": 2,
             "EffectIDs":[ "E_20001_1"]
           }
@@ -85,16 +84,14 @@
         "SkillType":"Active",
         "Target":"Enemy",
         "TargetAmount":-1,
+
         "Description":"造成所有目标{Damage}点伤害,并有{Chance}%概率冻结目标{Duration}回合", 
         "TriggerCondition": "OnCast",      
         "LevelsData": [
           {
             "Level": 1,
             "CoolDown": 3,
-            "Cost": [
-              { "Type": "Mana", "Value": 20 },
-              { "Type": "ActionPoints", "Value": 1 }
-            ],
+
             "EffectIDs":[ "E_10002_1"],
              "BuffIDs":[ "B_40001_1"]
           }

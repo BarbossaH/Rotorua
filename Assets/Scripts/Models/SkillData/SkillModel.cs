@@ -29,6 +29,7 @@ namespace Models
         public string TriggerCondition;
         public string Target;
         public int TargetAmount;
+        // public int Cost; //we don't need cost because skill does not care about cost, cards should care about cost
         public SkillLevel[] LevelsData;
 
         public TargetTypeEnum GetTargetEnum() =>
@@ -76,7 +77,6 @@ namespace Models
     {
         public int Level;
         public int CoolDown;
-        public CostData[] Cost;
         public string[] EffectIDs;
         public string[] BuffIDs;
 
@@ -124,25 +124,4 @@ namespace Models
 #endif
     }
 
-    [Serializable]
-    public class CostData
-    {
-        public string Type;
-        public int Value;
-
-        public CostTypeEnum GetCostType() => Enum.TryParse(Type, out CostTypeEnum result) ? result : CostTypeEnum.Mana;
-
-        public bool Validate(string skillName)
-        {
-            if (!UtilTools.ValidatePositiveValue(Value, nameof(Value), skillName))
-            {
-                return false;
-            }
-            if (!UtilTools.ValidateEnum(Type, out CostTypeEnum result, nameof(Type), skillName))
-            {
-                return false;
-            }
-            return true;
-        }
-    }
 }

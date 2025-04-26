@@ -3,19 +3,19 @@
         {
             "ID":"E_10000_1",
             "Name":"PhysicalDamage",
-            "Damage":30,
+            "Damage":29,
             "Element":"None"
         },
         {
             "ID":"E_10001_1",
             "Name":"Fireball",
-            "Damage":40,
+            "Damage":35,
             "Element":"Fire"
         },
         {
             "ID":"E_10001_2",
             "Name":"Fireball",
-            "Damage":35,
+            "Damage":40,
             "Element":"Fire"
         },
         {

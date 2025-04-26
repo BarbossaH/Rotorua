@@ -1,7 +1,8 @@
-namespace Game.SkillSystem
+namespace Common
 {
     using System.Collections.Generic;
     using Common;
+    using Game.SkillSystem;
     using Models;
     using UnityEngine;
 
