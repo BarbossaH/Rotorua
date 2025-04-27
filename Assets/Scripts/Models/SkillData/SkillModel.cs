@@ -26,7 +26,6 @@ namespace Models
         public string Name;
         public string SkillType;
         public string Description;
-        public string TriggerCondition;
         public string Target;
         public int TargetAmount;
         // public int Cost; //we don't need cost because skill does not care about cost, cards should care about cost
@@ -37,8 +36,7 @@ namespace Models
 
         public SkillTypeEnum GetSkillTypeEnum() =>
         Enum.TryParse(SkillType, true, out SkillTypeEnum result) ? result : SkillTypeEnum.None;
-        public TriggerConditionEnum GetTriggerConditionEnum() =>
-           Enum.TryParse(TriggerCondition, out TriggerConditionEnum result) ? result : TriggerConditionEnum.None;
+
 
 #if UNITY_EDITOR
         public bool Validate()
@@ -52,7 +50,6 @@ namespace Models
             if (!UtilTools.ValidateEnum(Target, out TargetTypeEnum resultTarget, nameof(Target), Name)) return false;
 
             UtilTools.ValidateString(Description, nameof(Description), Name);
-            if (!UtilTools.ValidateEnum(TriggerCondition, out TriggerConditionEnum resultTrigger, nameof(TriggerCondition), Name)) return false;
 
             if (UtilTools.ValidateEnum(SkillType, out SkillTypeEnum result, nameof(SkillType), Name))
             {

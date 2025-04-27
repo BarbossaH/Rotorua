@@ -18,15 +18,11 @@ namespace Common
         {
             // Debug.Log(data.Name);
             // Debug.Log(data.LevelsData[level]);
-            //创建配置里面的effect
-            // List<SkillEffectBase> effects = EffectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
+
+            //TODO:在创建effect之前或者在创建技能之前，要判断这个技能能不能被施放，当然这个是在创建技能之前，这个地方是不管的
             var effectFactory = IoCContainer.GetService<IEffectFactory>();
             List<SkillEffectBase> effects = effectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
-            //for test
-            // foreach (var e in effects)
-            // {
-            //     e.ApplyEffect();
-            // }
+
 
             var buffFactory = IoCContainer.GetService<IBuffFactory>();
             //TODO：创建配置里面的buff

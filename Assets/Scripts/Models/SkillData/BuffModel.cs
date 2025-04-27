@@ -23,15 +23,46 @@ namespace Models
         public string Name;
         public int Duration;
         public string Element;
+
         public ElementEnum GetElementType() =>
-       Enum.TryParse(Element, out ElementEnum result) ? result : ElementEnum.None;
+        Enum.TryParse(Element, out ElementEnum result) ? result : ElementEnum.None;
+
     }
 
-    public class FlameData : BuffDataBase { }
-    public class RejuvenationData : BuffDataBase { }
-    public class ShiedData : BuffDataBase { }
-    public class MultipleDamageData : BuffDataBase { }
-    public class FrozenData : BuffDataBase { }
+    public abstract class TriggerBuffData : BuffDataBase
+    {
+        public string TriggerTiming;
+        public TriggerTimingEnum GetTriggerTimingEnum() =>
+       Enum.TryParse(TriggerTiming, out TriggerTimingEnum result) ? result : TriggerTimingEnum.None;
+    }
+
+    public abstract class StatusBuffData : BuffDataBase
+    {
+        public string StatusType;
+        public BuffStatusTypeEnum GetBuffStatusTypeEnum() =>
+        Enum.TryParse(StatusType, out BuffStatusTypeEnum result) ? result : BuffStatusTypeEnum.None;
+    }
+    public class FlameData : TriggerBuffData
+    {
+        public float Damage;
+    }
+
+    public class RejuvenationData : TriggerBuffData
+    {
+        public float HealOverTime;
+    }
+    public class ShiedData : StatusBuffData
+    {
+        public float AbsorbAmount;
+    }
+    public class MultipleDamageData : StatusBuffData
+    {
+        public float Multiplier;
+    }
+    public class FrozenData : StatusBuffData
+    {
+        public bool IsControlled;
+    }
     #region BuffDataConverter
     public class BuffDataConverter : JsonConverter
     {

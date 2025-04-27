@@ -3,47 +3,46 @@
         {
             "ID":"B_10001_1",
             "Name":"Flame",
-
-            "Damage":10,
+            "Damage":199,
             "Duration":3,
-            "Element":"Fire"
+            "Element":"Fire",
+            "TriggerTiming": "OnTurnBegin"
         },     
         {
             "ID":"B_10001_2",
             "Name":"Flame",
-
             "Damage":15,
             "Duration":3,
-            "Element":"Fire"
+            "Element":"Fire",
+            "TriggerTiming": "OnTurnBegin"
         },
         {
             "ID":"B_20001_1",
-            "Name":"Rejuvenation",
-    
-            "Amount":15,
+            "Name":"Rejuvenation",    
+            "HealOverTime":15,
             "Duration":3,
-            "Element":"Nature"
+            "Element":"Nature",
+            "TriggerTiming": "OnTurnBegin"
         },
         {
             "ID":"B_30001_1",
-            "Name":"Shied",
-  
-            "Amount":15,
+            "Name":"Shied",  
+            "AbsorbAmount":15,
             "Duration":3,
             "Element":"Arcane"
         },
         {
             "ID":"B_30002_1",
-            "Name":"MultipleDamage",
-    
-            "Amount":2,
+            "Name":"MultipleDamage",    
+            "Multiplier":2.5,
             "Duration":3,
-            "Element":"None"
+            "Element":"None",
+            "StatusType": "Attack"
         },
         {
             "ID":"B_40001_1",
             "Name":"Frozen",
-
+            "IsControlled":true,
             "Duration":3,
             "Element":"Frost"
         }

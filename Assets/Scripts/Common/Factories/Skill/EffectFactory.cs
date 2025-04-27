@@ -31,14 +31,14 @@ namespace Common
         public List<SkillEffectBase> CreateSkillEffect(string[] effectIDs)
         {
 
-            List<SkillEffectBase> effectList = new();
+
             // 解析 ParametersData
             if (effectIDs == null || effectIDs.Length == 0)
             {
                 Debug.LogError("Effect ID Array is null");
                 return null;
             }
-
+            List<SkillEffectBase> effectList = new();
             var repository = IoCContainer.GetService<ISkillEffectRepository>();
             for (int i = 0; i < effectIDs.Length; i++)
             {
@@ -46,7 +46,6 @@ namespace Common
                 string effectClassName = repository.GetNameById(effectIDs[i]) + "Effect";
                 //  effectIDs[i] + "Data";
                 //here I need to use id to get the name of effect data class
-                Debug.Log(effectClassName);
                 SkillEffectBase effect = GameTypeCache.CreateInstanceByClassName<SkillEffectBase>(effectClassName, true);
                 // Debug.Log(effect);
                 if (effect != null)

@@ -33,6 +33,11 @@ namespace Game.SkillSystem
             {
                 e.ApplyEffect();
             }
+
+            foreach (var b in SkillBuffs)
+            {
+                b.OnAdd();
+            }
         }
     }
 }

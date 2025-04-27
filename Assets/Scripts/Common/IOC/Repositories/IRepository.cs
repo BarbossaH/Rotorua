@@ -3,7 +3,6 @@ namespace Common
     using System.Collections.Generic;
     using Cysharp.Threading.Tasks;
     using Models;
-    using Game.SkillSystem;
 
     public interface IDataRepository
     {

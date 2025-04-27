@@ -1,4 +1,5 @@
 using Models;
+using UnityEngine;
 
 namespace Game.SkillSystem
 {
@@ -8,14 +9,14 @@ namespace Game.SkillSystem
     #region buff base is for providing the data 
     public abstract class SkillBuffBase
     {
+        protected int currentTurn;
+        public int CurrentTurn => currentTurn;
         public string ID { get; private set; }
         public string Name { get; private set; }
         public float Duration { get; private set; }
+
         public ElementEnum ElementEnum { get; private set; }
         //when buff being added
-        public abstract void OnApply();
-        //when buff expiring or being dispelled
-        public abstract void OnRemove();
 
         public virtual void InitializeData(BuffDataBase buffData)
         {
@@ -24,31 +25,39 @@ namespace Game.SkillSystem
             Duration = buffData.Duration;
             ElementEnum = buffData.GetElementType();
         }
+
+
+        public abstract void OnAdd();
+        public abstract void OnRemove();
+        public abstract void OnTick();
+
+
     }
     #endregion
 
     #region interfaces are for behavior of buffs
-    public interface IPeriodDamage
+
+    public interface IPeriodDamageBuff
     {
         float GetTickDamage();
-        void OnTick();
+        void ApplyDamageEffect();
     }
 
     public interface IPeriodHeal
     {
         float GetTickHeal();
-        void OnTick();
+        void ApplyHealEffect();
     }
 
     public interface IPeriodControl
     {
-        float GetRestTurn();
-        void OnTick();
+        bool IsActionBlocked();
+        void ApplyControlEffect();
     }
     public interface IMultipleDamage
     {
         float GetMultipleDamage();
-        void OnTick();
+        void ApplyMultipleDamage();
     }
     #endregion
 }

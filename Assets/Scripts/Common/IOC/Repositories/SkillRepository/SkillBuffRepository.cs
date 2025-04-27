@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Common
 {
+    [AutoRegisterRepository(typeof(ISkillBuffRepository))]
     public class SkillBuffRepository : ISkillBuffRepository
     {
         private List<BuffDataBase> _buffDataList = new();
@@ -25,6 +26,7 @@ namespace Common
         public string GetNameById(string id)
         {
             BuffDataBase buffData = GetById(id);
+            Debug.Log(id);
             if (buffData != null)
             {
                 return buffData.Name;

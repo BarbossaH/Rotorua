@@ -2,6 +2,7 @@ namespace Common
 {
     using System.Collections.Generic;
     using Game.SkillSystem;
+    using TMPro;
     using UnityEngine;
 
     public interface IBuffFactory
@@ -18,18 +19,34 @@ namespace Common
 
         public List<SkillBuffBase> CreateSkillBuff(string[] buffIDs)
         {
+            //error: json configuration is easy to write wrong words, so i need to think about this later.
+
             if (buffIDs == null || buffIDs.Length == 0)
             {
                 Debug.LogError("buff ids are invalid!");
                 return null;
             }
 
-            List<SkillBuffBase> skillBuffBases = new();
-            foreach (var id in buffIDs)
+            List<SkillBuffBase> skillBuffList = new();
+            var repository = IoCContainer.GetService<ISkillBuffRepository>();
+            for (int i = 0; i < buffIDs.Length; i++)
             {
-                Debug.Log(id + " : I am a buff id");
+                Debug.Log(buffIDs[i]);
+                var buffData = repository.GetById(buffIDs[i]);
+                string buffClassName = repository.GetNameById(buffIDs[i]) + "Buff";
+                Debug.Log(buffData.Name);
+                SkillBuffBase skillBuff = GameTypeCache.CreateInstanceByClassName<SkillBuffBase>(buffClassName, true);
+                if (skillBuff != null)
+                {
+                    skillBuff.InitializeData(buffData);
+                    skillBuffList.Add(skillBuff);
+                }
+                else
+                {
+                    Debug.LogError("There is no buff data");
+                }
             }
-            return null;
+            return skillBuffList;
         }
     }
 }

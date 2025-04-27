@@ -5,7 +5,7 @@
         "Name": "Fireball",
         "SkillType":"Active",
         "Description":"造成{Damage}点伤害,并点燃目标{Duration}回合",
-        "TriggerCondition": "OnCast",
+
         "Target":"Enemy",
         "TargetAmount":1,
 
@@ -15,7 +15,7 @@
             "CoolDown": 3,    
 
             "EffectIDs":[ "E_10002_1"],
-            "BuffIDs":["B_10001_1,B_30002_1"]
+            "BuffIDs":["B_10001_1","B_30002_1"]
           },
           {
             "Level": 2,
@@ -32,7 +32,7 @@
         "Target":"Self",
         "TargetAmount":1,
 
-        "TriggerCondition": "OnCast",
+
         "Description":"恢复{HealAmount}点生命",
         "LevelsData": [
           {
@@ -49,7 +49,7 @@
         "SkillType":"Active",
         "Target":"Self",
         "TargetAmount":1,
-        "TriggerCondition": "OnCast",
+
 
         "Description":"获得{ShieldAmount}点护盾，持续{Duration}回合",
         "LevelsData": [
@@ -68,13 +68,13 @@
         "Target":"Self",
         "TargetAmount":1,
         "Level": 1,
-        "TriggerCondition": "OnCast",
+
         "Description":"抽取 {DrawAmount} 张牌",
         "LevelsData": [
           {
 
             "CoolDown": 2,
-            "EffectIDs":[ "E_20001_1"]
+            "EffectIDs":["E_20001_1"]
           }
         ]
       },
@@ -86,7 +86,7 @@
         "TargetAmount":-1,
 
         "Description":"造成所有目标{Damage}点伤害,并有{Chance}%概率冻结目标{Duration}回合", 
-        "TriggerCondition": "OnCast",      
+          
         "LevelsData": [
           {
             "Level": 1,
@@ -104,7 +104,7 @@
         "Target":"Self",
         "TargetAmount":1,
         "Description":"增加自己{Multiplier}倍攻击力，持续目标{Duration}回合",
-        "TriggerCondition": "OnCast",
+    
         "LevelsData": [
           {
             "Level": 1,
@@ -119,7 +119,7 @@
         "SkillType":"Passive",
         "Target":"Self",
         "TargetAmount":1,
-        "TriggerCondition": "OnHit",
+
         "Description":"攻击造成{Damage}伤害，并吸取{LifeSteal}%生命",
         "LevelsData": [
           {
@@ -136,7 +136,7 @@
         "SkillType":"Active",
         "Target":"Self",
         "TargetAmount":1,
-        "TriggerCondition": "OnCast",
+
 
         "Description":"增加自身攻击{Multiplier}倍",
         
@@ -155,7 +155,7 @@
         "SkillType":"Active",
         "Target":"Enemy",
         "TargetAmount":1,
-        "TriggerCondition": "OnHit",
+
 
         "Description":"使目标减速{SpeedReduction}%",        
         "LevelsData": [
@@ -172,7 +172,7 @@
         "SkillType":"Passive",
         "Target":"Self",
         "TargetAmount":1,
-        "TriggerCondition": "Permanent",
+
         "Description":"增加自身防御{Multiplier}倍",
         "LevelsData": [
           {
@@ -188,7 +188,7 @@
         "SkillType":"Passive",
         "Target":"Self",
         "TargetAmount":1,
-        "TriggerCondition": "Permanent",
+
         "Description":"被攻击时有{Chance}进行反击",
         "LevelsData": [
           {
