@@ -23,7 +23,6 @@ namespace Models
         public string Name;
         public int Duration;
         public string Element;
-
         public ElementEnum GetElementType() =>
         Enum.TryParse(Element, out ElementEnum result) ? result : ElementEnum.None;
 

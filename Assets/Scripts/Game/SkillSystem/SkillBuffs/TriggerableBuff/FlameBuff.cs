@@ -1,3 +1,4 @@
+using Game.Character;
 using Models;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Game.SkillSystem
             base.InitializeData(buffData);
             if (buffData is FlameData flameData)
             {
+                CurrentTurn = buffData.Duration;
                 Damage = flameData.Damage;
                 TriggerTiming = flameData.GetTriggerTimingEnum();
             }
@@ -26,17 +28,24 @@ namespace Game.SkillSystem
             return 0;
         }
 
-        public override void OnAdd()
+        public override void OnAdd(CharacterBase character)
         {
-            Debug.Log($"I am on fire, and take {Damage} points of damage and trigger is {TriggerTiming}");
+            Debug.Log($"I am on fire, and take {Damage} points of damage and trigger is {TriggerTiming} and duration is {Duration} and isExpired is {IsExpired()}, is permanent is {IsPermanent()}");
         }
 
-        public override void OnRemove()
+        public override void OnRemove(CharacterBase character)
         {
         }
 
         public override void OnTick()
         {
+            //-1 means it is a permanent buff
+            if (IsPermanent()) return;
+            if (!IsExpired())
+            {
+                CurrentTurn--;
+            }
+
         }
     }
 }

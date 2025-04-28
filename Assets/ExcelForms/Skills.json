@@ -1,0 +1,35 @@
+{
+  "Skills": [
+    {
+      "ID": "10001",
+      "Name": "Fireball",
+      "SkillType": "Active",
+      "Description": "造成{Damage}点伤害,并点燃目标{Duration}回合",
+      "Target": "Enemy",
+      "TargetAmount": 1,
+      "LevelsData": [
+        {
+          "Level": 1,
+          "CoolDown": 3,
+          "EffectIDs": [
+            "BuffIDs"
+          ],
+          "BuffIDs": [
+            "B_10001_1",
+            "B_30002_1"
+          ]
+        },
+        {
+          "Level": 1,
+          "CoolDown": 3,
+          "EffectIDs": [
+            "BuffIDs"
+          ],
+          "BuffIDs": [
+            "B_30002_1"
+          ]
+        }
+      ]
+    }
+  ]
+}

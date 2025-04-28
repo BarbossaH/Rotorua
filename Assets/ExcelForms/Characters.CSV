@@ -1,0 +1,3 @@
+ID,Name,MaxHP,Attack,Defense,Speed,StartBuffs,Skills
+Hero_Default,Warrior,80,6,0,10,[],"[""Strike"",""Defend""]"
+Monster_Slime_01,Green Slime,30,4,0,5,[],"[""Slime_Attack""]"

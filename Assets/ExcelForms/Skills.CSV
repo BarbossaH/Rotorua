@@ -1,0 +1,3 @@
+ID,Name,SkillType,Description,Target,TargetAmount,Level,CoolDown,EffectIDs,BuffIDs
+10001,Fireball,Active,"造成{Damage}点伤害,并点燃目标{Duration}回合",Enemy,1,1,3,BuffIDs,"B_10001_1,B_30002_1"
+10001,Fireball,Active,"造成{Damage}点伤害,并点燃目标{Duration}回合",Enemy,1,1,3,BuffIDs,B_30002_1

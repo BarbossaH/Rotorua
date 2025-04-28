@@ -1,3 +1,4 @@
+using Game.Character;
 using Models;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Game.SkillSystem
     public abstract class SkillBuffBase
     {
         protected int currentTurn;
-        public int CurrentTurn => currentTurn;
+        public int CurrentTurn { get; set; }
         public string ID { get; private set; }
         public string Name { get; private set; }
         public float Duration { get; private set; }
@@ -26,11 +27,29 @@ namespace Game.SkillSystem
             ElementEnum = buffData.GetElementType();
         }
 
+        /// <summary>
+        /// Called as it is added
+        /// </summary>
+        public abstract void OnAdd(CharacterBase character);
 
-        public abstract void OnAdd();
-        public abstract void OnRemove();
+        /// <summary>
+        /// Called as it is removed
+        /// </summary>
+        public abstract void OnRemove(CharacterBase character);
+        /// <summary>
+        /// Called on turn refresh
+        /// </summary>
         public abstract void OnTick();
-
+        public bool IsPermanent()
+        {
+            return Duration == -1;
+        }
+        public bool IsExpired()
+        {
+            if (IsPermanent()) return false;
+            if (Duration > 0) return false;
+            return true;
+        }
 
     }
     #endregion
@@ -56,8 +75,8 @@ namespace Game.SkillSystem
     }
     public interface IMultipleDamage
     {
-        float GetMultipleDamage();
-        void ApplyMultipleDamage();
+        float Multiplier { get; }
+
     }
     #endregion
 }

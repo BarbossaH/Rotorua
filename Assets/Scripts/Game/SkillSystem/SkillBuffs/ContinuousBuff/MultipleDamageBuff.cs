@@ -1,3 +1,4 @@
+using Game.Character;
 using Models;
 using UnityEngine;
 
@@ -5,8 +6,11 @@ namespace Game.SkillSystem
 {
     public class MultipleDamageBuff : SkillBuffBase, IMultipleDamage
     {
-        public float Multiplier { get; private set; }
+
         public BuffStatusTypeEnum BuffStatusTypeEnum { get; private set; }
+
+        public float Multiplier { get; private set; }
+
         public override void InitializeData(BuffDataBase buffData)
         {
             base.InitializeData(buffData);
@@ -16,29 +20,23 @@ namespace Game.SkillSystem
                 BuffStatusTypeEnum = damageData.GetBuffStatusTypeEnum();
             }
         }
-        public void ApplyMultipleDamage()
+
+        public override void OnAdd(CharacterBase character)
         {
-            throw new System.NotImplementedException();
+            Debug.Log($"Take my {Multiplier} damage and status type is {BuffStatusTypeEnum} and is expire is {IsExpired()} , is permanent is {IsPermanent()}");
         }
 
-        public float GetMultipleDamage()
+        public override void OnRemove(CharacterBase character)
         {
-            throw new System.NotImplementedException();
-        }
 
-        public override void OnAdd()
-        {
-            Debug.Log($"Take my {Multiplier} damage and status type is {BuffStatusTypeEnum}");
-        }
-
-        public override void OnRemove()
-        {
-            throw new System.NotImplementedException();
         }
 
         public override void OnTick()
         {
-            throw new System.NotImplementedException();
+            if (IsPermanent() || IsExpired()) return;
+            CurrentTurn--;
         }
+
+
     }
 }

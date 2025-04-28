@@ -17,7 +17,7 @@ namespace Managers
     [AutoRegisterManager]
     public class JsonManager : Singleton<JsonManager>
     {
-        private readonly Dictionary<string, IGameData> loadData = new();
+        private readonly Dictionary<string, IGameData> _loadData = new();
         private UniTaskCompletionSource jsonLoadCompletion = new UniTaskCompletionSource();
 
 
@@ -67,7 +67,7 @@ namespace Managers
 
                     // var data = JsonConvert.DeserializeObject(json.text, type, settings) as IGameData;
                     var data = JsonConvert.DeserializeObject(json.text, type) as IGameData;
-                    loadData[className] = data;
+                    _loadData[className] = data;
                     Debug.Log(className + " has been loaded.");
                 }
                 else
@@ -81,7 +81,7 @@ namespace Managers
         public T GetData<T>(string key) where T : class, IGameData
         {
 
-            if (loadData.TryGetValue(key, out var data))
+            if (_loadData.TryGetValue(key, out var data))
             {
                 return data as T;
             }

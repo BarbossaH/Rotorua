@@ -35,7 +35,7 @@
             "ID":"B_30002_1",
             "Name":"MultipleDamage",    
             "Multiplier":2.5,
-            "Duration":3,
+            "Duration":-1,
             "Element":"None",
             "StatusType": "Attack"
         },

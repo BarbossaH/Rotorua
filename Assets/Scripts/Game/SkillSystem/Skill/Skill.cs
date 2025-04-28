@@ -36,7 +36,7 @@ namespace Game.SkillSystem
 
             foreach (var b in SkillBuffs)
             {
-                b.OnAdd();
+                // b.OnAdd();
             }
         }
     }
