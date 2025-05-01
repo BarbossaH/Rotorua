@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Common\Factories\Skill\EffectFactory.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\ContinuousBuff\FrozenBuff.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\GameMananger.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\Repositories\CardRepository\CardRepository.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\ControllerManager.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Defs\ViewType.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\EventCenterManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\CardManager\CardManager.cs" />
     <Compile Include="Assets\Scripts\Defs\GameEvents.cs" />
     <Compile Include="Assets\Scripts\Models\PlayerData\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillBuffRepository.cs" />
@@ -86,9 +88,12 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\ContinuousBuff\IContinuousBuff.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\BuffModel.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\FireballEffect.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Hero\BattleCardManager.cs" />
+    <Compile Include="Assets\Scripts\Models\CardData\CardModel.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\SkillController.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager\AudioListenerManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\SkillEffectBase.cs" />
+    <Compile Include="Assets\Scripts\Common\IPrototype.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\HealEffect.cs" />
     <Compile Include="Assets\Scripts\Defs\Occupation.cs" />
@@ -98,7 +103,6 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\ISkill.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\RejuvenationBuff.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton\ISingleton.cs" />
-    <Compile Include="Assets\Scripts\Models\testdata.cs" />
     <Compile Include="Assets\Scripts\Defs\SkillType.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\CustomAttributes.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
@@ -110,6 +114,7 @@
     <Compile Include="Assets\Scripts\Common\Factories\Skill\BuffFactory.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\IRepository.cs" />
     <Compile Include="Assets\Scripts\Models\GameConfig\GameConfig.cs" />
+    <Compile Include="Assets\Scripts\Common\Factories\CardFactory\CardFactory.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\StreamingAssetsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Character\BuffManager.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\SkillModel.cs" />
@@ -117,6 +122,8 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\SkillBuffBase.cs" />
     <Compile Include="Assets\Scripts\MVC\Controller\BaseController.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\EffectModel.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\InstanceIdGenerator\InstanceIdGenerator.cs" />
+    <Compile Include="Assets\Scripts\Game\Card\Card.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\IceArrowEffect.cs" />
     <Compile Include="Assets\Scripts\Game\Character\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\Common\Util\UtilTools.cs" />
@@ -125,10 +132,8 @@
     <Compile Include="Assets\Scripts\Defs\CardType.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\FlameBuff.cs" />
-    <Compile Include="Assets\Scripts\Game\Character\Hero\CardManager.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillRepository.cs" />
     <Compile Include="Assets\Scripts\MVC\View\IBaseView.cs" />
-    <Compile Include="Assets\Scripts\Game\Card\CardBase.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\RepositoryLoader.cs" />
     <Compile Include="Assets\Scripts\Managers\ScenceMgr\SceneLoaderManager.cs" />
     <Compile Include="Assets\Scripts\Bootstrap.cs" />

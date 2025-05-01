@@ -1,3 +1,4 @@
+using Common;
 using Game.SkillSystem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +21,13 @@ public class ButtonClickHandler : MonoBehaviour
 
     private void OnButtonClick()
     {
-        Skill s = SkillManager.Instance.CreateSkill("10001", 0);
+        Skill s = SkillManager.Instance.CreateSkill("SKL_10001", 0);
         s?.ApplySkill();
 
+        // var name = IoCContainer.GetService<ICardRepository>().GetNameById("CRD_10001");
+        // Debug.Log(name);
+        var id = IoCContainer.GetService<IInstanceIdService>().Next(IdCategoryEnum.Card);
+        Debug.Log(id);
     }
 
     private void OnDestroy()

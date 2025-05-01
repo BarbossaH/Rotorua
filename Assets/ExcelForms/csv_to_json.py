@@ -6,8 +6,8 @@ import ast
 # 获取脚本所在目录
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# 配置输入和输出文件名（可以根据需要修改）
-input_csv = 'Items.csv'  # 替换为 'Items.csv' 或其他文件名
+# 配置输入和输出文件名
+input_csv = 'Cards.csv'  # 替换为 'Items.csv' 或其他文件名
 output_json = input_csv.replace('.csv', '.json')
 
 # 构建输入和输出路径
@@ -19,7 +19,6 @@ def parse_json_string(s):
     if not isinstance(s, str):  # 如果不是字符串，直接返回原值
         return s
     try:
-        # 检查是否形如 JSON 数组（以 [ 开头，] 结尾）
         if s.startswith('[') and s.endswith(']'):
             return ast.literal_eval(s)  # 安全解析为 Python 列表
         return s  # 非 JSON 数组字符串，保持不变
@@ -37,6 +36,18 @@ except Exception as e:
 # 自动处理所有列，解析字符串形式的 JSON 数组
 for column in df.columns:
     df[column] = df[column].apply(parse_json_string)
+
+# 检查 NaN 值并打印警告
+nan_locations = df.isna()
+if nan_locations.any().any():
+    print("警告：CSV 中存在空值（NaN）！以下是详细信息：")
+    for col in df.columns:
+        if nan_locations[col].any():
+            rows = df[nan_locations[col]].index.tolist()
+            print(f"列 '{col}' 在以下行有空值: {rows}")
+
+# 将 NaN 替换为 None（JSON 中的 null）
+df = df.where(df.notna(), None)  # 或者 df.fillna("") 替换为空字符串
 
 # 转成 JSON
 data = {input_csv.replace('.csv', ''): df.to_dict(orient='records')}

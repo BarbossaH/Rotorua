@@ -1,7 +1,7 @@
 {
     "Buffs":[
         {
-            "ID":"B_10001_1",
+            "ID":"BUF_10001_1",
             "Name":"Flame",
             "Damage":199,
             "Duration":3,
@@ -9,7 +9,7 @@
             "TriggerTiming": "OnTurnBegin"
         },     
         {
-            "ID":"B_10001_2",
+            "ID":"BUF_10001_2",
             "Name":"Flame",
             "Damage":15,
             "Duration":3,
@@ -17,7 +17,7 @@
             "TriggerTiming": "OnTurnBegin"
         },
         {
-            "ID":"B_20001_1",
+            "ID":"BUF_20001_1",
             "Name":"Rejuvenation",    
             "HealOverTime":15,
             "Duration":3,
@@ -25,14 +25,14 @@
             "TriggerTiming": "OnTurnBegin"
         },
         {
-            "ID":"B_30001_1",
+            "ID":"BUF_30001_1",
             "Name":"Shied",  
             "AbsorbAmount":15,
             "Duration":3,
             "Element":"Arcane"
         },
         {
-            "ID":"B_30002_1",
+            "ID":"BUF_30002_1",
             "Name":"MultipleDamage",    
             "Multiplier":2.5,
             "Duration":-1,
@@ -40,7 +40,7 @@
             "StatusType": "Attack"
         },
         {
-            "ID":"B_40001_1",
+            "ID":"BUF_40001_1",
             "Name":"Frozen",
             "IsControlled":true,
             "Duration":3,

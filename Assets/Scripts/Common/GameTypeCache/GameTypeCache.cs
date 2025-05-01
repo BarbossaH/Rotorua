@@ -19,6 +19,7 @@ namespace Common
         private static readonly List<Type> _repositoryList = new();
         private static readonly Dictionary<Type, Type> _repositoryMap = new();
         private static readonly Dictionary<Type, Type> _factoryMap = new();
+        private static readonly Dictionary<Type, Type> _instanceIdMap = new();
         private static readonly List<Type> _managerList = new();
         #endregion
         //this should be ready before using it, so it should be in the awake method of bootstrap script
@@ -60,6 +61,12 @@ namespace Common
                 {
                     _managerList.Add(type);
                     // Debug.Log(type.Name);
+                }
+
+                var idAttr = type.GetCustomAttribute<AutoRegisterIDGeneratorAttribute>();
+                if (idAttr != null)
+                {
+                    _instanceIdMap[idAttr.InterfaceType] = type;
                 }
 
             }
@@ -164,5 +171,7 @@ namespace Common
         public static List<Type> GetManagerTypeList() => _managerList;
 
         public static Dictionary<Type, Type> GetFactoryTypeMap() => _factoryMap;
+
+        public static Dictionary<Type, Type> GetIDGeneratorMap() => _instanceIdMap;
     }
 }

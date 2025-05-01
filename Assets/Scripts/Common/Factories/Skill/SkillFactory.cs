@@ -1,7 +1,6 @@
 namespace Common
 {
     using System.Collections.Generic;
-    using Common;
     using Game.SkillSystem;
     using Models;
     using UnityEngine;
@@ -21,6 +20,7 @@ namespace Common
 
             //TODO:在创建effect之前或者在创建技能之前，要判断这个技能能不能被施放，当然这个是在创建技能之前，这个地方是不管的
             var effectFactory = IoCContainer.GetService<IEffectFactory>();
+            Debug.Log(data);
             List<SkillEffectBase> effects = effectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
 
 

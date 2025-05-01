@@ -23,4 +23,5 @@ namespace Common
     public interface ISkillEffectRepository : IRepository<EffectDataBase, string> { }
 
     public interface ISkillBuffRepository : IRepository<BuffDataBase, string> { }
+    public interface ICardRepository : IRepository<CardData, string> { }
 }

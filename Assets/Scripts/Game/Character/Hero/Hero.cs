@@ -19,6 +19,7 @@ namespace Game.Character
             throw new System.NotImplementedException();
         }
 
+        public void DrawCard() { }
         public void ResetActionPoint()
         {
             CurrentActionPoint = MaxActionPoint;

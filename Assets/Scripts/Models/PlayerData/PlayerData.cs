@@ -1,6 +1,6 @@
 namespace Models
 {
-    [System.Serializable]
+    // [System.Serializable]
     public class PlayerData : IGameData
     {
         public string playerName = "Player";

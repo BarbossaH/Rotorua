@@ -50,6 +50,7 @@ namespace Common
         {
             AutoRegisterAllFactories();
             AutoRegisterAllRepositories();
+            AutoRegisterAllIDGenerator();
         }
         private static void AutoRegisterAllFactories()
         {
@@ -67,6 +68,15 @@ namespace Common
             {
                 Register(pair.Key, () => Activator.CreateInstance(pair.Value));
                 // Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
+            }
+        }
+
+        private static void AutoRegisterAllIDGenerator()
+        {
+            var idMap = GameTypeCache.GetIDGeneratorMap();
+            foreach (var pair in idMap)
+            {
+                Register(pair.Key, () => Activator.CreateInstance(pair.Value));
             }
         }
     }

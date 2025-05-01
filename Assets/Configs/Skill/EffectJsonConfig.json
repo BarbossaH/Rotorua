@@ -1,61 +1,61 @@
 {
     "Effects":[
         {
-            "ID":"E_10000_1",
+            "ID":"Eff_10000_1",
             "Name":"PhysicalDamage",
             "Damage":29,
             "Element":"None"
         },
         {
-            "ID":"E_10001_1",
+            "ID":"Eff_10001_1",
             "Name":"Fireball",
             "Damage":35,
             "Element":"Fire"
         },
         {
-            "ID":"E_10001_2",
+            "ID":"Eff_10001_2",
             "Name":"Fireball",
             "Damage":40,
             "Element":"Fire"
         },
         {
-            "ID":"E_10002_1",
+            "ID":"Eff_10002_1",
             "Name":"IceArrow",
             "Damage":30,
             "Element":"Frost"
         },
         {
-            "ID":"E_10002_2",
+            "ID":"Eff_10002_2",
             "Name":"IceArrow",
             "Damage":35,
             "Element":"Frost"
         },
         {
-            "ID":"E_20001_1",
+            "ID":"Eff_20001_1",
             "Name":"DrawCard",
             "Amount":2,
             "Element":"None"
         },
         {
-            "ID":"E_30001_1",
+            "ID":"Eff_30001_1",
             "Name":"MultipleAttack",
             "Amount":2,
             "Element":"None"
         },
         {
-            "ID":"E_30002_1",
+            "ID":"Eff_30002_1",
             "Name":"MultipleDefense",
             "Amount":2.5,
             "Element":"None"
         },  
         {
-            "ID":"E_30003_1",
+            "ID":"Eff_30003_1",
             "Name":"LifeSteal",
             "Amount":30,
             "Element":"None"
         },  
         {
-            "ID":"E_30004_1",
+            "ID":"Eff_30004_1",
             "Name":"CounterAttack",
             "Chance":30,
             "Damage":20,

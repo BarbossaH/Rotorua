@@ -9,7 +9,7 @@ namespace Models
     /// this class is a kind of model, it represents or corresponds to data read from a JSON configuration file
     /// </summary>
     /// 
-    [Serializable]
+    // [Serializable]
     public class SkillJsonConfig : IGameData
     {
         public List<SkillData> Skills;
@@ -19,7 +19,7 @@ namespace Models
         }
     }
 
-    [Serializable]
+    // [Serializable]
     public class SkillData
     {
         public string ID;
@@ -69,7 +69,7 @@ namespace Models
     }
 
 
-    [Serializable]
+    // [Serializable]
     public class SkillLevel
     {
         public int Level;

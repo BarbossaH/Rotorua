@@ -1,0 +1,5 @@
+ID,Name,Cost,SkillID,UpgradedCardID,Type,Source,Description
+CRD_10001,Attack,1,SKL_10001,CRD_10002,AttackCard,PlayerDeck,Description
+CRD_10002,Attack,1,SKL_10001,,AttackCard,PlayerDeck,Description
+CRD_10003,Defense,1,SKL_10002,,SkillCard,PlayerDeck,Description
+CRD_10004,Curse,0,SKL_10003,,ExhaustCard,EventGenerated,Description

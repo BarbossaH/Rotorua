@@ -27,4 +27,15 @@ namespace Common
 
     [AttributeUsage(AttributeTargets.Class)]
     public class AutoRegisterManagerAttribute : Attribute { }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class AutoRegisterIDGeneratorAttribute : Attribute
+    {
+        public Type InterfaceType { get; }
+
+        public AutoRegisterIDGeneratorAttribute(Type interfaceType)
+        {
+            InterfaceType = interfaceType;
+        }
+    }
 }
