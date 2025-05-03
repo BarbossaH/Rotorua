@@ -74,4 +74,18 @@ public static class UtilTools
         }
         return true;
     }
+
+    public static void Shuffle<T>(List<T> list)
+    {
+        var rng = new System.Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            //get an index between 0 - n (including n),note n already has been minus 1 at the above line code
+            int k = rng.Next(n + 1);
+            //swap the position of element k and element n, which means put a random element to the end of the list
+            (list[k], list[n]) = (list[n], list[k]);
+        }
+    }
 }

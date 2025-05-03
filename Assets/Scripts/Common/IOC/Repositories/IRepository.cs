@@ -24,4 +24,7 @@ namespace Common
 
     public interface ISkillBuffRepository : IRepository<BuffDataBase, string> { }
     public interface ICardRepository : IRepository<CardData, string> { }
+    public interface IHeroRepository : IRepository<HeroData, string> { }
+
+    // public interface IEnemyRepository:IRepository<EnemyData,string>{}
 }

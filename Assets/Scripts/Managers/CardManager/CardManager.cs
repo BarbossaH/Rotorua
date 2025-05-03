@@ -1,4 +1,5 @@
 using Common;
+using Game.CardSystem;
 
 namespace Managers
 {
@@ -11,6 +12,20 @@ namespace Managers
     [AutoRegisterManager]
     public class CardManager : Singleton<CardManager>
     {
+        private readonly ICardFactory _cardFactory;
 
+        public CardManager()
+        {
+            _cardFactory = IoCContainer.GetService<ICardFactory>();
+        }
+        public Card CreateCard(string cardId)
+        {
+            return _cardFactory.CreateCard(cardId);
+        }
+
+        public Card CloneCard(Card original)
+        {
+            return _cardFactory.CloneCard(original);
+        }
     }
 }

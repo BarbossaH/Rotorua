@@ -22,7 +22,7 @@ public class Bootstrap : MonoBehaviour
         GameVersion version = await StreamingAssetsManager.Instance.LoadJsonFromStreamingAssets<GameVersion>("version.json");
 
         //loading user saving data
-        PlayerData data = await PersistentDataManager.Instance.LoadData<PlayerData>("player_save.json");
+        HeroData data = await PersistentDataManager.Instance.LoadData<HeroData>("player_save.json");
         // Debug.Log(data.playerName);
         //loading the next scene which is login, but here, I should can change the scene name so that I can load any scene
 

@@ -1,5 +1,6 @@
 public enum OccupationEnum
 {
+    None,
     Warrior,
     Ranger
 }

@@ -1,0 +1,20 @@
+{
+    "Heroes": [
+        {
+            "ID": "Hero_101",
+            "Name": "Julian",
+            "MaxHP": 80,
+            "RelicID": "Rel_0000",
+            "Energy": 3,
+            "Occupation": "Warrior"
+        },
+        {
+            "ID": "Hero_102",
+            "Name": "Mia",
+            "MaxHP": 60,
+            "RelicID": "Rel_0001",
+            "Energy": 3,
+            "Occupation": "Ranger"
+        }
+    ]
+}

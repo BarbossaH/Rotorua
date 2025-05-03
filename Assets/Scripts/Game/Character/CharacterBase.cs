@@ -7,11 +7,12 @@ namespace Game.Character
 {
     public abstract class CharacterBase
     {
-        public string Name { get; }
-        public float MaxHealth { get; }
-        public float CurrentHealth { get; private set; }
-        public float Defense { get; private set; }
-        public float Attack { get; }
+        public string ID { get; protected set; }
+        public string Name { get; protected set; }
+        public float MaxHP { get; protected set; }
+        public float CurrentHP { get; protected set; }
+        public float Defense { get; set; }
+        // public float Attack { get; set; }
         public BuffManager BuffManager { get; private set; }
         public abstract void TakeDamager(float amount);
         public abstract void Heal(float amount);
@@ -22,9 +23,9 @@ namespace Game.Character
         public virtual void TakeDamage(float amount)
         {
             float effectiveDamage = Mathf.Max(amount - Defense, 0);
-            CurrentHealth -= effectiveDamage;
+            CurrentHP -= effectiveDamage;
             Defense = Mathf.Max(Defense - amount, 0);
-            if (CurrentHealth <= 0)
+            if (CurrentHP <= 0)
             {
                 Die();
             }

@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - json_data
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 669f56d7d7b152d4dbdc13fc60e68936
+    m_Address: HeroJsonConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - json_data
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c28e759c4d79d74e9b953b0bf04eb2f
     m_Address: EffectJsonConfig
     m_ReadOnly: 0
@@ -28,7 +34,7 @@ MonoBehaviour:
     - json_data
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6dda80f0102ad8478e322307e2cb1eb
-    m_Address: Assets/Configs/Cards/CardJsonConfig.json
+    m_Address: CardJsonConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - json_data

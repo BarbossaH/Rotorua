@@ -65,11 +65,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.40f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Common\Factories\Charactors\HeroFactory.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\Skill\EffectFactory.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\ContinuousBuff\FrozenBuff.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\GameMananger.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\CardRepository\CardRepository.cs" />
-    <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\ControllerManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\PhysicalDamageEffect.cs" />
@@ -80,7 +80,6 @@
     <Compile Include="Assets\Scripts\Managers\CoreMgr\EventCenterManager.cs" />
     <Compile Include="Assets\Scripts\Managers\CardManager\CardManager.cs" />
     <Compile Include="Assets\Scripts\Defs\GameEvents.cs" />
-    <Compile Include="Assets\Scripts\Models\PlayerData\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillBuffRepository.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Hero\Hero.cs" />
@@ -93,6 +92,7 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\SkillController.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager\AudioListenerManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\SkillEffectBase.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Hero\HeroView.cs" />
     <Compile Include="Assets\Scripts\Common\IPrototype.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\HealEffect.cs" />
@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\ISkill.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\RejuvenationBuff.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton\ISingleton.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\Repositories\CharacterRepository\HeroRepository.cs" />
     <Compile Include="Assets\Scripts\Defs\SkillType.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\CustomAttributes.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
@@ -126,9 +127,11 @@
     <Compile Include="Assets\Scripts\Game\Card\Card.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\IceArrowEffect.cs" />
     <Compile Include="Assets\Scripts\Game\Character\CharacterBase.cs" />
+    <Compile Include="Assets\Scripts\Models\HeroData\HeroModel.cs" />
     <Compile Include="Assets\Scripts\Common\Util\UtilTools.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\ContinuousBuff\ShiedBuff.cs" />
     <Compile Include="Assets\Scripts\Defs\ControllerType.cs" />
+    <Compile Include="Assets\Scripts\Managers\SkillManager\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Defs\CardType.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\FlameBuff.cs" />

@@ -16,6 +16,7 @@ namespace Models
     {
         public string ID { get; set; }
         public string SkillID { get; set; }
+        public int Cost { get; set; }
         public string UpgradedCardID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

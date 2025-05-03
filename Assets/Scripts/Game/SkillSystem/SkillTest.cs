@@ -1,5 +1,7 @@
 using Common;
+using Game.CardSystem;
 using Game.SkillSystem;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,8 +28,15 @@ public class ButtonClickHandler : MonoBehaviour
 
         // var name = IoCContainer.GetService<ICardRepository>().GetNameById("CRD_10001");
         // Debug.Log(name);
-        var id = IoCContainer.GetService<IInstanceIdService>().Next(IdCategoryEnum.Card);
-        Debug.Log(id);
+
+        var name = IoCContainer.GetService<IHeroRepository>().GetNameById("Hero_101");
+        Debug.Log(name);
+
+        // Card card = CardManager.Instance.CreateCard("CRD_10001");
+
+        // Debug.Log(card.CardId + " and " + card.CardInstanceId);
+        // card = CardManager.Instance.CloneCard(card);
+        // Debug.Log(card.CardId + " and " + card.CardInstanceId);
     }
 
     private void OnDestroy()
