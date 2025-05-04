@@ -13,7 +13,7 @@ namespace Models
     {
         public string ID { get; set; }
         public string Name { get; set; }
-        public int MaxHP { get; set; }
+        public float MaxHP { get; set; }
         public int Energy { get; set; }
         public string Occupation { get; set; }
 

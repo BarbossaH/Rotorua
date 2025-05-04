@@ -75,11 +75,6 @@ namespace Models
             JObject jsonObject = JObject.Load(reader);
             string typeName = jsonObject["Name"]?.ToString() + "Data";
 
-            if (string.IsNullOrEmpty(typeName))
-            {
-                throw new Exception("Missing or invalid SubclassName field in JSON.");
-            }
-
             var effect = GameTypeCache.CreateInstanceByClassName<BuffDataBase>(typeName, throwError: true);
 
             serializer.Populate(jsonObject.CreateReader(), effect);

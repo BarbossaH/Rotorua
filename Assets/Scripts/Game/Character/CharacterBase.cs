@@ -1,7 +1,5 @@
-using System;
 using Game.SkillSystem;
 using UnityEngine;
-using UnityEngine.ResourceManagement.ResourceProviders.Simulation;
 
 namespace Game.Character
 {

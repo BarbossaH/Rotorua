@@ -1,5 +1,6 @@
 namespace Managers
 {
+    using System;
     using System.IO;
     using Common;
     using Cysharp.Threading.Tasks;
@@ -14,22 +15,31 @@ namespace Managers
     public class PersistentDataManager : Singleton<PersistentDataManager>
     {
         private readonly string saveDirectory = Application.persistentDataPath;
-        public async UniTask SaveData<T>(T data, string fileName) where T : class
+        public async UniTask<bool> SaveData<T>(T data, string fileName) where T : class
         {
-            string filePath = Path.Combine(saveDirectory, fileName);
-            UtilTools.EnsureDictionary(saveDirectory);
-
-            var settings = new JsonSerializerSettings
+            try
             {
-                TypeNameHandling = TypeNameHandling.Auto, // 保存时包含多态信息
-                Formatting = Formatting.Indented
-            };
+                string filePath = Path.Combine(saveDirectory, fileName);
+                UtilTools.EnsureDictionary(saveDirectory);
 
-            string json = JsonConvert.SerializeObject(data, settings);
+                var settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto, // 保存时包含多态信息
+                    Formatting = Formatting.Indented
+                };
 
-            await File.WriteAllTextAsync(filePath, json);
+                string json = JsonConvert.SerializeObject(data, settings);
 
-            Debug.Log("Player data saved successfully");
+                await File.WriteAllTextAsync(filePath, json);
+
+                Debug.Log("Player data saved successfully");
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Saving Data failed: {e.Message}");
+                return false;
+            }
         }
 
         public async UniTask<T> LoadData<T>(string fileName) where T : new()
@@ -47,7 +57,8 @@ namespace Managers
                 string json = await File.ReadAllTextAsync(filePath);
                 var settings = new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Auto // 读取时解析多态
+                    TypeNameHandling = TypeNameHandling.Auto, // 或 All 更激进
+                    Formatting = Formatting.Indented
                 };
 
                 T data = JsonConvert.DeserializeObject<T>(json, settings);

@@ -8,6 +8,7 @@ namespace Common
         Hero CreateHero(string id);
     }
 
+    [AutoRegisterFactory(typeof(IHeroFactory))]
     public class HeroFactory : IHeroFactory
     {
         public Hero CreateHero(string heroId)

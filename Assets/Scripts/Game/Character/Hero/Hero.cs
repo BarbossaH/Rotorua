@@ -14,6 +14,7 @@ namespace Game.Character
 
         public Hero(HeroData heroData) : base()
         {
+            //actually this is wrong because we also need to load the hero save data, so that we can get the ultimate value.
             ID = heroData.ID;
             Name = heroData.Name;
             MaxHP = heroData.MaxHP;

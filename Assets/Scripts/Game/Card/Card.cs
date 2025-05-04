@@ -9,7 +9,7 @@ namespace Game.CardSystem
         public string SkillId { get; private set; }
         public int Cost { get; set; }
         public int CardInstanceId { get; private set; }
-        public string CardName { get; private set; }
+        public string Name { get; private set; }
         public string Description { get; private set; }
         public CardTypeEnum CardType { get; private set; }
         public string UpgradedCardID { get; private set; }
@@ -18,7 +18,7 @@ namespace Game.CardSystem
             CardId = cardData.ID;
             SkillId = cardData.SkillID;
             Cost = cardData.Cost;
-            CardName = cardData.Name;
+            Name = cardData.Name;
             Description = cardData.Description;
             CardType = cardData.GetCardTypeEnum();
             UpgradedCardID = cardData.UpgradedCardID;
@@ -30,7 +30,7 @@ namespace Game.CardSystem
             CardId = cardId;
             SkillId = skillId;
             CardInstanceId = IoCContainer.GetService<IInstanceIdService>().Next(IdCategoryEnum.Card);
-            CardName = name;
+            Name = name;
             Description = des;
             CardType = cardType;
             Cost = cost;
@@ -42,7 +42,7 @@ namespace Game.CardSystem
             CardId = other.CardId;
             SkillId = other.SkillId;
             CardInstanceId = IoCContainer.GetService<IInstanceIdService>().Next(IdCategoryEnum.Card);
-            CardName = other.CardName;
+            Name = other.Name;
             Description = other.Description;
             CardType = other.CardType;
             Cost = other.Cost;
