@@ -25,12 +25,7 @@ public class Bootstrap : MonoBehaviour
 
         //loading user saving data
         // GameSettings data = await PersistentDataManager.Instance.LoadData<GameSettings>("game_setting.json");
-        GameDataSave data = await PersistentDataManager.Instance.LoadData<GameDataSave>("game_data.json");
-        if (data != null && data.SaveID != null && data.HeroSaveData != null && data.RelicSaveData != null)
-        {
-            Debug.Log(data?.SaveID + " and its language is " + ((HeroSaveData)data?.HeroSaveData)?.CurrentHP + "and relic id is" + ((RelicSaveData)data?.RelicSaveData[0])?.ID);
 
-        }
         //loading the next scene which is login, but here, I should can change the scene name so that I can load any scene
 
         await SceneLoaderManager.Instance.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.TestScene,

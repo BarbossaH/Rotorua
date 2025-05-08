@@ -24,7 +24,11 @@ namespace Common
 
     public interface ISkillBuffRepository : IRepository<BuffDataBase, string> { }
     public interface ICardRepository : IRepository<CardData, string> { }
-    public interface IHeroRepository : IRepository<HeroData, string> { }
+
+    //store the static data of hero, the data is original data
+    public interface IHeroRepository : IRepository<HeroData, string /*hero id*/> { }
+    //store the saving data of hero
+    public interface IPlayerSaveRepository : IRepository<PlayerDataSave, string/*save id*/> { }
 
     // public interface IEnemyRepository:IRepository<EnemyData,string>{}
 }

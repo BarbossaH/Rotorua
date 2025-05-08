@@ -18,20 +18,20 @@ namespace Managers
     public class JsonManager : Singleton<JsonManager>
     {
         private readonly Dictionary<string, IGameData> _loadData = new();
-        private UniTaskCompletionSource jsonLoadCompletion = new UniTaskCompletionSource();
+        private readonly UniTaskCompletionSource _jsonLoadCompletion = new();
 
 
         public async UniTask LoadJsonFile()
         {
             //数据反序列化
             await LoadAllJsonByLabelAsync("json_data");
-            jsonLoadCompletion.TrySetResult(); // 标记 JSON 加载完成
+            _jsonLoadCompletion.TrySetResult(); // 标记 JSON 加载完成
 
         }
 
         public async UniTask WaitForJsonLoad()
         {
-            await jsonLoadCompletion.Task;
+            await _jsonLoadCompletion.Task;
         }
         public async UniTask<T> LoadJsonAsync<T>(string address)
         {

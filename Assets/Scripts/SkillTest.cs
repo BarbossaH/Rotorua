@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-
+using Game.CardSystem;
 using Managers;
 using Models;
 using UnityEngine;
@@ -40,9 +40,9 @@ public class ButtonClickHandler : MonoBehaviour
         // Debug.Log(card.CardId + " and " + card.CardInstanceId);
         // card = CardManager.Instance.CloneCard(card);
         // Debug.Log(card.CardId + " and " + card.CardInstanceId);
-        _ = LoadingSetting();
+        LoadingSetting();
     }
-    private async UniTask LoadingSetting()
+    private void LoadingSetting()
     {
         #region save game setting test
         // GameSettings gameSettings = new()
@@ -57,25 +57,7 @@ public class ButtonClickHandler : MonoBehaviour
         #endregion
 
         #region player data test
-        GameDataSave gameDataSave = new()
-        {
-            SaveID = "001",
-            HeroSaveData = new HeroSaveData()
-            {
-                MaxHp = 200,
-                CurrentHP = 100,
-                MaxEnergy = 3,
-                CurrentEnergy = 2,
-                CardIDs = { "123", "124" }
-            },
-            RelicSaveData = {
-                new RelicSaveData { ID = "1234" },
-                new RelicSaveData(){ID="4321"},
-            }
-        };
-
-        bool result = await PersistentDataManager.Instance.SaveData(gameDataSave, "game_data.json");
-        Debug.Log($"setting file is {result}");
+        _ = TestPersistentData();
         #endregion
 
     }
@@ -88,4 +70,32 @@ public class ButtonClickHandler : MonoBehaviour
             button.onClick.RemoveListener(OnButtonClick);
         }
     }
+
+    #region test code
+    private async UniTask TestPersistentData()
+    {
+        PlayerDataSave gameDataSave = new PlayerDataSave
+        {
+            GameSlots = {
+                new GameSlot{
+                    SaveID = "0001",
+                    HeroSaveData  =  new HeroSaveData{
+                        StatusSaveData=new HeroStatusSaveData{
+                        MaxEnergy=9,
+                        CurrentEnergy=7,
+                        MaxHp=100,
+                        CurrentHP=87,
+                        },
+                        CardInstanceData={ new CardSaveData{ID="C001", InstanceID=1}, new CardSaveData{ID="C002", InstanceID=2}},
+                        RelicSaveData={new RelicSaveData{ID="R001"}}
+                    }
+                }
+            }
+
+        };
+
+        bool result = await PersistentDataManager.Instance.SaveData(gameDataSave, "game_data.json");
+        Debug.Log($"setting file is {result}");
+    }
+    #endregion
 }

@@ -46,6 +46,7 @@ namespace Common
                 {
                     _repositories.Add(repo);
                     Debug.Log(repo.GetType().Name);
+                    Debug.Log(reg.Key);
                     IoCContainer.Register(reg.Key, () => instance);
                 }
             }

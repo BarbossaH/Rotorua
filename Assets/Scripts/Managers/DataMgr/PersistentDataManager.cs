@@ -42,6 +42,8 @@ namespace Managers
             }
         }
 
+        //Not using reflection to load data because the saving data structure often changes 
+        // and there is too many types of data need to be stored and retrieved from the save files.
         public async UniTask<T> LoadData<T>(string fileName) where T : new()
         {
             string filePath = Path.Combine(saveDirectory, fileName);
@@ -57,11 +59,12 @@ namespace Managers
                 string json = await File.ReadAllTextAsync(filePath);
                 var settings = new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Auto, // 或 All 更激进
+                    TypeNameHandling = TypeNameHandling.Auto,
                     Formatting = Formatting.Indented
                 };
 
                 T data = JsonConvert.DeserializeObject<T>(json, settings);
+
                 // Debug.Log("Player data loaded successfully");
                 return data;
             }
@@ -71,6 +74,5 @@ namespace Managers
                 return new T();
             }
         }
-
     }
 }
