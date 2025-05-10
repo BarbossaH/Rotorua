@@ -1,3 +1,4 @@
+using Game.Character;
 using Models;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Game.SkillSystem
                 Damage = fireball.Damage;
             }
         }
-        public override void ApplyEffect()
+        public override void ApplyEffect(CharacterBase caster, CharacterBase target)
         {
             Debug.Log($"火球术烧死你 {Damage}");
         }

@@ -1,4 +1,5 @@
 
+using Game.Character;
 using Models;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Game.SkillSystem
                 Damage = iceArrowData.Damage;
             }
         }
-        public override void ApplyEffect()
+        public override void ApplyEffect(CharacterBase caster, CharacterBase target)
         {
             Debug.Log("Ice arrow makes you cannot move fast");
         }

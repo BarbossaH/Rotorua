@@ -1,5 +1,6 @@
 namespace Game.SkillSystem
 {
+    using Game.Character;
     using Models;
     using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace Game.SkillSystem
 
         }
 
-        public override void ApplyEffect()
+        public override void ApplyEffect(CharacterBase caster, CharacterBase target)
         {
             Debug.Log($"看看我的铁拳{Damage}");
         }
