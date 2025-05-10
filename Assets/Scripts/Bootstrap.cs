@@ -1,5 +1,6 @@
 
 using Common;
+using Cysharp.Threading.Tasks;
 using Managers;
 using Models;
 using Unity.VisualScripting;
@@ -16,15 +17,11 @@ public class Bootstrap : MonoBehaviour
 
     private async void Start()
     {
-        //prepare the data and factories
+        await LoadGameSaveData();
+        //prepare the type of data and factories 
         RegisterServices();
 
         GameManager.Instance.Init();
-
-        GameVersion version = await StreamingAssetsManager.Instance.LoadJsonFromStreamingAssets<GameVersion>("version.json");
-
-        //loading user saving data
-        // GameSettings data = await PersistentDataManager.Instance.LoadData<GameSettings>("game_setting.json");
 
         //loading the next scene which is login, but here, I should can change the scene name so that I can load any scene
 
@@ -33,6 +30,8 @@ public class Bootstrap : MonoBehaviour
             {
                 //I think this should store the Type cache here first. and register repository
                 await JsonManager.Instance.LoadJsonFile();
+
+                //store the data into corresponding repository
                 await RepositoryLoader.LoadAllDataAsync(progress => Debug.Log($"Progress: {progress * 100}%  and ✅ All Repositories Loaded."));
             }
         );
@@ -48,6 +47,12 @@ public class Bootstrap : MonoBehaviour
         // IoCContainer.Register<IRepository<SkillData, string>, SkillDataRepository>();
         IoCContainer.AutoRegisterServiceInContainer();
         RepositoryLoader.CollectFromIoC();
+    }
+
+    private async UniTask LoadGameSaveData()
+    {
+        //loading user saving data
+        await PersistentDataManager.Instance.LoadAllSaveData();
     }
 
 }

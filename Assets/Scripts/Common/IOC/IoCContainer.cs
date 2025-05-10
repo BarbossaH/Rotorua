@@ -7,7 +7,7 @@ namespace Common
     public static class IoCContainer
     {
         private static readonly Dictionary<Type, Func<object>> _registrations = new();
-        private static readonly Dictionary<Type, object> _services = new();
+        private static readonly Dictionary<Type, object> _singletonInstances = new();
 
         public static void Register(Type interfaceType, Func<object> factory)
         {
@@ -17,33 +17,33 @@ namespace Common
         public static T GetService<T>()
         {
             Type type = typeof(T);
-            if (_services.TryGetValue(type, out var service))
+            if (_singletonInstances.TryGetValue(type, out var instance))
             {
-                return (T)service;
+                return (T)instance;
             }
 
             if (_registrations.TryGetValue(type, out var factory))
             {
                 var s = factory();
-                _services[type] = s;
+                _singletonInstances[type] = s;
                 return (T)s;
             }
             throw new InvalidOperationException($"Type {type.Name} is not registered in the container.");
         }
 
-        //for the time being, I don't need the below function, I just write down as study
-        public static T GetTransient<T>()
-        {
-            if (_registrations.TryGetValue(typeof(T), out var factory))
-            {
-                return (T)factory(); // 不缓存，直接 new
-            }
-            throw new InvalidOperationException($"Type {typeof(T).Name} is not registered.");
-        }
+        // //for the time being, I don't need the below function, I just write down as study
+        // public static T GetTransient<T>()
+        // {
+        //     if (_registrations.TryGetValue(typeof(T), out var factory))
+        //     {
+        //         return (T)factory(); // 不缓存，直接 new
+        //     }
+        //     throw new InvalidOperationException($"Type {typeof(T).Name} is not registered.");
+        // }
 
         public static void ClearResolved<T>()
         {
-            _services.Remove(typeof(T));
+            _singletonInstances.Remove(typeof(T));
         }
 
         public static void AutoRegisterServiceInContainer()

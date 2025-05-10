@@ -1,3 +1,4 @@
+using Game.Character;
 using Models;
 
 namespace Game.SkillSystem
@@ -15,6 +16,6 @@ namespace Game.SkillSystem
             Name = effectData.Name;
             elementEnum = effectData.GetElementType();
         }
-        public abstract void ApplyEffect();
+        public abstract void ApplyEffect(CharacterBase caster, CharacterBase target);
     }
 }

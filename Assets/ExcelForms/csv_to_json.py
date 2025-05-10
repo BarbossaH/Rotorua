@@ -7,7 +7,7 @@ import ast
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 配置输入和输出文件名
-input_csv = 'Heroes.csv'  # 替换为 'Items.csv' 或其他文件名
+input_csv = 'CardJsonConfig.csv'  # 替换为 'Items.csv' 或其他文件名
 output_json = input_csv.replace('.csv', '.json')
 
 # 构建输入和输出路径

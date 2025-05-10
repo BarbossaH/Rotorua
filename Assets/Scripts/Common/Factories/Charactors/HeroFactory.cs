@@ -14,11 +14,16 @@ namespace Common
         public Hero CreateHero(string heroId)
         {
             var data = IoCContainer.GetService<IHeroRepository>()?.GetById(heroId);
+            var heroSaveData = IoCContainer.GetService<IPlayerSaveRepository>()?.GetHeroSaveData("Save001");
             if (data == null)
             {
                 Debug.LogError($"ID:{heroId} cannot be retrieved");
             }
-            return new Hero(data);
+            if (heroSaveData != null)
+            {
+                Debug.Log(heroSaveData?.StatusSaveData?.MaxHp);
+            }
+            return new Hero(data, heroSaveData);
         }
 
 

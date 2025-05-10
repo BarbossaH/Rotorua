@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using UnityEngine;
+
 
 namespace Models
 {
-    public class PlayerDataSave
+    public class PlayerDataSave : ISaveData
     {
         public List<GameSlot> GameSlots = new();
     }

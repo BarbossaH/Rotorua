@@ -1,9 +1,11 @@
 namespace Managers
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using Common;
     using Cysharp.Threading.Tasks;
+    using Models;
     using Newtonsoft.Json;
     using UnityEngine;
 
@@ -14,7 +16,10 @@ namespace Managers
     [AutoRegisterManager]
     public class PersistentDataManager : Singleton<PersistentDataManager>
     {
+        private readonly Dictionary<string, ISaveData> _gameSaveDict = new();
         private readonly string saveDirectory = Application.persistentDataPath;
+
+        private readonly UniTaskCompletionSource _saveDataLoadCompletion = new();
         public async UniTask<bool> SaveData<T>(T data, string fileName) where T : class
         {
             try
@@ -44,14 +49,15 @@ namespace Managers
 
         //Not using reflection to load data because the saving data structure often changes 
         // and there is too many types of data need to be stored and retrieved from the save files.
-        public async UniTask<T> LoadData<T>(string fileName) where T : new()
+        public async UniTask LoadData<T>(SaveFileEnum saveFile) where T : new()
         {
+            string fileName = saveFile.GetFileName();
             string filePath = Path.Combine(saveDirectory, fileName);
 
             if (!File.Exists(filePath))
             {
                 Debug.Log("No save file found. Creating new player data.");
-                return new T();
+                // return new T();
             }
 
             try
@@ -63,16 +69,45 @@ namespace Managers
                     Formatting = Formatting.Indented
                 };
 
-                T data = JsonConvert.DeserializeObject<T>(json, settings);
+                var data = JsonConvert.DeserializeObject<T>(json, settings) as ISaveData;
 
                 // Debug.Log("Player data loaded successfully");
-                return data;
+                _gameSaveDict[fileName] = data;
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Debug.LogError($"Error loading player data: {e.Message}");
-                return new T();
             }
+        }
+
+        public async UniTask LoadAllSaveData()
+        {
+            try
+            {
+                await LoadData<GameSettings>(SaveFileEnum.Settings);
+                await LoadData<PlayerDataSave>(SaveFileEnum.PlayerData);
+                _saveDataLoadCompletion.TrySetResult();
+            }
+            catch (Exception e)
+            {
+                _saveDataLoadCompletion.TrySetException(e);
+            }
+
+        }
+
+        public async UniTask WaitForSaveDataLoad()
+        {
+            await _saveDataLoadCompletion.Task;
+        }
+
+        public T GetSaveData<T>(SaveFileEnum fileEnum) where T : class, ISaveData
+        {
+            if (_gameSaveDict.TryGetValue(fileEnum.GetFileName(), out var saveData))
+            {
+                return saveData as T;
+            }
+            Debug.LogError($"Save data file {fileEnum.GetFileName()} doesn't exist");
+            return null;
         }
     }
 }

@@ -105,7 +105,6 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\RejuvenationBuff.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton\ISingleton.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\CharacterRepository\HeroRepository.cs" />
-    <Compile Include="Assets\Scripts\Common\IOC\Repositories\SaveDataRepository\GameSettingRepository.cs" />
     <Compile Include="Assets\Scripts\Defs\SkillType.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\CustomAttributes.cs" />
     <Compile Include="Assets\Scripts\Managers\HeroManager\HeroManager.cs" />
@@ -141,6 +140,7 @@
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Models\SaveData\PlayerSaveData.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\FlameBuff.cs" />
+    <Compile Include="Assets\Scripts\Models\SaveData\ISaveData.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillRepository.cs" />
     <Compile Include="Assets\Scripts\MVC\View\IBaseView.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\RepositoryLoader.cs" />

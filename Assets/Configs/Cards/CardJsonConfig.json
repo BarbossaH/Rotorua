@@ -1,12 +1,14 @@
 {
-    "Cards": [
+    "CardJsonConfig": [
         {
             "ID": "CRD_10001",
             "Name": "Attack",
             "Cost": 1,
             "SkillID": "SKL_10001",
+            "Lifecycle": "Discard",
             "UpgradedCardID": "CRD_10002",
             "Type": "AttackCard",
+            "Ownership": "Warrior",
             "Source": "PlayerDeck",
             "Description": "Description"
         },
@@ -15,8 +17,10 @@
             "Name": "Attack",
             "Cost": 1,
             "SkillID": "SKL_10001",
+            "Lifecycle": "Discard",
             "UpgradedCardID": null,
             "Type": "AttackCard",
+            "Ownership": "Warrior",
             "Source": "PlayerDeck",
             "Description": "Description"
         },
@@ -25,8 +29,10 @@
             "Name": "Defense",
             "Cost": 1,
             "SkillID": "SKL_10002",
+            "Lifecycle": "Discard",
             "UpgradedCardID": null,
             "Type": "SkillCard",
+            "Ownership": "Warrior",
             "Source": "PlayerDeck",
             "Description": "Description"
         },
@@ -35,8 +41,10 @@
             "Name": "Curse",
             "Cost": 0,
             "SkillID": "SKL_10003",
+            "Lifecycle": "Discard",
             "UpgradedCardID": null,
             "Type": "ExhaustCard",
+            "Ownership": "Warrior",
             "Source": "EventGenerated",
             "Description": "Description"
         }

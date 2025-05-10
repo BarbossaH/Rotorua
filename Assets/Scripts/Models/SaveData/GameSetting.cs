@@ -2,7 +2,7 @@ using System;
 
 namespace Models
 {
-    public class GameSettings
+    public class GameSettings : ISaveData
     {
         public float MusicVolume { get; set; }
         public float SFXVolume { get; set; }

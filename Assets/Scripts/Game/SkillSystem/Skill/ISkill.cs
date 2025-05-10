@@ -1,7 +1,9 @@
+using Game.Character;
+
 namespace Game.SkillSystem
 {
     public interface ISkill
     {
-        void ApplySkill();
+        void ApplySkill(CharacterBase caster, CharacterBase target);
     }
 }

@@ -1,6 +1,7 @@
 namespace Game.SkillSystem
 {
     using System.Collections.Generic;
+    using Game.Character;
     using Models;
 
     public class Skill : ISkill
@@ -27,11 +28,11 @@ namespace Game.SkillSystem
             SkillBuffs = buffs;
             Level = level;
         }
-        public void ApplySkill()
+        public void ApplySkill(CharacterBase caster, CharacterBase target)
         {
             foreach (var e in SkillEffects)
             {
-                e.ApplyEffect();
+                e.ApplyEffect(caster, target);
             }
 
             foreach (var b in SkillBuffs)

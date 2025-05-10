@@ -19,20 +19,19 @@ namespace Common
             return _heroes;
         }
 
-        public HeroData GetById(string id)
+        public HeroData GetById(string heroId)
         {
-
-            if (_heroesDict.TryGetValue(id, out var heroData))
+            if (_heroesDict.TryGetValue(heroId, out var heroData))
             {
                 return heroData;
             }
-            Debug.LogError($"{id} cannot find her0 data");
+            Debug.LogError($"{heroId} cannot find her0 data");
             return null;
         }
 
-        public string GetNameById(string id)
+        public string GetNameById(string heroId)
         {
-            if (_heroesDict.TryGetValue(id, out var h))
+            if (_heroesDict.TryGetValue(heroId, out var h))
             {
                 return h.Name;
             }

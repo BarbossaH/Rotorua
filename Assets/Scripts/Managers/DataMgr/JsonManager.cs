@@ -1,6 +1,5 @@
 namespace Managers
 {
-
     using System;
     using System.Collections.Generic;
     using Common;
@@ -9,35 +8,38 @@ namespace Managers
     using Newtonsoft.Json;
     using UnityEngine;
 
-    /// <summary>
-    /// This class is responsible for reading the json files that contain the static data,like skill, quest and map
-    /// </summary>
-    /// 
-
     [AutoRegisterManager]
     public class JsonManager : Singleton<JsonManager>
     {
         private readonly Dictionary<string, IGameData> _loadData = new();
         private readonly UniTaskCompletionSource _jsonLoadCompletion = new();
-
+        private bool _isJsonLoaded = false;
+        private bool _isLoading = false;
 
         public async UniTask LoadJsonFile()
         {
-            //数据反序列化
-            await LoadAllJsonByLabelAsync("json_data");
-            _jsonLoadCompletion.TrySetResult(); // 标记 JSON 加载完成
+            if (_isJsonLoaded || _isLoading)
+            {
+                await _jsonLoadCompletion.Task;
+                return;
+            }
 
+            _isLoading = true;
+            await LoadAllJsonByLabelAsync("json_data");
+            _isJsonLoaded = true;
+            _jsonLoadCompletion.TrySetResult();
         }
 
         public async UniTask WaitForJsonLoad()
         {
             await _jsonLoadCompletion.Task;
         }
+
         public async UniTask<T> LoadJsonAsync<T>(string address)
         {
             TextAsset jsonText = await ResourceManager.Instance.LoadAssetByAddressAsync<TextAsset>(address);
             if (jsonText == null) return default;
-            // return JsonUtility.FromJson<T>(jsonText.text);
+
             var settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto
@@ -50,7 +52,6 @@ namespace Managers
         {
             var jsonFiles = await ResourceManager.Instance.LoadAssetsByLabelAsync<TextAsset>(label);
 
-            // there is a rule that the json filename must match the name of the corresponding class because the json filename need to be converted into class name by reflection。
             foreach (var json in jsonFiles)
             {
                 string className = json.name;
@@ -58,14 +59,6 @@ namespace Managers
                 if (type != null)
                 {
                     Debug.Log(type.FullName);
-
-                    // var data = JsonUtility.FromJson(json.text, type) as IGameData;
-                    // var settings = new JsonSerializerSettings
-                    // {
-                    //     TypeNameHandling = TypeNameHandling.Auto
-                    // };
-
-                    // var data = JsonConvert.DeserializeObject(json.text, type, settings) as IGameData;
                     var data = JsonConvert.DeserializeObject(json.text, type) as IGameData;
                     _loadData[className] = data;
                     Debug.Log(className + " has been loaded.");
@@ -74,20 +67,16 @@ namespace Managers
                 {
                     Debug.LogError($"No matching class found for {json.name}");
                 }
-
             }
         }
 
         public T GetData<T>(string key) where T : class, IGameData
         {
-
             if (_loadData.TryGetValue(key, out var data))
             {
                 return data as T;
             }
             return null;
         }
-
     }
-
 }

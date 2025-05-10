@@ -1,5 +1,5 @@
-ID,Name,Cost,SkillID,UpgradedCardID,Type,Source,Description
-CRD_10001,Attack,1,SKL_10001,CRD_10002,AttackCard,PlayerDeck,Description
-CRD_10002,Attack,1,SKL_10001,,AttackCard,PlayerDeck,Description
-CRD_10003,Defense,1,SKL_10002,,SkillCard,PlayerDeck,Description
-CRD_10004,Curse,0,SKL_10003,,ExhaustCard,EventGenerated,Description
+ID,Name,Cost,SkillID,Lifecycle,UpgradedCardID,Type,Ownership,Source,Description
+CRD_10001,Attack,1,SKL_10001,Discard,CRD_10002,AttackCard,Warrior,PlayerDeck,Description
+CRD_10002,Attack,1,SKL_10001,Discard,,AttackCard,Warrior,PlayerDeck,Description
+CRD_10003,Defense,1,SKL_10002,Discard,,SkillCard,Warrior,PlayerDeck,Description
+CRD_10004,Curse,0,SKL_10003,Discard,,ExhaustCard,Warrior,EventGenerated,Description

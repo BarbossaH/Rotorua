@@ -17,7 +17,8 @@ namespace Common
         List<T> GetAll();
         string GetNameById(string id);
     }
-    //TODO:这里要研究一下是不是多余了。周一到周三正好研究一下自动注册 ioc container的知识
+
+
     public interface ISkillRepository : IRepository<SkillData, string> { }
 
     public interface ISkillEffectRepository : IRepository<EffectDataBase, string> { }
@@ -28,7 +29,14 @@ namespace Common
     //store the static data of hero, the data is original data
     public interface IHeroRepository : IRepository<HeroData, string /*hero id*/> { }
     //store the saving data of hero
-    public interface IPlayerSaveRepository : IRepository<PlayerDataSave, string/*save id*/> { }
+    public interface IPlayerSaveRepository : IRepository<GameSlot, string/*save id*/>
+    {
+        HeroSaveData GetHeroSaveData(string saveId);
+        List<RelicSaveData> GetRelicSaveData(string saveId);
+        List<CardSaveData> GetCardSaveData(string saveId);
+        HeroStatusSaveData GetHeroStatusSaveData(string saveId);
+    }
+
 
     // public interface IEnemyRepository:IRepository<EnemyData,string>{}
 }

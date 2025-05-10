@@ -22,7 +22,11 @@ namespace Models
         public string Description { get; set; }
         public string Type { get; set; }
         public string Source { get; set; }
-        public CardTypeEnum GetCardTypeEnum() => Enum.TryParse(Type, out CardTypeEnum result) ? result : CardTypeEnum.None;
-        public CardSourceEnum GetCardSourceEnum() => Enum.TryParse(Source, out CardSourceEnum result) ? result : CardSourceEnum.None;
+        public string Lifecycle { get; set; }
+        public string Ownership { get; set; }
+        public CardOwnershipEnum GetCardOwnership() => Enum.TryParse(Ownership, out CardOwnershipEnum result) ? result : CardOwnershipEnum.Common;
+        public CardLifecycleEnum GetCardLifecycle() => Enum.TryParse(Lifecycle, out CardLifecycleEnum result) ? result : CardLifecycleEnum.None;
+        public CardTypeEnum GetCardType() => Enum.TryParse(Type, out CardTypeEnum result) ? result : CardTypeEnum.None;
+        public CardSourceEnum GetCardSource() => Enum.TryParse(Source, out CardSourceEnum result) ? result : CardSourceEnum.None;
     }
 }

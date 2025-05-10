@@ -32,8 +32,8 @@ public class ButtonClickHandler : MonoBehaviour
         // // Debug.Log(name);
         // var c = CardManager.Instance.CreateCard("CRD_10001");
         // Debug.Log(c.Name);
-        // var h = HeroManager.Instance.CreateHero("Hero_101");
-        // Debug.Log(h.Name);
+        var h = HeroManager.Instance.CreateHero("Hero_101");
+        Debug.Log(h.Name);
 
         // Card card = CardManager.Instance.CreateCard("CRD_10001");
 
@@ -78,7 +78,7 @@ public class ButtonClickHandler : MonoBehaviour
         {
             GameSlots = {
                 new GameSlot{
-                    SaveID = "0001",
+                    SaveID = "Save001",
                     HeroSaveData  =  new HeroSaveData{
                         StatusSaveData=new HeroStatusSaveData{
                         MaxEnergy=9,
