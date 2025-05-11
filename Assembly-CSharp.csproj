@@ -105,8 +105,11 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\RejuvenationBuff.cs" />
     <Compile Include="Assets\Scripts\Common\Singleton\ISingleton.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\CharacterRepository\HeroRepository.cs" />
+    <Compile Include="Assets\Scripts\Game\Battle\BattleEntry.cs" />
     <Compile Include="Assets\Scripts\Defs\SkillType.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\CustomAttributes.cs" />
+    <Compile Include="Assets\Scripts\Game\Battle\IBattleController.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\ScopeContainer.cs" />
     <Compile Include="Assets\Scripts\Managers\HeroManager\HeroManager.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\Skill\SkillFactory.cs" />
@@ -120,6 +123,7 @@
     <Compile Include="Assets\Scripts\Common\Factories\CardFactory\CardFactory.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\StreamingAssetsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Character\BuffManager.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\IDisposable.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\SkillModel.cs" />
     <Compile Include="Assets\Scripts\MVC\View\BaseView.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\SkillBuffBase.cs" />
@@ -143,6 +147,7 @@
     <Compile Include="Assets\Scripts\Models\SaveData\ISaveData.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillRepository.cs" />
     <Compile Include="Assets\Scripts\MVC\View\IBaseView.cs" />
+    <Compile Include="Assets\Scripts\Game\Battle\BattleController.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\RepositoryLoader.cs" />
     <Compile Include="Assets\Scripts\Managers\ScenceMgr\SceneLoaderManager.cs" />
     <Compile Include="Assets\Scripts\Bootstrap.cs" />

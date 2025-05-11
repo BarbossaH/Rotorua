@@ -14,20 +14,13 @@ namespace Common
         {
             _repositories.Clear();
 
-            foreach (var reg in typeof(IoCContainer).GetField("_services", System.Reflection.BindingFlags.NonPublic
+            foreach (var reg in typeof(IoCContainer).GetField("_singletonInstances", System.Reflection.BindingFlags.NonPublic
              | System.Reflection.BindingFlags.Static).GetValue(null) as Dictionary<Type, object>)
             {
                 if (reg.Value is IDataRepository repo)
                 {
                     _repositories.Add(repo);
                 }
-
-                //if (instance is IDataRepository repo) 与下面的等价
-                /*if (instance is IDataRepository)
-                {
-                    var repo = (IDataRepository)instance;
-                }*/
-
             }
 
             // 拿到 registrations 的引用

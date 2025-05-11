@@ -17,9 +17,9 @@ namespace Common
 
         //these types are for the repositories which need to be created when start the game
         private static readonly List<Type> _repositoryList = new();
-        private static readonly Dictionary<Type, Type> _repositoryMap = new();
-        private static readonly Dictionary<Type, Type> _factoryMap = new();
-        private static readonly Dictionary<Type, Type> _instanceIdMap = new();
+        private static readonly Dictionary<Type, Type> _repositoryDict = new();
+        private static readonly Dictionary<Type, Type> _factoryDict = new();
+        private static readonly Dictionary<Type, Type> _instanceIdDict = new();
         private static readonly List<Type> _managerList = new();
         #endregion
         //this should be ready before using it, so it should be in the awake method of bootstrap script
@@ -45,14 +45,14 @@ namespace Common
                 if (attr != null)
                 {
                     _repositoryList.Add(type);
-                    _repositoryMap[attr.InterfaceType] = type;
+                    _repositoryDict[attr.InterfaceType] = type;
                     // Debug.Log(type.Name);
                 }
 
                 var factoryAttr = type.GetCustomAttribute<AutoRegisterFactoryAttribute>();
                 if (factoryAttr != null)
                 {
-                    _factoryMap[factoryAttr.InterfaceType] = type;
+                    _factoryDict[factoryAttr.InterfaceType] = type;
                     // Debug.Log(type.Name);
                 }
 
@@ -66,7 +66,7 @@ namespace Common
                 var idAttr = type.GetCustomAttribute<AutoRegisterIDGeneratorAttribute>();
                 if (idAttr != null)
                 {
-                    _instanceIdMap[idAttr.InterfaceType] = type;
+                    _instanceIdDict[idAttr.InterfaceType] = type;
                 }
 
             }
@@ -90,8 +90,8 @@ namespace Common
             _subclassCache.Clear();
             _allCachedTypes.Clear();
             _repositoryList.Clear();
-            _repositoryMap.Clear();
-            _factoryMap.Clear();
+            _repositoryDict.Clear();
+            _factoryDict.Clear();
             _managerList.Clear();
         }
 
@@ -166,12 +166,12 @@ namespace Common
         {
             return GetTypesOf(typeof(T), filter);
         }
-        public static Dictionary<Type, Type> GetRepositoryTypeMap() => _repositoryMap;
+        public static Dictionary<Type, Type> GetRepositoryTypeMap() => _repositoryDict;
 
         public static List<Type> GetManagerTypeList() => _managerList;
 
-        public static Dictionary<Type, Type> GetFactoryTypeMap() => _factoryMap;
+        public static Dictionary<Type, Type> GetFactoryTypeMap() => _factoryDict;
 
-        public static Dictionary<Type, Type> GetIDGeneratorMap() => _instanceIdMap;
+        public static Dictionary<Type, Type> GetIDGeneratorMap() => _instanceIdDict;
     }
 }

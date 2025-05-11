@@ -75,10 +75,10 @@ namespace Models
             JObject jsonObject = JObject.Load(reader);
             string typeName = jsonObject["Name"]?.ToString() + "Data";
 
-            var effect = GameTypeCache.CreateInstanceByClassName<BuffDataBase>(typeName, throwError: true);
+            var buff = GameTypeCache.CreateInstanceByClassName<BuffDataBase>(typeName, throwError: true);
 
-            serializer.Populate(jsonObject.CreateReader(), effect);
-            return effect;
+            serializer.Populate(jsonObject.CreateReader(), buff);
+            return buff;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

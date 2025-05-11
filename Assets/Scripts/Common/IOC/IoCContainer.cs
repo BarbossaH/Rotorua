@@ -6,6 +6,7 @@ namespace Common
 
     public static class IoCContainer
     {
+        //the Type is the key, which is the type of the corresponding interface inherited by the service.
         private static readonly Dictionary<Type, Func<object>> _registrations = new();
         private static readonly Dictionary<Type, object> _singletonInstances = new();
 
@@ -46,6 +47,11 @@ namespace Common
             _singletonInstances.Remove(typeof(T));
         }
 
+        //when scope container is needed, the method below should be called
+        public static ScopeContainer CreateScope()
+        {
+            return new ScopeContainer(_registrations);
+        }
         public static void AutoRegisterServiceInContainer()
         {
             AutoRegisterAllFactories();
@@ -67,7 +73,7 @@ namespace Common
             foreach (var pair in respMap)
             {
                 Register(pair.Key, () => Activator.CreateInstance(pair.Value));
-                // Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
+                Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
             }
         }
 
@@ -79,5 +85,7 @@ namespace Common
                 Register(pair.Key, () => Activator.CreateInstance(pair.Value));
             }
         }
+
+
     }
 }

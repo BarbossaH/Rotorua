@@ -1,8 +1,6 @@
 
 namespace MVC
 {
-
-
     using System;
     using System.Collections.Generic;
     using Managers;

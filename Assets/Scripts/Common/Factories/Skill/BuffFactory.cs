@@ -35,7 +35,8 @@ namespace Common
                 Debug.Log(buffIDs[i]);
                 var buffData = repository.GetById(buffIDs[i]);
                 string buffClassName = repository.GetNameById(buffIDs[i]) + "Buff";
-                Debug.Log(buffData.Name);
+                // Debug.Log(buffData.Name);
+                //create the buff classes by using reflection
                 SkillBuffBase skillBuff = GameTypeCache.CreateInstanceByClassName<SkillBuffBase>(buffClassName, true);
                 if (skillBuff != null)
                 {
