@@ -2,8 +2,7 @@
 using Common;
 using Cysharp.Threading.Tasks;
 using Managers;
-using Models;
-using Unity.VisualScripting;
+
 using UnityEngine;
 public class Bootstrap : MonoBehaviour
 {
@@ -12,14 +11,16 @@ public class Bootstrap : MonoBehaviour
         //start,update game, and then login
         //wondering this could be move to the callback method of the fist loading scene method(SwitchSceneAsync)
         BuildTypeCache();
+
+        //prepare the type of data and factories 
+        RegisterServices();
     }
 
 
     private async void Start()
     {
         await LoadGameSaveData();
-        //prepare the type of data and factories 
-        RegisterServices();
+
 
         GameManager.Instance.Init();
 

@@ -58,10 +58,10 @@ namespace Managers
                 Type type = GameTypeCache.GetTypeByName(className);
                 if (type != null)
                 {
-                    Debug.Log(type.FullName);
+                    // Debug.Log(type.FullName);
                     var data = JsonConvert.DeserializeObject(json.text, type) as IGameData;
                     _loadData[className] = data;
-                    Debug.Log(className + " has been loaded.");
+                    // Debug.Log(className + " has been loaded.");
                 }
                 else
                 {

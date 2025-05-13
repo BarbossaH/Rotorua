@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Common
 {
@@ -14,23 +15,27 @@ namespace Common
             _registrations = registrations;
         }
 
-        public T GetService<T>()
+        public object GetService(Type type)
         {
             if (_isDisposed) throw new ObjectDisposedException(nameof(ScopeContainer));
 
-            var type = typeof(T);
 
             if (_scopeInstances.TryGetValue(type, out var instance))
             {
-                return (T)instance;
+                return instance;
             }
             if (_registrations.TryGetValue(type, out var factory))
             {
                 var s = factory();
                 _scopeInstances[type] = s;
-                return (T)s;
+                Debug.Log($"scope instance {type.Name} has been created");
+                return s;
             }
             throw new InvalidOperationException($"Type {type.Name} is not registered in the container.");
+        }
+        public T GetService<T>()
+        {
+            return (T)GetService(typeof(T));
         }
 
         public void Dispose()

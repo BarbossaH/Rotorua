@@ -10,24 +10,36 @@ namespace Common
         private static readonly Dictionary<Type, Func<object>> _registrations = new();
         private static readonly Dictionary<Type, object> _singletonInstances = new();
 
+        internal static IReadOnlyDictionary<Type, object> GetSingletonInstances()
+        {
+            return _singletonInstances;
+        }
+
         public static void Register(Type interfaceType, Func<object> factory)
         {
             _registrations[interfaceType] = factory;
         }
-
+        public static void Register<TInterface, TImplementation>() where TImplementation : TInterface, new()
+        {
+            _registrations[typeof(TInterface)] = () => new TImplementation();
+        }
         public static T GetService<T>()
         {
-            Type type = typeof(T);
+            return (T)GetService(typeof(T));
+        }
+
+        public static object GetService(Type type)
+        {
             if (_singletonInstances.TryGetValue(type, out var instance))
             {
-                return (T)instance;
+                return instance;
             }
 
             if (_registrations.TryGetValue(type, out var factory))
             {
                 var s = factory();
                 _singletonInstances[type] = s;
-                return (T)s;
+                return s;
             }
             throw new InvalidOperationException($"Type {type.Name} is not registered in the container.");
         }
@@ -57,6 +69,7 @@ namespace Common
             AutoRegisterAllFactories();
             AutoRegisterAllRepositories();
             AutoRegisterAllIDGenerator();
+            AutoRegisterAllControllers();
         }
         private static void AutoRegisterAllFactories()
         {
@@ -73,7 +86,7 @@ namespace Common
             foreach (var pair in respMap)
             {
                 Register(pair.Key, () => Activator.CreateInstance(pair.Value));
-                Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
+                // Debug.Log($"{pair.Key.Name} has been created instance and value is {pair.Value.Name}");
             }
         }
 
@@ -86,6 +99,15 @@ namespace Common
             }
         }
 
+        private static void AutoRegisterAllControllers()
+        {
+            var ctrMap = GameTypeCache.GetControllerMap();
+            foreach (var pair in ctrMap)
+            {
+                Register(pair.Key, () => Activator.CreateInstance(pair.Value));
+                Debug.Log("Controller" + pair.Key.Name + " has been registered");
+            }
+        }
 
     }
 }

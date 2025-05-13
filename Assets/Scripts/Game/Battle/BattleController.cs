@@ -1,7 +1,9 @@
 using Common;
+using UnityEngine;
 
 namespace Game.Battle
 {
+    [AutoRegisterController(typeof(IBattleController))]
     public class BattleController : IBattleController
     {
         public void EndEnemyTurn()
@@ -26,7 +28,7 @@ namespace Game.Battle
 
         public void StartBattle()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Let's go fight, this is on fire now,wahh");
         }
 
         public void StartEnemyTurn()

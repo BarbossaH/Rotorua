@@ -1,6 +1,8 @@
 
 using System.Collections.Generic;
+using Common;
 using Cysharp.Threading.Tasks;
+using Game.Battle;
 using Game.CardSystem;
 using Managers;
 using Models;
@@ -32,15 +34,21 @@ public class ButtonClickHandler : MonoBehaviour
         // // Debug.Log(name);
         // var c = CardManager.Instance.CreateCard("CRD_10001");
         // Debug.Log(c.Name);
-        var h = HeroManager.Instance.CreateHero("Hero_101");
-        Debug.Log(h.Name);
+        // var h = HeroManager.Instance.CreateHero("Hero_101");
+        // Debug.Log(h.Name);
+
 
         // Card card = CardManager.Instance.CreateCard("CRD_10001");
 
         // Debug.Log(card.CardId + " and " + card.CardInstanceId);
         // card = CardManager.Instance.CloneCard(card);
         // Debug.Log(card.CardId + " and " + card.CardInstanceId);
-        LoadingSetting();
+        // LoadingSetting();
+
+        //test controller
+        var scope = IoCContainer.CreateScope();
+        IBattleController ctr = scope.GetService<IBattleController>();
+        ctr.StartBattle();
     }
     private void LoadingSetting()
     {

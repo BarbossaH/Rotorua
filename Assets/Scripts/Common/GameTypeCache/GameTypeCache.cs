@@ -20,6 +20,7 @@ namespace Common
         private static readonly Dictionary<Type, Type> _repositoryDict = new();
         private static readonly Dictionary<Type, Type> _factoryDict = new();
         private static readonly Dictionary<Type, Type> _instanceIdDict = new();
+        private static readonly Dictionary<Type, Type> _controllerDict = new();
         private static readonly List<Type> _managerList = new();
         #endregion
         //this should be ready before using it, so it should be in the awake method of bootstrap script
@@ -69,6 +70,12 @@ namespace Common
                     _instanceIdDict[idAttr.InterfaceType] = type;
                 }
 
+                var controllerAttr = type.GetCustomAttribute<AutoRegisterControllerAttribute>();
+                if (controllerAttr != null)
+                {
+                    _controllerDict[controllerAttr.InterfaceType] = type;
+                }
+
             }
 #if UNITY_EDITOR
             // foreach (var t in _repositoryList)
@@ -93,6 +100,7 @@ namespace Common
             _repositoryDict.Clear();
             _factoryDict.Clear();
             _managerList.Clear();
+            _controllerDict.Clear();
         }
 
         public static Type GetTypeByName(string typeName)
@@ -173,5 +181,7 @@ namespace Common
         public static Dictionary<Type, Type> GetFactoryTypeMap() => _factoryDict;
 
         public static Dictionary<Type, Type> GetIDGeneratorMap() => _instanceIdDict;
+
+        public static Dictionary<Type, Type> GetControllerMap() => _controllerDict;
     }
 }

@@ -13,36 +13,29 @@ namespace Common
         public static void CollectFromIoC()
         {
             _repositories.Clear();
-
-            foreach (var reg in typeof(IoCContainer).GetField("_singletonInstances", System.Reflection.BindingFlags.NonPublic
-             | System.Reflection.BindingFlags.Static).GetValue(null) as Dictionary<Type, object>)
+            var instancesDict = IoCContainer.GetSingletonInstances();
+            foreach (var instance in instancesDict.Values)
             {
-                if (reg.Value is IDataRepository repo)
-                {
-                    _repositories.Add(repo);
-                }
-            }
-
-            // 拿到 registrations 的引用
-            var registrations = typeof(IoCContainer)
-                .GetField("_registrations", System.Reflection.BindingFlags.NonPublic
-                | System.Reflection.BindingFlags.Static)
-                .GetValue(null) as Dictionary<Type, Func<object>>;
-
-            // 复制出一份安全的 List（避免在遍历时被修改）
-            var regList = registrations.ToList(); // System.Linq
-
-            foreach (var reg in regList)
-            {
-                var instance = reg.Value.Invoke();
                 if (instance is IDataRepository repo)
                 {
                     _repositories.Add(repo);
-                    Debug.Log(repo.GetType().Name);
-                    Debug.Log(reg.Key);
-                    IoCContainer.Register(reg.Key, () => instance);
                 }
             }
+
+            var allRepoTypes = GameTypeCache.GetRepositoryTypeMap().Keys;
+
+            foreach (var type in allRepoTypes)
+            {
+                if (!instancesDict.ContainsKey(type))
+                {
+                    if (IoCContainer.GetService(type) is IDataRepository repoInstance)
+                    {
+                        _repositories.Add(repoInstance);
+                        // Debug.Log($"Instantiated repository: {type.Name}");
+                    }
+                }
+            }
+
         }
         public static async UniTask LoadAllDataAsync(Action<float> onProgress = null)
         {

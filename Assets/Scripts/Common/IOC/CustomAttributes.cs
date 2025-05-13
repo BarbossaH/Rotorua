@@ -38,4 +38,14 @@ namespace Common
             InterfaceType = interfaceType;
         }
     }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class AutoRegisterControllerAttribute : Attribute
+    {
+        public Type InterfaceType { get; }
+        public AutoRegisterControllerAttribute(Type interfaceType)
+        {
+            InterfaceType = interfaceType;
+        }
+    }
 }
