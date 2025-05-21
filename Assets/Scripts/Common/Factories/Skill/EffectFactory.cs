@@ -1,4 +1,4 @@
-namespace Common
+namespace Common.Factories
 {
     using System.Collections.Generic;
     using Game.SkillSystem;
@@ -22,7 +22,7 @@ namespace Common
                 return null;
             }
             List<SkillEffectBase> effectList = new();
-            var repository = IoCContainer.GetService<ISkillEffectRepository>();
+            var repository = IoCContainer.GetService<SkillEffectRepository>();
             for (int i = 0; i < effectIDs.Length; i++)
             {
                 var effectData = repository.GetById(effectIDs[i]);

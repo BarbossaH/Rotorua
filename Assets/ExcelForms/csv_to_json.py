@@ -7,24 +7,24 @@ import ast
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 配置输入和输出文件名
-input_csv = 'CardJsonConfig.csv'  # 替换为 'Items.csv' 或其他文件名
+input_csv = 'IntentJsonConfig.csv'
 output_json = input_csv.replace('.csv', '.json')
 
-# 构建输入和输出路径
+# 构建路径
 csv_path = os.path.join(script_dir, input_csv)
 json_path = os.path.join(script_dir, output_json)
 
-# 解析字符串形式的 JSON 数组
+# 自动解析字符串形式的 JSON 数组或对象
 def parse_json_string(s):
-    if not isinstance(s, str):  # 如果不是字符串，直接返回原值
+    if not isinstance(s, str):
         return s
+    s = s.strip()
     try:
-        if s.startswith('[') and s.endswith(']'):
-            return ast.literal_eval(s)  # 安全解析为 Python 列表
-        return s  # 非 JSON 数组字符串，保持不变
-    except (ValueError, SyntaxError) as e:
-        print(f"解析错误: {s} - {e}")
-        return s  # 解析失败，返回原值
+        if (s.startswith('{') and s.endswith('}')) or (s.startswith('[') and s.endswith(']')):
+            return ast.literal_eval(s)
+        return s
+    except (ValueError, SyntaxError):
+        return s
 
 # 读取 CSV
 try:
@@ -33,11 +33,11 @@ except Exception as e:
     print(f"读取 CSV 失败: {e}")
     exit(1)
 
-# 自动处理所有列，解析字符串形式的 JSON 数组
+# 自动识别并解析所有字段中可能是 JSON 字符串的内容
 for column in df.columns:
     df[column] = df[column].apply(parse_json_string)
 
-# 检查 NaN 值并打印警告
+# 检查 NaN 值
 nan_locations = df.isna()
 if nan_locations.any().any():
     print("警告：CSV 中存在空值（NaN）！以下是详细信息：")
@@ -46,10 +46,10 @@ if nan_locations.any().any():
             rows = df[nan_locations[col]].index.tolist()
             print(f"列 '{col}' 在以下行有空值: {rows}")
 
-# 将 NaN 替换为 None（JSON 中的 null）
-df = df.where(df.notna(), None)  # 或者 df.fillna("") 替换为空字符串
+# 替换 NaN 为 None
+df = df.where(df.notna(), None)
 
-# 转成 JSON
+# 转换为 JSON
 data = {input_csv.replace('.csv', ''): df.to_dict(orient='records')}
 
 # 保存 JSON

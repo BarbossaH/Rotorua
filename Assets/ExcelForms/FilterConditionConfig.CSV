@@ -1,0 +1,4 @@
+ID,Type,Parameters
+FIL_0001,CoolDownFilter,"{""CoolDownTurns"": 2}"
+FIL_0002,FirstTurnFilter,{}
+FIL_0003,NotRepeatedFilter,{}

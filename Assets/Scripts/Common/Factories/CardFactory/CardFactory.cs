@@ -1,9 +1,10 @@
-using Game.CardSystem;
-using Models;
-using UnityEngine;
 
-namespace Common
+
+namespace Common.Factories
 {
+    using Game.CardSystem;
+    using Models;
+    using UnityEngine;
     public interface ICardFactory
     {
         Card CreateCard(string cardId);
@@ -20,7 +21,7 @@ namespace Common
 
         public Card CreateCard(string cardId)
         {
-            var repo = IoCContainer.GetService<ICardRepository>();
+            var repo = IoCContainer.GetService<CardRepository>();
             if (repo == null)
             {
                 Debug.LogError("card repo is null");

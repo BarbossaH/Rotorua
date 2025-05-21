@@ -6,68 +6,12 @@ using UnityEngine;
 
 namespace Common
 {
-    [AutoRegisterRepository(typeof(IHeroRepository))]
-    public class HeroRepository : IHeroRepository
+    [AutoRegisterRepository(typeof(HeroRepository))]
+    public class HeroRepository : JsonRepositoryBase<HeroData, HeroJsonConfig>
     {
-        private List<HeroData> _heroes = new();
-        private readonly Dictionary<string, HeroData> _heroesDict = new();
+        protected override List<HeroData> ExtractList(HeroJsonConfig config) => config.Heroes;
+        protected override string GetId(HeroData data) => data.ID;
+        protected override string GetName(HeroData data) => data.Name;
 
-        public bool IsLoaded { get; private set; }
-
-        public List<HeroData> GetAll()
-        {
-            return _heroes;
-        }
-
-        public HeroData GetById(string heroId)
-        {
-            if (_heroesDict.TryGetValue(heroId, out var heroData))
-            {
-                return heroData;
-            }
-            Debug.LogError($"{heroId} cannot find her0 data");
-            return null;
-        }
-
-        public string GetNameById(string heroId)
-        {
-            if (_heroesDict.TryGetValue(heroId, out var h))
-            {
-                return h.Name;
-            }
-            Debug.LogError($"{h.Name} does not exist");
-            return null;
-        }
-
-        public async UniTask LoadDataAsync()
-        {
-            if (IsLoaded) return;
-            await JsonManager.Instance.WaitForJsonLoad();
-            _heroes = JsonManager.Instance.GetData<HeroJsonConfig>(typeof(HeroJsonConfig).Name)?.Heroes;
-            if (_heroes == null || _heroes.Count == 0)
-            {
-                Debug.LogError("Hero data loading failure");
-                return;
-            }
-
-
-            foreach (var h in _heroes)
-            {
-                if (h == null)
-                {
-                    Debug.LogError("Found empty hero data! Skip!");
-                    continue;
-                }
-                if (string.IsNullOrEmpty(h.ID))
-                {
-                    Debug.LogError($"Hero {h.Name}  ID is empty, Skip!");
-                    continue;
-                }
-
-                Debug.Log($"Loaded Card: {h.ID} - {h.Name}");
-                _heroesDict[h.ID] = h;
-            }
-            IsLoaded = true;
-        }
     }
 }

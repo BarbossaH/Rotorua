@@ -1,0 +1,3 @@
+ID,Name,MaxHP,BuffIDs,IntentIDs,DefaultIntentID,IntentPicker
+MON_10001,Kangaroo,80,[],"[""INT_0001""]",INT_0001,KangarooPicker
+MON_10002,Koala,60,[],"[""INT_0001"",""INT_0002""]",INT_0002,KoalaPicker

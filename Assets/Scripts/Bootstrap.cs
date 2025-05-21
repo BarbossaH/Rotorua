@@ -52,7 +52,7 @@ public class Bootstrap : MonoBehaviour
 
     private async UniTask LoadGameSaveData()
     {
-        //loading user saving data
+        //loading user saving data from json file
         await PersistentDataManager.Instance.LoadAllSaveData();
     }
 

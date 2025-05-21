@@ -76,6 +76,7 @@ namespace Common
             var facMap = GameTypeCache.GetFactoryTypeMap();
             foreach (var pair in facMap)
             {
+                // Debug.Log(pair.Key.Name);
                 Register(pair.Key, () => Activator.CreateInstance(pair.Value));
             }
         }

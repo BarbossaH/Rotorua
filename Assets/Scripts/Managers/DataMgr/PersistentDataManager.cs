@@ -29,7 +29,7 @@ namespace Managers
 
                 var settings = new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Auto, // 保存时包含多态信息
+                    TypeNameHandling = TypeNameHandling.Auto,
                     Formatting = Formatting.Indented
                 };
 
@@ -85,7 +85,7 @@ namespace Managers
             try
             {
                 await LoadData<GameSettings>(SaveFileEnum.Settings);
-                await LoadData<PlayerDataSave>(SaveFileEnum.PlayerData);
+                await LoadData<PersistentJsonConfig>(SaveFileEnum.PlayerData);
                 _saveDataLoadCompletion.TrySetResult();
             }
             catch (Exception e)

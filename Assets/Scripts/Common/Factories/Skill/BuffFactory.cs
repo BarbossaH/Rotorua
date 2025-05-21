@@ -1,8 +1,7 @@
-namespace Common
+namespace Common.Factories
 {
     using System.Collections.Generic;
     using Game.SkillSystem;
-    using TMPro;
     using UnityEngine;
 
     public interface IBuffFactory
@@ -29,7 +28,7 @@ namespace Common
             }
 
             List<SkillBuffBase> skillBuffList = new();
-            var repository = IoCContainer.GetService<ISkillBuffRepository>();
+            var repository = IoCContainer.GetService<SkillBuffRepository>();
             for (int i = 0; i < buffIDs.Length; i++)
             {
                 Debug.Log(buffIDs[i]);

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Models
 {
-    public class PlayerDataSave : ISaveData
+    public class PersistentJsonConfig : ISaveData
     {
-        public List<GameSlot> GameSlots = new();
+        public List<PlayerSaveDataSlot> GameSlots = new();
     }
 
-    public class GameSlot
+    public class PlayerSaveDataSlot
     {
         public string SaveID { get; set; }
         public HeroSaveData HeroSaveData { get; set; }

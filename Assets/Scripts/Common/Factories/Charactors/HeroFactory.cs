@@ -1,8 +1,8 @@
-using Game.Character;
-using UnityEngine;
 
-namespace Common
+namespace Common.Factories
 {
+    using Game.Character;
+    using UnityEngine;
     public interface IHeroFactory
     {
         Hero CreateHero(string id);
@@ -13,7 +13,7 @@ namespace Common
     {
         public Hero CreateHero(string heroId)
         {
-            var data = IoCContainer.GetService<IHeroRepository>()?.GetById(heroId);
+            var data = IoCContainer.GetService<HeroRepository>()?.GetById(heroId);
             var heroSaveData = IoCContainer.GetService<IPlayerSaveRepository>()?.GetHeroSaveData("Save001");
             if (data == null)
             {

@@ -1,0 +1,27 @@
+{
+    "Enemies": [
+        {
+            "ID": "MON_10001",
+            "Name": "Kangaroo",
+            "MaxHP": 80,
+            "BuffIDs": [],
+            "IntentIDs": [
+                "INT_0001"
+            ],
+            "DefaultIntentID": "INT_0001",
+            "IntentPicker": "KangarooPicker"
+        },
+        {
+            "ID": "MON_10002",
+            "Name": "Koala",
+            "MaxHP": 60,
+            "BuffIDs": [],
+            "IntentIDs": [
+                "INT_0001",
+                "INT_0002"
+            ],
+            "DefaultIntentID": "INT_0002",
+            "IntentPicker": "KoalaPicker"
+        }
+    ]
+}

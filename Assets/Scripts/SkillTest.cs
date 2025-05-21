@@ -46,6 +46,16 @@ public class ButtonClickHandler : MonoBehaviour
         // LoadingSetting();
 
         //test controller
+        testDataLoad();
+    }
+    private void testDataLoad()
+    {
+        var repo = IoCContainer.GetService<EnemyRepository>();
+        var data = repo.GetById("MON_10001");
+        Debug.Log(data.Name);
+    }
+    private void testBattle()
+    {
         var scope = IoCContainer.CreateScope();
         IBattleController ctr = scope.GetService<IBattleController>();
         ctr.StartBattle();
@@ -82,10 +92,10 @@ public class ButtonClickHandler : MonoBehaviour
     #region test code
     private async UniTask TestPersistentData()
     {
-        PlayerDataSave gameDataSave = new PlayerDataSave
+        PersistentJsonConfig gameDataSave = new PersistentJsonConfig
         {
             GameSlots = {
-                new GameSlot{
+                new PlayerSaveDataSlot{
                     SaveID = "Save001",
                     HeroSaveData  =  new HeroSaveData{
                         StatusSaveData=new HeroStatusSaveData{

@@ -1,0 +1,4 @@
+ID,Name,Effects,Buffs,FilterIDs,MinValue,MaxValue,RepeatCount
+INT_0001,AttackIntent,"[""Attack""]",,"[""FIL_0001""]",2,5,2
+INT_0002,DefenseIntent,"[""Defense""]",,"[""FIL_0003""]",5,5,1
+INT_0003,SkillIntent,,"[""PowerDebuff""]","[""FIL_0002""]",3,3,1

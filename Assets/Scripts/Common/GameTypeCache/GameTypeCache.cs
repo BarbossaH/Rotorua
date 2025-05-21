@@ -140,7 +140,7 @@ namespace Common
             {
                 throw new Exception($"[TypeCache] Failed to create instance of '{name}'.");
             }
-            Debug.Log(instance + " is the name of " + type);
+            // Debug.Log(instance + " is the name of " + type);
             return instance;
         }
 

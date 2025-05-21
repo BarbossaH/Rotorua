@@ -10,7 +10,14 @@
 卡牌管理 (Draw/Discard) 30000-30999 "30001" 透支
 资源类技能 (Energy, Action Points) 31000-31999 "31001" 精神充能
 
-TODO:明天模仿 RepositoryLoader 去实现一个自动注册 scope controller 的 service。明天需要重构 RepositoryLoader。下一步我创建战斗流程，或者敌人系统。不过先创建 scope container first，估计明天也就够完成这个了。
+# json conversion cmd
+
+cd d:\UnityProjects\Rotorua\Assets\ExcelForms
+python csv_to_json.py
+
+TODO:下一步我创建战斗流程，或者敌人系统。这一步创建怪物系统，先从数据开始？json 配置
+下一步敌人系统和敌人的意图系统
+敌人一个数据配置，所有的 filter（意图条件过滤器）一个数据配置，意图选择器，经过过滤后，再根据 context 的参数去选择最终的意图，其中意图选择器包含过滤器 filter 对象列表和 picker 的具体的逻辑，这个 picker
 
 现在有两个方向，一个是验证我的存档数据是否功能起作用，去创建英雄，另一个方向就是去做敌人的系统。(数据验证已经存储成功了，也读取出来了，也就说存档系统流程已经完成，之后就去完成英雄数据的真正创建)
 
@@ -31,4 +38,15 @@ TODO:明天模仿 RepositoryLoader 去实现一个自动注册 scope controller 
 3 整合 IoCContainer 和 MVC 的关系和使用场景，目前项目使用了两种模式，其实一种模式就可以，但是我倾向于留下两个目前，我不想一下子步子迈太大
 4 加入 scope container，这样可以有局域的生命周期的 manager 或者叫 controller。
 
+2025-5-13
+create scope service and refactor ioc container.自动注册 controller，跟注册 factory 一样。但是这个 controller 是 scope 的
+
+2025-5-18
+我不需要技能这个类，因为实际上卡牌就是技能的一个代名词，也不需要 effect 这个配置，effect 只是一个执行接口，但是需要 buff 这个类和配置，buff 的配置只负责记录一些元数据，比如名称，描述，属性，永久和非永久等，还有 tags。
+今天的任务就是开发怪物还有其意图系统和选择器，意图系统等同于卡牌，和技能，但是怪物比玩家角色就多了一个选择器类，这个选择器根据意图的条
+选择器是是但属于怪物的，选择器需要怪物每个意图的条件去过滤意图，剩下的根据选择器自己的规则去选择意图，一般情况下比如根据权重去选择意图
+
+2025-5-22
+重构 repository，之前每个 repository 需要写很多相似的代码，所以就写了一个基类，但是基类用到了子类的一些数据和接口，所以就将这些接口改成抽象接口让子类去实现。
+重构完成了，子类们变得极其清爽，目前测试重构测试成功了。
 note:mcp

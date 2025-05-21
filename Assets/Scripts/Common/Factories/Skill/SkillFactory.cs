@@ -1,9 +1,8 @@
-namespace Common
+namespace Common.Factories
 {
     using System;
     using System.Collections.Generic;
     using Game.SkillSystem;
-    using Models;
     using UnityEngine;
 
     public interface ISkillFactory
@@ -15,12 +14,11 @@ namespace Common
     public class SkillFactory : ISkillFactory
     {
 
-
         public Skill CreateSkill(string skillId, int level)
         {
             // Debug.Log(data.Name);
             // Debug.Log(data.LevelsData[level]);
-            var skillRepo = IoCContainer.GetService<ISkillRepository>();
+            var skillRepo = IoCContainer.GetService<SkillDataRepository>();
 
             if (!skillRepo.IsLoaded)
             {

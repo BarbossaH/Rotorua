@@ -7,28 +7,23 @@ using UnityEngine;
 
 namespace Common
 {
+    public interface IPlayerSaveRepository
+    {
+        HeroSaveData GetHeroSaveData(string saveId);
+        List<RelicSaveData> GetRelicSaveData(string saveId);
+        List<CardSaveData> GetCardSaveData(string saveId);
+        HeroStatusSaveData GetHeroStatusSaveData(string saveId);
+    }
+
     [AutoRegisterRepository(typeof(IPlayerSaveRepository))]
-    public class PlayerSaveRepository : IPlayerSaveRepository
+    public class PlayerSaveRepository : IRepository<PlayerSaveDataSlot>
     {
         public bool IsLoaded { get; private set; }
 
-        private List<GameSlot> _gameSlots = new();
-        private readonly Dictionary<string/*save saveId*/, GameSlot> _gameSlotDict = new();
-
-        public List<GameSlot> GetAll()
-        {
-            return _gameSlots;
-        }
-
-        public GameSlot GetById(string saveId)
-        {
-            if (_gameSlotDict.TryGetValue(saveId, out var gameSlot))
-            {
-                return gameSlot;
-            }
-
-            return null;
-        }
+        private List<PlayerSaveDataSlot> _gameSlots = new();
+        private readonly Dictionary<string/*save saveId*/, PlayerSaveDataSlot> _gameSlotDict = new();
+        public List<PlayerSaveDataSlot> GetAll() => _gameSlots;
+        public PlayerSaveDataSlot GetById(string id) => _gameSlotDict.TryGetValue(id, out var result) ? result : default;
 
         public string GetNameById(string saveId)
         {
@@ -42,25 +37,25 @@ namespace Common
 
         public HeroSaveData GetHeroSaveData(string saveId)
         {
-            GameSlot slot = GetById(saveId);
+            PlayerSaveDataSlot slot = GetById(saveId);
             return slot?.HeroSaveData;
         }
 
         public List<RelicSaveData> GetRelicSaveData(string saveId)
         {
-            GameSlot slot = GetById(saveId);
+            PlayerSaveDataSlot slot = GetById(saveId);
             return slot?.HeroSaveData?.RelicSaveData;
         }
 
         public List<CardSaveData> GetCardSaveData(string saveId)
         {
-            GameSlot slot = GetById(saveId);
+            PlayerSaveDataSlot slot = GetById(saveId);
             return slot?.HeroSaveData?.CardInstanceData;
         }
 
         public HeroStatusSaveData GetHeroStatusSaveData(string saveId)
         {
-            GameSlot slot = GetById(saveId);
+            PlayerSaveDataSlot slot = GetById(saveId);
             return slot?.HeroSaveData?.StatusSaveData;
         }
         public async UniTask LoadDataAsync()
@@ -69,7 +64,8 @@ namespace Common
             {
                 if (IsLoaded) return;
                 await PersistentDataManager.Instance.WaitForSaveDataLoad();
-                PlayerDataSave data = PersistentDataManager.Instance.GetSaveData<PlayerDataSave>(SaveFileEnum.PlayerData);
+
+                PersistentJsonConfig data = PersistentDataManager.Instance.GetSaveData<PersistentJsonConfig>(SaveFileEnum.PlayerData);
                 if (data == null || data.GameSlots == null)
                 {
                     Debug.Log("No save data found or empty game slots");
@@ -77,7 +73,7 @@ namespace Common
                     return;
                 }
 
-                _gameSlots = new List<GameSlot>();
+                _gameSlots = new List<PlayerSaveDataSlot>();
                 _gameSlotDict.Clear();
 
                 foreach (var slot in data.GameSlots)
@@ -115,5 +111,6 @@ namespace Common
                 throw; // 或者根据需要处理异常而不是重新抛出
             }
         }
+
     }
 }

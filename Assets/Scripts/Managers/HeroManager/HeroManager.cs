@@ -1,4 +1,5 @@
 using Common;
+using Common.Factories;
 using Game.Character;
 
 namespace Managers

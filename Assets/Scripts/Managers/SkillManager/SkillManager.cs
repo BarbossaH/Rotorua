@@ -1,8 +1,8 @@
 namespace Managers
 {
 
-    using System;
     using Common;
+    using Common.Factories;
     using Game.SkillSystem;
 
     [AutoRegisterManager]

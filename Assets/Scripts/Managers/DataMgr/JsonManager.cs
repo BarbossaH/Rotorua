@@ -61,7 +61,7 @@ namespace Managers
                     // Debug.Log(type.FullName);
                     var data = JsonConvert.DeserializeObject(json.text, type) as IGameData;
                     _loadData[className] = data;
-                    // Debug.Log(className + " has been loaded.");
+                    Debug.Log(className + " has been loaded.");
                 }
                 else
                 {

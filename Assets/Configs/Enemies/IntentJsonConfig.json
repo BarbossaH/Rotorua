@@ -1,0 +1,46 @@
+{
+    "IntentJsonConfig": [
+        {
+            "ID": "INT_0001",
+            "Name": "AttackIntent",
+            "Effects": [
+                "Attack"
+            ],
+            "Buffs": null,
+            "FilterIDs": [
+                "FIL_0001"
+            ],
+            "MinValue": 2,
+            "MaxValue": 5,
+            "RepeatCount": 2
+        },
+        {
+            "ID": "INT_0002",
+            "Name": "DefenseIntent",
+            "Effects": [
+                "Defense"
+            ],
+            "Buffs": null,
+            "FilterIDs": [
+                "FIL_0003"
+            ],
+            "MinValue": 5,
+            "MaxValue": 5,
+            "RepeatCount": 1
+        },
+        {
+            "ID": "INT_0003",
+            "Name": "SkillIntent",
+            "Effects": null,
+            "Buffs": [
+                "PowerDebuff"
+            ],
+            "FilterIDs": [
+                "FIL_0002"
+            ],
+            "MinValue": 3,
+            "MaxValue": 3,
+            "RepeatCount": 1
+        }
+    ]
+}

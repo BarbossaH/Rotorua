@@ -1,38 +1,15 @@
 namespace Common
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using Common;
     using Cysharp.Threading.Tasks;
     using Managers;
     using Models;
     using UnityEngine;
 
-    [AutoRegisterRepository(typeof(ISkillRepository))]
-    public class SkillDataRepository : ISkillRepository
+
+    [AutoRegisterRepository(typeof(SkillDataRepository))]
+    public class SkillDataRepository : JsonRepositoryBase<SkillData, SkillJsonConfig>
     {
-        private readonly Dictionary<string, SkillData> _skillDataDict = new();
-        private List<SkillData> _skillDataList = new();
-        // public bool IsSkillDataLoaded { get; private set; }
-
-        public bool IsLoaded { get; private set; }
-
-        // public SkillData GetSkillDataById(string id)
-        // {
-        //     return _SkillDataDict.TryGetValue(id, out var skillData) ? skillData : null;
-        // }
-
-        public string GetNameById(string id)
-        {
-            if (_skillDataDict.TryGetValue(id, out var skillData))
-            {
-                return skillData.Name;
-            }
-
-            Debug.LogError("Skill data not exists");
-            return null;
-
-        }
 
         public SkillLevel[] GetSkillLevels(string id)
         {
@@ -78,59 +55,19 @@ namespace Common
             return null;
         }
 
-        public async UniTask LoadDataAsync()
+        protected override string GetName(SkillData data)
         {
-            if (IsLoaded) return;
-
-            await JsonManager.Instance.WaitForJsonLoad(); // 确保 JSON 数据已加载
-
-            _skillDataList = JsonManager.Instance.GetData<SkillJsonConfig>(typeof(SkillJsonConfig).Name)?.Skills;
-
-            if (_skillDataList == null)
-            {
-                Debug.LogError("技能数据解析失败: skillDataArray 为空！");
-                return;
-            }
-            if (_skillDataList.Count == 0)
-            {
-                Debug.LogError("技能数据为空，没有任何技能！");
-                return;
-            }
-
-            foreach (var s in _skillDataList)
-            {
-                if (s == null)
-                {
-                    Debug.LogError("发现空技能对象，跳过！");
-                    continue;
-                }
-                if (string.IsNullOrEmpty(s.ID))
-                {
-                    Debug.LogError($"技能 {s.Name} 的 ID 为空，跳过！");
-                    continue;
-                }
-
-                // Debug.Log($"加载技能: {s.ID} - {s.Name}");
-                _skillDataDict[s.ID] = s;
-
-                if (s.LevelsData == null || s.LevelsData.Length == 0)
-                {
-                    Debug.LogError($"技能 {s.ID} ({s.Name}) 的 LevelsData 为空，可能数据有误！");
-                }
-            }
-
-            Debug.Log("SkillData has been loaded");
-            IsLoaded = true;
+            return data.Name;
         }
 
-        public SkillData GetById(string id)
+        protected override string GetId(SkillData data)
         {
-            return _skillDataDict.TryGetValue(id, out var skillData) ? skillData : null;
+            return data.ID;
         }
 
-        public List<SkillData> GetAll()
+        protected override List<SkillData> ExtractList(SkillJsonConfig config)
         {
-            return _skillDataList;
+            return config.Skills;
         }
     }
 }

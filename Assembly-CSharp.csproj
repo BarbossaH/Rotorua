@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Common\Factories\Skill\EffectFactory.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\ContinuousBuff\FrozenBuff.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\GameMananger.cs" />
+    <Compile Include="Assets\Scripts\Common\Factories\EnemyFactory\PickerFactory.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\CardRepository\CardRepository.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\ControllerManager.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\Managers\CoreMgr\EventCenterManager.cs" />
     <Compile Include="Assets\Scripts\Managers\CardManager\CardManager.cs" />
     <Compile Include="Assets\Scripts\Defs\GameEvents.cs" />
+    <Compile Include="Assets\Scripts\Common\Factories\EnemyFactory\EnemyFactory.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillBuffRepository.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Hero\Hero.cs" />
@@ -89,16 +91,20 @@
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\FireballEffect.cs" />
     <Compile Include="Assets\Scripts\SkillTest.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Hero\BattleCardManager.cs" />
+    <Compile Include="Assets\Scripts\Common\Factories\EnemyFactory\IntentFactory.cs" />
     <Compile Include="Assets\Scripts\Models\CardData\CardModel.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\SkillController.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\Repositories\EnemyRepository\EnemyRepository.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager\AudioListenerManager.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\SkillEffectBase.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Hero\HeroView.cs" />
     <Compile Include="Assets\Scripts\Common\IPrototype.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Enemy\IntentFilter.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillEffects\HealEffect.cs" />
     <Compile Include="Assets\Scripts\Defs\GameSetting.cs" />
     <Compile Include="Assets\Scripts\Defs\Occupation.cs" />
+    <Compile Include="Assets\Scripts\Common\Factories\EnemyFactory\FilterFactory.cs" />
     <Compile Include="Assets\Scripts\Models\IGameData.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\IoCContainer.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\ISkill.cs" />
@@ -112,10 +118,12 @@
     <Compile Include="Assets\Scripts\Common\IOC\ScopeContainer.cs" />
     <Compile Include="Assets\Scripts\Managers\HeroManager\HeroManager.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
+    <Compile Include="Assets\Scripts\Models\Enemy\EnemyModel.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\Skill\SkillFactory.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Managers\ViewMgr\ViewManager.cs" />
     <Compile Include="Assets\Scripts\Common\UIFuncExtern\UnityFuncExtern.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Enemy\EnemyIntent.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillEffectRepository.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\Skill\BuffFactory.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\IRepository.cs" />
@@ -128,7 +136,9 @@
     <Compile Include="Assets\Scripts\MVC\View\BaseView.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\SkillBuffBase.cs" />
     <Compile Include="Assets\Scripts\MVC\Controller\BaseController.cs" />
+    <Compile Include="Assets\Scripts\Game\Battle\BattleContext.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SaveDataRepository\PlayerSaveRepository.cs" />
+    <Compile Include="Assets\Scripts\Common\IOC\Repositories\JsonRepositoryBase.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\EffectModel.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\InstanceIdGenerator\InstanceIdGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\Card\Card.cs" />
@@ -141,6 +151,7 @@
     <Compile Include="Assets\Scripts\Defs\ControllerType.cs" />
     <Compile Include="Assets\Scripts\Managers\SkillManager\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Defs\CardType.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Enemy\IntentPicker.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Models\SaveData\PlayerSaveData.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\FlameBuff.cs" />

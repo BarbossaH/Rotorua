@@ -1,0 +1,21 @@
+{
+    "FilterConditionConfig": [
+        {
+            "ID": "FIL_0001",
+            "Type": "CoolDownFilter",
+            "Parameters": {
+                "CoolDownTurns": 2
+            }
+        },
+        {
+            "ID": "FIL_0002",
+            "Type": "FirstTurnFilter",
+            "Parameters": {}
+        },
+        {
+            "ID": "FIL_0003",
+            "Type": "NotRepeatedFilter",
+            "Parameters": {}
+        }
+    ]
+}
