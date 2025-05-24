@@ -11,6 +11,7 @@ namespace Managers
     [AutoRegisterManager]
     public class JsonManager : Singleton<JsonManager>
     {
+        // _loadData is all the data in the game loaded by addressable in unity
         private readonly Dictionary<string, IGameData> _loadData = new();
         private readonly UniTaskCompletionSource _jsonLoadCompletion = new();
         private bool _isJsonLoaded = false;
@@ -54,6 +55,7 @@ namespace Managers
 
             foreach (var json in jsonFiles)
             {
+                //class name must be same as the json file name
                 string className = json.name;
                 Type type = GameTypeCache.GetTypeByName(className);
                 if (type != null)

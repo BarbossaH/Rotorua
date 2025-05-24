@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using Common;
+using Common.Factories;
 using Cysharp.Threading.Tasks;
 using Game.Battle;
 using Game.CardSystem;
@@ -46,7 +47,17 @@ public class ButtonClickHandler : MonoBehaviour
         // LoadingSetting();
 
         //test controller
-        testDataLoad();
+        // testDataLoad();
+
+        //create enemy
+        CreateEnemy();
+    }
+
+    private void CreateEnemy()
+    {
+        var factory = IoCContainer.GetService<IEnemyFactory>();
+        var enemy = factory.CreateEnemy("MON_10001");
+        Debug.Log($"enemy {enemy.Name} is created");
     }
     private void testDataLoad()
     {

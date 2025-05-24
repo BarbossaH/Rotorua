@@ -44,15 +44,7 @@ namespace Game.Character
             }
             CurrentEnergy = (int)(current != null ? current : MaxEnergy); ;
         }
-        public override void Heal(float amount)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public override void TakeDamager(float amount)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public void DrawCard() { }
         public void ResetActionPoint()

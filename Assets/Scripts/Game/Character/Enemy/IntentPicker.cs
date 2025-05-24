@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Game.Battle;
 
-namespace Game.Character
+namespace Game.Character.Enemy
 {
     public interface IIntentPicker
     {

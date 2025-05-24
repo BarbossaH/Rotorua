@@ -9,7 +9,7 @@
                 "INT_0001"
             ],
             "DefaultIntentID": "INT_0001",
-            "IntentPicker": "KangarooPicker"
+            "IntentPicker": "WeightPicker"
         },
         {
             "ID": "MON_10002",
@@ -21,7 +21,7 @@
                 "INT_0002"
             ],
             "DefaultIntentID": "INT_0002",
-            "IntentPicker": "KoalaPicker"
+            "IntentPicker": "WeightPicker"
         }
     ]
 }

@@ -1,10 +1,12 @@
 using Game.SkillSystem;
+using Models;
 using UnityEngine;
 
 namespace Game.Character
 {
     public abstract class CharacterBase
     {
+
         public string ID { get; protected set; }
         public string Name { get; protected set; }
         public float MaxHP { get; protected set; }
@@ -12,11 +14,17 @@ namespace Game.Character
         public float Defense { get; set; }
         // public float Attack { get; set; }
         public BuffManager BuffManager { get; private set; }
-        public abstract void TakeDamager(float amount);
-        public abstract void Heal(float amount);
+
         public CharacterBase()
         {
+            Debug.Log("CharacterBase was called.");
             BuffManager = new();
+        }
+
+
+        public virtual void Heal(float amount)
+        {
+
         }
         public virtual void TakeDamage(float amount)
         {

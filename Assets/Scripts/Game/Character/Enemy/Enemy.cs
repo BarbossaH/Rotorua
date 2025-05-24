@@ -1,15 +1,39 @@
-namespace Game.Character
+using System.Collections.Generic;
+using Models;
+
+namespace Game.Character.Enemy
 {
     public class Enemy : CharacterBase
     {
-        public override void Heal(float amount)
+        private List<EnemyIntent> _enemyIntentList = new();
+        private IntentSelector _intentSelector;
+        public Enemy(EnemyData data)
         {
-            throw new System.NotImplementedException();
+            ID = data.ID;
+            Name = data.Name;
+            MaxHP = data.MaxHP;
+            CurrentHP = MaxHP;
+            Defense = 0;
+
         }
 
-        public override void TakeDamager(float amount)
+        public void SelectIntent()
         {
-            throw new System.NotImplementedException();
+            //   var intentFactory = IoCContainer.GetService<IIntentFactory>();
+            // var intentIds = data.IntentIDs;
+            // if (data.IntentIDs == null || data.IntentIDs.Count == 0)
+            // {
+            //     Debug.LogError("Enemy has no intent");
+            // }
+            // List<EnemyIntent> intents = new();
+            // foreach (var i in data.IntentIDs)
+            // {
+            //     var instance = intentFactory.CreateIntent(i);
+            //     intents.Add(instance);
+            // }
+            // IIntentPicker picker = IoCContainer.GetService<IPickerFactory>();
+
+
         }
     }
 }

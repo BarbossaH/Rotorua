@@ -1,4 +1,4 @@
-namespace Game.Character
+namespace Game.Character.Enemy
 {
     public class EnemyIntent { }
 }

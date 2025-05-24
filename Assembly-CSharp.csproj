@@ -152,6 +152,7 @@
     <Compile Include="Assets\Scripts\Managers\SkillManager\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Defs\CardType.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Enemy\IntentPicker.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Enemy\IntentSelector.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Models\SaveData\PlayerSaveData.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\SkillBuffs\TriggerableBuff\FlameBuff.cs" />

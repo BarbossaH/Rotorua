@@ -1,18 +1,25 @@
-using Game.Character;
+using System.Collections.Generic;
+using Game.Character.Enemy;
+using UnityEngine;
 
 namespace Common.Factories
 {
-    public interface IEenemyFactory
+    public interface IEnemyFactory
     {
         Enemy CreateEnemy(string enemyId);
     }
 
-    [AutoRegisterFactory(typeof(IEenemyFactory))]
-    public class EnemyFactory : IEenemyFactory
+    [AutoRegisterFactory(typeof(IEnemyFactory))]
+    public class EnemyFactory : IEnemyFactory
     {
         public Enemy CreateEnemy(string enemyId)
         {
-            throw new System.NotImplementedException();
+            var repo = IoCContainer.GetService<EnemyRepository>();
+            var data = repo.GetById(enemyId);
+            Debug.Log(data.Name);
+
+            Enemy enemy = new(data);
+            return enemy;
         }
     }
 }

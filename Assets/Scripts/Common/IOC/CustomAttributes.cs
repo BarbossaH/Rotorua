@@ -5,12 +5,12 @@ namespace Common
     [AttributeUsage(AttributeTargets.Class)]
     public class AutoRegisterRepositoryAttribute : Attribute
     {
-        public Type InterfaceType { get; }
+        public Type ClassNameType { get; }
 
         public AutoRegisterRepositoryAttribute(Type interfaceType)
         {
             // Category = category;
-            InterfaceType = interfaceType;
+            ClassNameType = interfaceType;
         }
     }
 

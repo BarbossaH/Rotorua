@@ -1,4 +1,4 @@
-using Game.Character;
+using Game.Character.Enemy;
 
 namespace Common.Factories
 {

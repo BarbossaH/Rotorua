@@ -46,7 +46,7 @@ namespace Common
                 if (attr != null)
                 {
                     _repositoryList.Add(type);
-                    _repositoryDict[attr.InterfaceType] = type;
+                    _repositoryDict[attr.ClassNameType] = type;
                     // Debug.Log(type.Name);
                 }
 
