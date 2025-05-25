@@ -24,4 +24,6 @@ namespace Models
         public string DefaultIntentID { get; set; }
         public string IntentPicker { get; set; }
     }
+
+
 }

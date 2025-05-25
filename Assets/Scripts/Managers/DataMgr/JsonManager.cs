@@ -67,7 +67,7 @@ namespace Managers
                 }
                 else
                 {
-                    Debug.LogError($"No matching class found for {json.name}");
+                    Debug.LogError($"No matching class found for {json.name}, please check addressable");
                 }
             }
         }

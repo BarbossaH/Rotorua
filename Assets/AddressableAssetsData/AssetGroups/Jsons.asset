@@ -24,7 +24,8 @@ MonoBehaviour:
   - m_GUID: 505e5c2dcd183b441b5636f8815bb5c3
     m_Address: FilterConditionConfig
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - json_data
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 561883ae5812bb14d8eb87b455fb8c04
     m_Address: EnemyJsonConfig
@@ -47,7 +48,8 @@ MonoBehaviour:
   - m_GUID: 73dc9ce0049ca8749a0a34a13b6e578c
     m_Address: IntentJsonConfig
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - json_data
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6dda80f0102ad8478e322307e2cb1eb
     m_Address: CardJsonConfig

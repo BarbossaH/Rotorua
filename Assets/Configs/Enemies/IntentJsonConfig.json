@@ -1,12 +1,12 @@
 {
-    "IntentJsonConfig": [
+    "Intents": [
         {
             "ID": "INT_0001",
             "Name": "AttackIntent",
             "Effects": [
                 "Attack"
             ],
-            "Buffs": null,
+            "Buffs": [],
             "FilterIDs": [
                 "FIL_0001"
             ],
@@ -20,7 +20,7 @@
             "Effects": [
                 "Defense"
             ],
-            "Buffs": null,
+            "Buffs": [],
             "FilterIDs": [
                 "FIL_0003"
             ],
@@ -31,7 +31,7 @@
         {
             "ID": "INT_0003",
             "Name": "SkillIntent",
-            "Effects": null,
+            "Effects": [],
             "Buffs": [
                 "PowerDebuff"
             ],

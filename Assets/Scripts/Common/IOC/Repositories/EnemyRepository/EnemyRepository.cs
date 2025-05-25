@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using Managers;
-using Models;
-using UnityEngine;
 
-namespace Common
+using Models;
+
+namespace Common.Repositories
 {
     [AutoRegisterRepository(typeof(EnemyRepository))]
     public class EnemyRepository : JsonRepositoryBase<EnemyData, EnemyJsonConfig>

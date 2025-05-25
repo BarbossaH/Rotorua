@@ -93,6 +93,8 @@ namespace Models
             return objectType == typeof(EffectDataBase);
         }
 
+        public override bool CanWrite => false;
+
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jsonObject = JObject.Load(reader);
