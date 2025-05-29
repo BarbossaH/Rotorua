@@ -4,61 +4,48 @@
             "ID":"Eff_10000_1",
             "Name":"PhysicalDamage",
             "Damage":29,
+                    "Target":"Enemy",
             "Element":"None"
         },
         {
             "ID":"Eff_10001_1",
             "Name":"Fireball",
             "Damage":35,
+                    "Target":"Enemy",
             "Element":"Fire"
         },
         {
             "ID":"Eff_10001_2",
             "Name":"Fireball",
             "Damage":40,
+                    "Target":"Enemy",
             "Element":"Fire"
         },
         {
             "ID":"Eff_10002_1",
             "Name":"IceArrow",
             "Damage":30,
+                    "Target":"Enemy",
             "Element":"Frost"
         },
         {
             "ID":"Eff_10002_2",
             "Name":"IceArrow",
             "Damage":35,
+                    "Target":"Enemy",
             "Element":"Frost"
         },
         {
             "ID":"Eff_20001_1",
             "Name":"DrawCard",
             "Amount":2,
+                    "Target":"Self",
             "Element":"None"
         },
-        {
-            "ID":"Eff_30001_1",
-            "Name":"MultipleAttack",
-            "Amount":2,
-            "Element":"None"
-        },
-        {
-            "ID":"Eff_30002_1",
-            "Name":"MultipleDefense",
-            "Amount":2.5,
-            "Element":"None"
-        },  
         {
             "ID":"Eff_30003_1",
             "Name":"LifeSteal",
             "Amount":30,
-            "Element":"None"
-        },  
-        {
-            "ID":"Eff_30004_1",
-            "Name":"CounterAttack",
-            "Chance":30,
-            "Damage":20,
             "Element":"None"
         }
     ]

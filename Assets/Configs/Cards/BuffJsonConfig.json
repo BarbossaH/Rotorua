@@ -5,6 +5,7 @@
             "Name":"Flame",
             "Damage":199,
             "Duration":3,
+            "Target":"Enemy",
             "Element":"Fire",
             "TriggerTiming": "OnTurnBegin"
         },     
@@ -13,6 +14,7 @@
             "Name":"Flame",
             "Damage":15,
             "Duration":3,
+            "Target":"Enemy",
             "Element":"Fire",
             "TriggerTiming": "OnTurnBegin"
         },
@@ -22,6 +24,7 @@
             "HealOverTime":15,
             "Duration":3,
             "Element":"Nature",
+                "Target":"Self",
             "TriggerTiming": "OnTurnBegin"
         },
         {
@@ -29,6 +32,7 @@
             "Name":"Shied",  
             "AbsorbAmount":15,
             "Duration":3,
+               "Target":"Self",
             "Element":"Arcane"
         },
         {
@@ -36,12 +40,14 @@
             "Name":"MultipleDamage",    
             "Multiplier":2.5,
             "Duration":-1,
+                    "Target":"Enemy",
             "Element":"None",
             "StatusType": "Attack"
         },
         {
             "ID":"BUF_40001_1",
             "Name":"Frozen",
+                    "Target":"Enemy",
             "IsControlled":true,
             "Duration":3,
             "Element":"Frost"

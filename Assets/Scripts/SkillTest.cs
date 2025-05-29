@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using Common;
 using Common.Factories;
 using Common.Repositories;
@@ -32,14 +33,11 @@ public class ButtonClickHandler : MonoBehaviour
         // Skill s = SkillManager.Instance.CreateSkill("SKL_10001", 0);
         // s?.ApplySkill();
 
-        // // var name = IoCContainer.GetService<ICardRepository>().GetNameById("CRD_10001");
-        // // Debug.Log(name);
-        // var c = CardManager.Instance.CreateCard("CRD_10001");
-        // Debug.Log(c.Name);
+
         // var h = HeroManager.Instance.CreateHero("Hero_101");
         // Debug.Log(h.Name);
 
-
+        testCreateCard();
         // Card card = CardManager.Instance.CreateCard("CRD_10001");
 
         // Debug.Log(card.CardId + " and " + card.CardInstanceId);
@@ -51,10 +49,18 @@ public class ButtonClickHandler : MonoBehaviour
         // testDataLoad();
 
         //create enemy
-        CreateEnemy();
+        // CreateMonster();
     }
 
-    private void CreateEnemy()
+    private void testCreateCard()
+    {
+
+        var c = CardManager.Instance.CreateCard("CRD_10001");
+        Debug.Log(c.Name + " and " + c.EffectIds.FirstOrDefault() + " and the buff is " + c.BuffIds.FirstOrDefault());
+        c.PlayCard(null);
+    }
+
+    private void CreateMonster()
     {
         var factory = IoCContainer.GetService<IMonsterFactory>();
         var enemy = factory.CreateMonster("MON_10001");

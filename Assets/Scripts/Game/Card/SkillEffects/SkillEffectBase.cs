@@ -16,6 +16,7 @@ namespace Game.CardSystem
             Name = effectData.Name;
             elementEnum = effectData.GetElementType();
         }
+        //TODO:下面的参数要修改，改成BattleContext
         public abstract void ApplyEffect(CharacterBase caster, CharacterBase target);
     }
 }

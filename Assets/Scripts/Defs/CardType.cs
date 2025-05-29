@@ -26,3 +26,15 @@ public enum CardSourceEnum
     PlayerDeck,
     EventGenerated
 }
+
+public enum TargetTypeEnum
+{
+    None,
+    Self,
+    Enemy,
+    Ally,
+    AllEnemies,
+    AllAllies,
+    RandomEnemy,
+    RandomAlly
+}

@@ -6,7 +6,7 @@
             "Cost": 1,
             "Lifecycle": "Discard",
             "UpgradedCardID": "CRD_10002",
-            "EffectIDs":["Eff_10000_1"],
+            "EffectIDs":["Eff_10001_1"],
             "BuffIDs":[],
             "Type": "AttackCard",
             "Ownership": "Warrior",
