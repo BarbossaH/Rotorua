@@ -1,24 +1,26 @@
+
 using Game.Character;
 using Models;
 using UnityEngine;
 
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
-    public class FireballEffect : SkillEffectBase
+    public class IceArrowEffect : EffectBase
     {
         public float Damage { get; private set; }
 
         public override void InitializeData(EffectDataBase effectData)
         {
             base.InitializeData(effectData);
-            if (effectData is FireballData fireball)
+            if (effectData is IceArrowData iceArrowData)
             {
-                Damage = fireball.Damage;
+                Damage = iceArrowData.Damage;
             }
         }
         public override void ApplyEffect(CharacterBase caster, CharacterBase target)
         {
-            Debug.Log($"火球术烧死你 {Damage}");
+            Debug.Log("Ice arrow makes you cannot move fast");
         }
+
     }
 }

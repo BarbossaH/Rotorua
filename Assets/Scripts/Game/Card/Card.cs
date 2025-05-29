@@ -1,8 +1,11 @@
 using Common;
+using Game.Battle;
 using Game.Character;
-using Game.SkillSystem;
+using Game.CardSystem;
 using Managers;
 using Models;
+using Common.Factories;
+using System.Collections.Generic;
 
 namespace Game.CardSystem
 {
@@ -15,6 +18,8 @@ namespace Game.CardSystem
         public int CardInstanceId { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
+        public List<string> EffectIds { get; set; } = new();
+        public List<string> BuffIds { get; set; } = new();
         public CardTypeEnum CardType { get; private set; }
         public CardSourceEnum CardSource { get; private set; }
         public CardLifecycleEnum CardLifecycle { get; private set; }
@@ -27,6 +32,8 @@ namespace Game.CardSystem
             Cost = cardData.Cost;
             Name = cardData.Name;
             Description = cardData.Description;
+            BuffIds = cardData.BuffIDs;
+            EffectIds = cardData.EffectIDs;
             CardType = cardData.GetCardType();
             CardSource = cardData.GetCardSource();
             CardLifecycle = cardData.GetCardLifecycle();
@@ -71,10 +78,30 @@ namespace Game.CardSystem
             return new Card(this);
         }
 
-        public void ApplySkill(CharacterBase caster, CharacterBase target)
+        public void PlayCard(BattleContext context)
         {
-            var skill = SkillManager.Instance.CreateSkill(CardId, CardLevel);
-            skill.ApplySkill(caster, target);
+
+            var effectFactory = IoCContainer.GetService<IEffectFactory>();
+            List<EffectBase> effects = effectFactory.CreateSkillEffect(EffectIds);
+            if (effects != null)
+            {
+                foreach (var e in effects)
+                {
+                    e.ApplyEffect(null, null);
+                }
+            }
+
+            var buffFactory = IoCContainer.GetService<IBuffFactory>();
+            List<BuffBase> buffs = buffFactory.CreateBuff(BuffIds);
+
+            if (buffs != null)
+            {
+                foreach (var b in buffs)
+                {
+                    // b.
+                }
+            }
+
         }
     }
 

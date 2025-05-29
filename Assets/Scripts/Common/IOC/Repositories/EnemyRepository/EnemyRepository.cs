@@ -5,19 +5,19 @@ using Models;
 namespace Common.Repositories
 {
     [AutoRegisterRepository(typeof(EnemyRepository))]
-    public class EnemyRepository : JsonRepositoryBase<EnemyData, EnemyJsonConfig>
+    public class EnemyRepository : JsonRepositoryBase<MonsterData, MonsterJsonConfig>
     {
-        protected override List<EnemyData> ExtractList(EnemyJsonConfig config)
+        protected override List<MonsterData> ExtractList(MonsterJsonConfig config)
         {
-            return config.Enemies;
+            return config.Monsters;
         }
 
-        protected override string GetId(EnemyData data)
+        protected override string GetId(MonsterData data)
         {
             return data.ID;
         }
 
-        protected override string GetName(EnemyData data)
+        protected override string GetName(MonsterData data)
         {
             return data.Name;
         }

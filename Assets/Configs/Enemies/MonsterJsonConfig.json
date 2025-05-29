@@ -1,5 +1,5 @@
 {
-    "Enemies": [
+    "Monsters": [
         {
             "ID": "MON_10001",
             "Name": "Kangaroo",

@@ -56,9 +56,7 @@
         public override void Init()
         {
             base.Init();
-            //TODO: register controller here, and then initialize them.
-            InitAllControllers(); //TODO: initialize all controllers here tomorrow and continue to optimize the manager classes
-
+            InitAllControllers();
         }
 
     }

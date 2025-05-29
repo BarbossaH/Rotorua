@@ -1,7 +1,7 @@
 using Game.Battle;
 using Models;
 
-namespace Game.Character.Enemy
+namespace Game.Character.Monster
 {
     public abstract class IntentFilterBase
     {
@@ -16,7 +16,6 @@ namespace Game.Character.Enemy
         }
     }
 
-    //TODO:here is an error, because there is no specified class here
     public class CoolDownFilter : IntentFilterBase
     {
         public int CoolDownTurns { get; set; }

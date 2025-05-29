@@ -1,18 +1,20 @@
 using System.Collections.Generic;
 using Game.Battle;
+using UnityEngine;
 
-namespace Game.Character.Enemy
+namespace Game.Character.Monster
 {
     public interface IIntentPicker
     {
-        string PickIntent(BattleContext context, List<EnemyIntent> enemyIntents);
+        string PickIntent(BattleContext context, List<MonsterIntent> enemyIntents, string defaultIntentId);
     }
 
     public class WeightPicker : IIntentPicker
     {
-        public string PickIntent(BattleContext context, List<EnemyIntent> enemyIntents)
+        public string PickIntent(BattleContext context, List<MonsterIntent> enemyIntents, string defaultIntentId)
         {
-            throw new System.NotImplementedException();
+            Debug.Log($"{typeof(WeightPicker).Name} is create for now---------------.");
+            return defaultIntentId;
         }
     }
 }

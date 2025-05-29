@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Game.SkillSystem;
+using Game.CardSystem;
 using Managers;
 using Models;
 using UnityEngine;

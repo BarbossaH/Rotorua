@@ -1,35 +1,34 @@
 namespace Common.Factories
 {
     using System.Collections.Generic;
-    using Game.SkillSystem;
+    using Game.CardSystem;
     using UnityEngine;
 
     public interface IEffectFactory
     {
-        List<SkillEffectBase> CreateSkillEffect(string[] effectIDs);
+        List<EffectBase> CreateSkillEffect(List<string> effectIDs);
     }
 
     [AutoRegisterFactory(typeof(IEffectFactory))]
     public class EffectFactory : IEffectFactory
     {
 
-        public List<SkillEffectBase> CreateSkillEffect(string[] effectIDs)
+        public List<EffectBase> CreateSkillEffect(List<string> effectIDs)
         {
 
-            if (effectIDs == null || effectIDs.Length == 0)
+            if (effectIDs == null || effectIDs.Count == 0)
             {
-                Debug.LogError("Effect ID Array is null");
                 return null;
             }
-            List<SkillEffectBase> effectList = new();
+            List<EffectBase> effectList = new();
             var repository = IoCContainer.GetService<SkillEffectRepository>();
-            for (int i = 0; i < effectIDs.Length; i++)
+            for (int i = 0; i < effectIDs.Count; i++)
             {
                 var effectData = repository.GetById(effectIDs[i]);
                 string effectClassName = repository.GetNameById(effectIDs[i]) + "Effect";
                 //  effectIDs[i] + "Data";
                 //here I need to use id to get the name of effect data class
-                SkillEffectBase effect = GameTypeCache.CreateInstanceByClassName<SkillEffectBase>(effectClassName, true);
+                EffectBase effect = GameTypeCache.CreateInstanceByClassName<EffectBase>(effectClassName, true);
                 // Debug.Log(effect);
                 if (effect != null)
                 {

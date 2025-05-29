@@ -2,16 +2,16 @@ using System.Collections.Generic;
 
 namespace Models
 {
-    public class EnemyJsonConfig : IGameData
+    public class MonsterJsonConfig : IGameData
     {
-        public List<EnemyData> Enemies;
+        public List<MonsterData> Monsters;
         public string GetKey()
         {
-            return typeof(EnemyJsonConfig).Name;
+            return typeof(MonsterJsonConfig).Name;
         }
     }
 
-    public class EnemyData
+    public class MonsterData
     {
         public string ID { get; set; }
         public string Name { get; set; }

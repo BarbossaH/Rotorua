@@ -1,4 +1,4 @@
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
     using System.Collections.Generic;
     using Game.Character;
@@ -18,9 +18,9 @@ namespace Game.SkillSystem
         public SkillTypeEnum SkillType { get; private set; }
 
         //skill effects and buffs
-        public List<SkillEffectBase> SkillEffects = new();
-        public List<SkillBuffBase> SkillBuffs = new();
-        public Skill(SkillData data, int level, List<SkillEffectBase> effects, List<SkillBuffBase> buffs)
+        public List<EffectBase> SkillEffects = new();
+        public List<BuffBase> SkillBuffs = new();
+        public Skill(SkillData data, int level, List<EffectBase> effects, List<BuffBase> buffs)
         {
             SkillName = data.Name;
             SkillData = data;

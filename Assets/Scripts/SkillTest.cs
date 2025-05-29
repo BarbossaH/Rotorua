@@ -56,9 +56,10 @@ public class ButtonClickHandler : MonoBehaviour
 
     private void CreateEnemy()
     {
-        var factory = IoCContainer.GetService<IEnemyFactory>();
-        var enemy = factory.CreateEnemy("MON_10001");
+        var factory = IoCContainer.GetService<IMonsterFactory>();
+        var enemy = factory.CreateMonster("MON_10001");
         Debug.Log($"enemy {enemy.Name} is created");
+        enemy.ApplyIntent(null);
     }
     private void testDataLoad()
     {

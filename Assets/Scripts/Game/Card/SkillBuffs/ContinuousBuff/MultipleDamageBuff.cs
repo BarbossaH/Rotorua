@@ -2,9 +2,9 @@ using Game.Character;
 using Models;
 using UnityEngine;
 
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
-    public class MultipleDamageBuff : SkillBuffBase, IMultipleDamage
+    public class MultipleDamageBuff : BuffBase, IMultipleDamage
     {
 
         public BuffStatusTypeEnum BuffStatusTypeEnum { get; private set; }

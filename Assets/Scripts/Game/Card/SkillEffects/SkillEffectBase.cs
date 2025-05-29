@@ -1,10 +1,10 @@
 using Game.Character;
 using Models;
 
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
     //each effect has its own method to cast skill effect
-    public abstract class SkillEffectBase
+    public abstract class EffectBase
     {
         public string ID;
         public string Name;

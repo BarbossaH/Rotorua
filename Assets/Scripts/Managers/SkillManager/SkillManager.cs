@@ -3,7 +3,7 @@ namespace Managers
 
     using Common;
     using Common.Factories;
-    using Game.SkillSystem;
+    using Game.CardSystem;
 
     [AutoRegisterManager]
     public class SkillManager : Singleton<SkillManager>

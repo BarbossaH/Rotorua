@@ -1,12 +1,12 @@
 namespace Common.Factories
 {
     using System.Collections.Generic;
-    using Game.SkillSystem;
+    using Game.CardSystem;
     using UnityEngine;
 
     public interface IBuffFactory
     {
-        List<SkillBuffBase> CreateSkillBuff(string[] buffIDs);
+        List<BuffBase> CreateBuff(List<string> buffIDs);
     }
 
     [AutoRegisterFactory(typeof(IBuffFactory))]
@@ -17,26 +17,26 @@ namespace Common.Factories
         // then use reflection to create the buff class
 
 
-        public List<SkillBuffBase> CreateSkillBuff(string[] buffIDs)
+        public List<BuffBase> CreateBuff(List<string> buffIDs)
         {
             //error: json configuration is easy to write wrong words, so i need to think about this later.
 
-            if (buffIDs == null || buffIDs.Length == 0)
+            if (buffIDs == null || buffIDs.Count == 0)
             {
-                Debug.LogError("buff ids are invalid!");
+                // Debug.LogError("buff ids are invalid!");
                 return null;
             }
 
-            List<SkillBuffBase> skillBuffList = new();
+            List<BuffBase> skillBuffList = new();
             var repository = IoCContainer.GetService<SkillBuffRepository>();
-            for (int i = 0; i < buffIDs.Length; i++)
+            for (int i = 0; i < buffIDs.Count; i++)
             {
                 Debug.Log(buffIDs[i]);
                 var buffData = repository.GetById(buffIDs[i]);
                 string buffClassName = repository.GetNameById(buffIDs[i]) + "Buff";
                 // Debug.Log(buffData.Name);
                 //create the buff classes by using reflection
-                SkillBuffBase skillBuff = GameTypeCache.CreateInstanceByClassName<SkillBuffBase>(buffClassName, true);
+                BuffBase skillBuff = GameTypeCache.CreateInstanceByClassName<BuffBase>(buffClassName, true);
                 if (skillBuff != null)
                 {
                     skillBuff.InitializeData(buffData);

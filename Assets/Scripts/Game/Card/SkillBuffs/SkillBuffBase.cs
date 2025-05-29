@@ -2,13 +2,13 @@ using Game.Character;
 using Models;
 using UnityEngine;
 
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
     /// <summary>
     /// The base class of the buff is designed to provide data for the buff objects, while their interfaces provide behavioral patterns for the buff, effectively acting as a capability component.
     /// </summary>
     #region buff base is for providing the data 
-    public abstract class SkillBuffBase
+    public abstract class BuffBase
     {
         protected int currentTurn;
         public int CurrentTurn { get; set; }

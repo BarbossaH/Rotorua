@@ -4,15 +4,15 @@ using Models;
 namespace Common.Repositories
 {
     [AutoRegisterRepository(typeof(IntentRepository))]
-    public class IntentRepository : JsonRepositoryBase<EnemyIntentData, IntentJsonConfig>
+    public class IntentRepository : JsonRepositoryBase<MonsterIntentData, IntentJsonConfig>
     {
-        protected override List<EnemyIntentData> ExtractList(IntentJsonConfig config) => config.Intents;
+        protected override List<MonsterIntentData> ExtractList(IntentJsonConfig config) => config.Intents;
 
 
-        protected override string GetId(EnemyIntentData data) => data.ID;
+        protected override string GetId(MonsterIntentData data) => data.ID;
 
 
-        protected override string GetName(EnemyIntentData data) => data.Name;
+        protected override string GetName(MonsterIntentData data) => data.Name;
 
     }
 }

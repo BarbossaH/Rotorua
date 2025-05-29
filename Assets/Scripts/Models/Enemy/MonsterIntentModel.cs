@@ -5,13 +5,13 @@ namespace Models
 {
     public class IntentJsonConfig : IGameData
     {
-        public List<EnemyIntentData> Intents;
+        public List<MonsterIntentData> Intents;
         public string GetKey()
         {
             return typeof(IntentJsonConfig).Name;
         }
     }
-    public class EnemyIntentData
+    public class MonsterIntentData
     {
         public string ID;
         public string Name;

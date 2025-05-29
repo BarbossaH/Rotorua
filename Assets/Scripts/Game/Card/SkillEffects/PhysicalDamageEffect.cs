@@ -1,10 +1,10 @@
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
     using Game.Character;
     using Models;
     using UnityEngine;
 
-    public class PhysicalDamageEffect : SkillEffectBase
+    public class PhysicalDamageEffect : EffectBase
     {
         public float Damage { private set; get; }
 

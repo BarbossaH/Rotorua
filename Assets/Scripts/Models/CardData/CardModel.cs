@@ -24,6 +24,8 @@ namespace Models
         public string Source { get; set; }
         public string Lifecycle { get; set; }
         public string Ownership { get; set; }
+        public List<string> EffectIDs { get; set; }
+        public List<string> BuffIDs { get; set; }
         public CardOwnershipEnum GetCardOwnership() => Enum.TryParse(Ownership, out CardOwnershipEnum result) ? result : CardOwnershipEnum.Common;
         public CardLifecycleEnum GetCardLifecycle() => Enum.TryParse(Lifecycle, out CardLifecycleEnum result) ? result : CardLifecycleEnum.None;
         public CardTypeEnum GetCardType() => Enum.TryParse(Type, out CardTypeEnum result) ? result : CardTypeEnum.None;

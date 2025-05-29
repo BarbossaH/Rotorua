@@ -1,5 +1,5 @@
 using Common.Repositories;
-using Game.Character.Enemy;
+using Game.Character.Monster;
 using UnityEngine;
 
 namespace Common.Factories

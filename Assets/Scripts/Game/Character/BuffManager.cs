@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
-using Game.SkillSystem;
+using Game.CardSystem;
 
 namespace Game.Character
 {
     public class BuffManager
     {
-        private readonly List<SkillBuffBase> _skillBuffBases = new();
+        private readonly List<BuffBase> _skillBuffBases = new();
 
-        public void AddBuff(SkillBuffBase buff)
+        public void AddBuff(BuffBase buff)
         {
             _skillBuffBases.Add(buff);
         }
 
-        public void RemoveBuff(SkillBuffBase buff)
+        public void RemoveBuff(BuffBase buff)
         {
             _skillBuffBases.Remove(buff);
         }

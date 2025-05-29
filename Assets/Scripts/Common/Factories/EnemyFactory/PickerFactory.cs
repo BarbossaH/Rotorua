@@ -1,4 +1,4 @@
-using Game.Character.Enemy;
+using Game.Character.Monster;
 
 namespace Common.Factories
 {
@@ -12,7 +12,9 @@ namespace Common.Factories
     {
         public IIntentPicker CreatePicker(string className)
         {
-            throw new System.NotImplementedException();
+            var picker = GameTypeCache.CreateInstanceByClassName<IIntentPicker>(className, true);
+
+            return picker;
         }
     }
 }

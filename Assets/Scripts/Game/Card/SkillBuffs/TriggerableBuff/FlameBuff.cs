@@ -2,9 +2,9 @@ using Game.Character;
 using Models;
 using UnityEngine;
 
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
-    public class FlameBuff : SkillBuffBase, IPeriodDamageBuff
+    public class FlameBuff : BuffBase, IPeriodDamageBuff
     {
         public float Damage { get; private set; }
         public TriggerTimingEnum TriggerTiming { get; private set; }

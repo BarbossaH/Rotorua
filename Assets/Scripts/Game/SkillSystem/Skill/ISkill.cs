@@ -1,6 +1,6 @@
 using Game.Character;
 
-namespace Game.SkillSystem
+namespace Game.CardSystem
 {
     public interface ISkill
     {

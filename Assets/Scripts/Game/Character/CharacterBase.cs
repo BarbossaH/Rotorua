@@ -1,4 +1,4 @@
-using Game.SkillSystem;
+using Game.CardSystem;
 using Models;
 using UnityEngine;
 
@@ -37,13 +37,13 @@ namespace Game.Character
             }
         }
 
-        public virtual void AddBuff(SkillBuffBase buff)
+        public virtual void AddBuff(BuffBase buff)
         {
             buff.OnAdd(this);
             BuffManager.AddBuff(buff);
         }
 
-        public virtual void RemoveBuff(SkillBuffBase buff)
+        public virtual void RemoveBuff(BuffBase buff)
         {
             buff.OnRemove(this);
             BuffManager.RemoveBuff(buff);
