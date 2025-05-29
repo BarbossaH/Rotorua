@@ -18,22 +18,22 @@ namespace Common.Factories
         {
             // Debug.Log(data.Name);
             // Debug.Log(data.LevelsData[level]);
-            var skillRepo = IoCContainer.GetService<SkillDataRepository>();
+            // var skillRepo = IoCContainer.GetService<SkillDataRepository>();
 
-            if (!skillRepo.IsLoaded)
-            {
-                throw new InvalidOperationException("Skill repository is not loaded yet!");
-            }
-            var data = skillRepo.GetById(skillId);
+            // if (!skillRepo.IsLoaded)
+            // {
+            //     throw new InvalidOperationException("Skill repository is not loaded yet!");
+            // }
+            // var data = skillRepo.GetById(skillId);
 
-            Debug.Log(data);
-            var effectFactory = IoCContainer.GetService<IEffectFactory>();
-            List<EffectBase> effects = effectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
+            // Debug.Log(data);
+            // var effectFactory = IoCContainer.GetService<IEffectFactory>();
+            // List<EffectBase> effects = effectFactory.CreateSkillEffect(data.LevelsData[level].EffectIDs);
 
-            var buffFactory = IoCContainer.GetService<IBuffFactory>();
-            List<BuffBase> buffs = buffFactory.CreateSkillBuff(data.LevelsData[level].BuffIDs);
-            return new Skill(data, level, effects, buffs);
-
+            // var buffFactory = IoCContainer.GetService<IBuffFactory>();
+            // List<BuffBase> buffs = buffFactory.CreateSkillBuff(data.LevelsData[level].BuffIDs);
+            // return new Skill(data, level, effects, buffs);
+            return null;
         }
     }
 }
