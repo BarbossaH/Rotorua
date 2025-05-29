@@ -27,7 +27,10 @@ namespace Game.Character.Monster
 
         public void ApplyIntent()
         {
+            //create effect and buff by factories
+
             // var effect = 
+            // Debug.Log();
         }
     }
 }

@@ -15,7 +15,8 @@ namespace Game.CardSystem
         public string ID { get; private set; }
         public string Name { get; private set; }
         public float Duration { get; private set; }
-
+        //buff releaser
+        public CharacterBase BuffCaster { get; set; }
         public ElementEnum ElementEnum { get; private set; }
         //when buff being added
 

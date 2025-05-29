@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Common\Factories\Skill\EffectFactory.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\GameMananger.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\EnemyFactory\PickerFactory.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Monster\IntentFilter.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\CardRepository\CardRepository.cs" />
     <Compile Include="Assets\Scripts\Models\Enemy\MonsterModel.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Defs\GameEvents.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillBuffRepository.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Hero\Hero.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Monster\IntentPicker.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\PersistentDataManager.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\BuffModel.cs" />
     <Compile Include="Assets\Scripts\SkillTest.cs" />
@@ -97,11 +99,9 @@
     <Compile Include="Assets\Scripts\Game\Character\Hero\HeroView.cs" />
     <Compile Include="Assets\Scripts\Common\IPrototype.cs" />
     <Compile Include="Assets\Scripts\Managers\DataMgr\JsonManager.cs" />
-    <Compile Include="Assets\Scripts\Game\Character\Enemy\IntentFilter.cs" />
     <Compile Include="Assets\Scripts\Defs\GameSetting.cs" />
     <Compile Include="Assets\Scripts\Defs\Occupation.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\EnemyFactory\FilterFactory.cs" />
-    <Compile Include="Assets\Scripts\Game\Character\Enemy\MonsterIntent.cs" />
     <Compile Include="Assets\Scripts\Models\IGameData.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\IoCContainer.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\ISkill.cs" />
@@ -113,8 +113,8 @@
     <Compile Include="Assets\Scripts\Common\IOC\CustomAttributes.cs" />
     <Compile Include="Assets\Scripts\Game\Battle\IBattleController.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\ScopeContainer.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Monster\MonsterIntent.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillBuffs\TriggerableBuff\FlameBuff.cs" />
-    <Compile Include="Assets\Scripts\Game\Character\Enemy\Monster.cs" />
     <Compile Include="Assets\Scripts\Managers\HeroManager\HeroManager.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\Skill\SkillFactory.cs" />
@@ -141,6 +141,7 @@
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SaveDataRepository\PlayerSaveRepository.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\JsonRepositoryBase.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\EffectModel.cs" />
+    <Compile Include="Assets\Scripts\Game\Character\Monster\Monster.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\InstanceIdGenerator\InstanceIdGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillEffects\FireballEffect.cs" />
     <Compile Include="Assets\Scripts\Game\Card\Card.cs" />
@@ -152,7 +153,6 @@
     <Compile Include="Assets\Scripts\Game\Card\SkillEffects\SkillEffectBase.cs" />
     <Compile Include="Assets\Scripts\Managers\SkillManager\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Defs\CardType.cs" />
-    <Compile Include="Assets\Scripts\Game\Character\Enemy\IntentPicker.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Models\SaveData\PlayerSaveData.cs" />
     <Compile Include="Assets\Scripts\Models\SaveData\ISaveData.cs" />

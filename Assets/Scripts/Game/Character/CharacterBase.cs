@@ -37,16 +37,18 @@ namespace Game.Character
             }
         }
 
-        public virtual void AddBuff(BuffBase buff)
+        public virtual void AddBuffFromCard(BuffBase buff)
         {
             buff.OnAdd(this);
-            BuffManager.AddBuff(buff);
+            BuffManager.AddBuffFromCard(buff);
         }
 
-        public virtual void RemoveBuff(BuffBase buff)
+        public virtual void AddBuffFromRelic() { }
+
+        public virtual void RemoveBuffFromCard(BuffBase buff)
         {
             buff.OnRemove(this);
-            BuffManager.RemoveBuff(buff);
+            BuffManager.RemoveBuffFromCard(buff);
         }
 
         protected virtual void Die()

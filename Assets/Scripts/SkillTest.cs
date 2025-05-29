@@ -37,8 +37,7 @@ public class ButtonClickHandler : MonoBehaviour
         // var h = HeroManager.Instance.CreateHero("Hero_101");
         // Debug.Log(h.Name);
 
-        testCreateCard();
-        // Card card = CardManager.Instance.CreateCard("CRD_10001");
+        // testCreateCard();
 
         // Debug.Log(card.CardId + " and " + card.CardInstanceId);
         // card = CardManager.Instance.CloneCard(card);
