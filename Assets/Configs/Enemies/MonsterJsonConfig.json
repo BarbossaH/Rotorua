@@ -21,7 +21,7 @@
                 "INT_0002"
             ],
             "DefaultIntentID": "INT_0002",
-            "IntentPicker": "WeightPicker"
+            "IntentPicker": "RandomPicker"
         }
     ]
 }

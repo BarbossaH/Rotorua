@@ -82,7 +82,7 @@ namespace Game.CardSystem
         {
 
             var effectFactory = IoCContainer.GetService<IEffectFactory>();
-            List<EffectBase> effects = effectFactory.CreateSkillEffect(EffectIds);
+            List<EffectBase> effects = effectFactory.CreateSkillEffects(EffectIds);
             if (effects != null)
             {
                 foreach (var e in effects)

@@ -4,23 +4,23 @@
             "ID": "INT_0001",
             "Name": "AttackIntent",
             "Effects": [
-                "Attack"
+                "Eff_10001_1"
             ],
-            "Buffs": [],
+            "Buffs": ["BUF_10001_2"],
             "FilterIDs": [
                 "FIL_0001"
             ],
             "MinValue": 2,
             "MaxValue": 5,
-            "RepeatCount": 2
+            "RepeatCount": 2          
         },
         {
             "ID": "INT_0002",
             "Name": "DefenseIntent",
             "Effects": [
-                "Defense"
+                "Eff_10000_1"
             ],
-            "Buffs": [],
+            "Buffs": ["BUF_30002_1"],
             "FilterIDs": [
                 "FIL_0003"
             ],

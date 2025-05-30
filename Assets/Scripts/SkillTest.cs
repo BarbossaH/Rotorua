@@ -48,7 +48,7 @@ public class ButtonClickHandler : MonoBehaviour
         // testDataLoad();
 
         //create enemy
-        // CreateMonster();
+        CreateMonster();
     }
 
     private void testCreateCard()
@@ -62,7 +62,7 @@ public class ButtonClickHandler : MonoBehaviour
     private void CreateMonster()
     {
         var factory = IoCContainer.GetService<IMonsterFactory>();
-        var enemy = factory.CreateMonster("MON_10001");
+        var enemy = factory.CreateMonster("MON_10002");
         Debug.Log($"enemy {enemy.Name} is created");
         enemy.ApplyIntent(null);
     }

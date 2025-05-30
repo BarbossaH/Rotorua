@@ -6,14 +6,14 @@ namespace Common.Factories
 
     public interface IEffectFactory
     {
-        List<EffectBase> CreateSkillEffect(List<string> effectIDs);
+        List<EffectBase> CreateSkillEffects(List<string> effectIDs);
     }
 
     [AutoRegisterFactory(typeof(IEffectFactory))]
     public class EffectFactory : IEffectFactory
     {
 
-        public List<EffectBase> CreateSkillEffect(List<string> effectIDs)
+        public List<EffectBase> CreateSkillEffects(List<string> effectIDs)
         {
 
             if (effectIDs == null || effectIDs.Count == 0)
