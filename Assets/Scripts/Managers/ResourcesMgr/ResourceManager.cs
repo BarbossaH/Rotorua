@@ -55,7 +55,7 @@ namespace Managers
                 return ((AsyncOperationHandle<IList<T>>)handleList).Result;
             }
 
-            AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(label, (res) =>
+            var handle = Addressables.LoadAssetsAsync<T>(label, (res) =>
             {
                 // Debug.Log("loaded a resource" + res.ToString());
             });
@@ -63,7 +63,8 @@ namespace Managers
             while (!handle.IsDone)
             {
                 onProgress?.Invoke(handle.PercentComplete);
-                await Task.Yield();
+                //wait for next frame
+                await UniTask.Yield();
             }
 
             if (handle.Status == AsyncOperationStatus.Succeeded)

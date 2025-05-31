@@ -6,6 +6,7 @@ using Managers;
 using Models;
 using Common.Factories;
 using System.Collections.Generic;
+using Common.Defs;
 
 namespace Game.CardSystem
 {

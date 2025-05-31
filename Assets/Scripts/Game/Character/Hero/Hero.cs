@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Common.Defs;
 using Models;
 
 namespace Game.Character

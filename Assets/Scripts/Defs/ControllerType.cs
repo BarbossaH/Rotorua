@@ -1,4 +1,7 @@
-﻿public enum ControllerType
+﻿namespace Common.Defs
 {
-    Loading
+    public enum ControllerType
+    {
+        Loading
+    }
 }

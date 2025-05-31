@@ -1,6 +1,7 @@
 namespace Game.CardSystem
 {
     using System.Collections.Generic;
+    using Common.Defs;
     using Game.Character;
     using Models;
 

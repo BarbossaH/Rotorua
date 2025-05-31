@@ -1,5 +1,8 @@
-public enum LanguageEnum
+namespace Common.Defs
 {
-    Chinese,
-    English
+    public enum LanguageEnum
+    {
+        Chinese,
+        English
+    }
 }

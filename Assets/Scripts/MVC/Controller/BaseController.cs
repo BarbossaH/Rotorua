@@ -3,6 +3,7 @@ namespace MVC
 {
     using System;
     using System.Collections.Generic;
+    using Common.Defs;
     using Managers;
 
     public class BaseController

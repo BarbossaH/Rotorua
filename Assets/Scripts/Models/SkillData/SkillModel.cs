@@ -3,6 +3,7 @@ namespace Models
 
     using System;
     using System.Collections.Generic;
+    using Common.Defs;
     using UnityEngine;
 
     /// <summary>

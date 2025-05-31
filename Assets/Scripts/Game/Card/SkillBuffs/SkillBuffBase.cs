@@ -1,3 +1,4 @@
+using Common.Defs;
 using Game.Character;
 using Models;
 using UnityEngine;

@@ -71,7 +71,6 @@
     <Compile Include="Assets\Scripts\Common\Factories\EnemyFactory\PickerFactory.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Monster\IntentFilter.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\CardRepository\CardRepository.cs" />
-    <Compile Include="Assets\Scripts\Models\Enemy\MonsterModel.cs" />
     <Compile Include="Assets\Scripts\Defs\SceneDef.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillBuffs\ContinuousBuff\IContinuousBuff.cs" />
     <Compile Include="Assets\Scripts\Managers\CoreMgr\ControllerManager.cs" />
@@ -108,9 +107,11 @@
     <Compile Include="Assets\Scripts\Common\Singleton\ISingleton.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\CharacterRepository\HeroRepository.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillBuffs\ContinuousBuff\MultipleDamageBuff.cs" />
+    <Compile Include="Assets\Scripts\Defs\StateMachineEnum.cs" />
     <Compile Include="Assets\Scripts\Game\Battle\BattleEntry.cs" />
     <Compile Include="Assets\Scripts\Defs\SkillType.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\CustomAttributes.cs" />
+    <Compile Include="Assets\Scripts\Models\Monster\MonsterModel.cs" />
     <Compile Include="Assets\Scripts\Game\Battle\IBattleController.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\ScopeContainer.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Monster\MonsterIntent.cs" />
@@ -120,10 +121,10 @@
     <Compile Include="Assets\Scripts\Common\Factories\Skill\SkillFactory.cs" />
     <Compile Include="Assets\Scripts\Game\SkillSystem\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Managers\ViewMgr\ViewManager.cs" />
-    <Compile Include="Assets\Scripts\Models\Enemy\MonsterIntentModel.cs" />
     <Compile Include="Assets\Scripts\Common\UIFuncExtern\UnityFuncExtern.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\EnemyRepository\IntentRepository.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillEffects\PhysicalDamageEffect.cs" />
+    <Compile Include="Assets\Scripts\Common\FSM\BattleFSM\BattleStateEnum.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillEffectRepository.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillEffects\IceArrowEffect.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\Skill\BuffFactory.cs" />
@@ -131,7 +132,9 @@
     <Compile Include="Assets\Scripts\Models\GameConfig\GameConfig.cs" />
     <Compile Include="Assets\Scripts\Common\Factories\CardFactory\CardFactory.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\StreamingAssetsManager.cs" />
+    <Compile Include="Assets\Scripts\Common\FSM\StateMachine.cs" />
     <Compile Include="Assets\Scripts\Game\Character\BuffManager.cs" />
+    <Compile Include="Assets\Scripts\Models\Monster\MonsterIntentModel.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\IDisposable.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\SkillModel.cs" />
     <Compile Include="Assets\Scripts\MVC\View\BaseView.cs" />
@@ -140,6 +143,8 @@
     <Compile Include="Assets\Scripts\Game\Battle\BattleContext.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SaveDataRepository\PlayerSaveRepository.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\JsonRepositoryBase.cs" />
+    <Compile Include="Assets\Scripts\Common\FSM\BattleFSM\BattleStartState.cs" />
+    <Compile Include="Assets\Scripts\Models\Monster\IntentFilterModel.cs" />
     <Compile Include="Assets\Scripts\Models\SkillData\EffectModel.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Monster\Monster.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\InstanceIdGenerator\InstanceIdGenerator.cs" />
@@ -155,10 +160,10 @@
     <Compile Include="Assets\Scripts\Defs\CardType.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourcesMgr\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Models\SaveData\PlayerSaveData.cs" />
+    <Compile Include="Assets\Scripts\Common\FSM\StateBase.cs" />
     <Compile Include="Assets\Scripts\Models\SaveData\ISaveData.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillRepository.cs" />
     <Compile Include="Assets\Scripts\MVC\View\IBaseView.cs" />
-    <Compile Include="Assets\Scripts\Models\Enemy\IntentFilterModel.cs" />
     <Compile Include="Assets\Scripts\Game\Battle\BattleController.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\RepositoryLoader.cs" />
     <Compile Include="Assets\Scripts\Managers\ScenceMgr\SceneLoaderManager.cs" />

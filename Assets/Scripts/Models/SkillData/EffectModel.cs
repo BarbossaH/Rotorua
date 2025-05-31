@@ -3,6 +3,7 @@ namespace Models
     using System;
     using System.Collections.Generic;
     using Common;
+    using Common.Defs;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
