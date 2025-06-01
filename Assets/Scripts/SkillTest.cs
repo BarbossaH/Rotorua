@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Common;
 using Common.Factories;
 using Common.Repositories;
@@ -15,19 +16,23 @@ using UnityEngine.UI;
 public class ButtonClickHandler : MonoBehaviour
 {
     private Button button;
-
+    private BattleView battleView;
+    private BattleController battleController;
     void Awake()
     {
         // 获取当前 GameObject 上的 Button 组件
         button = GetComponent<Button>();
-
+        battleView = GetComponent<BattleView>();
         if (button != null)
         {
             // 绑定点击事件
             button.onClick.AddListener(OnButtonClick);
         }
     }
-
+    private void Start()
+    {
+        battleController = new BattleController(battleView);
+    }
     private void OnButtonClick()
     {
         // Skill s = SkillManager.Instance.CreateSkill("SKL_10001", 0);
@@ -48,7 +53,15 @@ public class ButtonClickHandler : MonoBehaviour
         // testDataLoad();
 
         //create enemy
-        CreateMonster();
+        // CreateMonster();
+
+        //Test state machine
+        _ = TestStateMachine();
+    }
+
+    private async UniTask TestStateMachine()
+    {
+        await battleController.StartBattleAsync();
     }
 
     private void testCreateCard()
@@ -76,7 +89,7 @@ public class ButtonClickHandler : MonoBehaviour
     {
         var scope = IoCContainer.CreateScope();
         IBattleController ctr = scope.GetService<IBattleController>();
-        ctr.StartBattle();
+        ctr.StartBattleAsync();
     }
     private void LoadingSetting()
     {

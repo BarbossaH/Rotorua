@@ -1,13 +1,12 @@
-using System;
 using System.Collections.Generic;
-using Game.Battle;
+using Cysharp.Threading.Tasks;
 
 namespace Common.FSM
 {
 
     public class StateMachine<TKey, TController>
     {
-        private readonly Dictionary<TKey, StateBase<TController>> _states = new();
+        private readonly Dictionary<TKey, StateBase<TController>> _stateMap = new();
         // private TController _controller;
         private StateBase<TController> _currentState;
 
@@ -16,13 +15,27 @@ namespace Common.FSM
             // _controller = controller;
         }
 
-        public void AddState(TKey key, StateBase<TController> state) => _states[key] = state;
+        public void RegisterState(TKey key, StateBase<TController> state) => _stateMap[key] = state;
 
-        public void ChangeState(TKey newKey)
+        public async UniTask ChangeStateAsync(TKey newKey)
         {
-            _currentState?.OnExit();
-            _currentState = _states[newKey];
-            _currentState.OnEnter();
+            if (_stateMap.TryGetValue(newKey, out var state))
+            {
+                if (_currentState != null)
+                {
+                    await _currentState.ExitAsync();
+                }
+                _currentState = _stateMap[newKey];
+                await _currentState.EnterAsync();
+            }
+        }
+
+        public async UniTask UpdateState()
+        {
+            if (_currentState != null)
+            {
+                await _currentState.UpdateAsync();
+            }
         }
     }
 }

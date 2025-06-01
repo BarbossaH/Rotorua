@@ -1,7 +1,6 @@
 namespace Managers
 {
-    using System;
-    using Common;
+    using Common.Defs;
     using UnityEngine;
 
     // [AutoRegisterManager]

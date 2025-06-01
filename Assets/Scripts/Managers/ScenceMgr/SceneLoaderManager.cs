@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System;
     using Common;
+    using Common.Defs;
 
     [AutoRegisterManager]
     public class SceneLoaderManager : Singleton<SceneLoaderManager>
