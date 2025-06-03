@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Common;
 using Common.Defs;
 using Common.FSM;
@@ -10,8 +9,9 @@ namespace Game.Battle
     public class BattleController : IBattleController
     {
         public StateMachine<BattleStateEnum, BattleController> StateMachine { get; private set; }
-        public IBattleView BattleView { get; }
-        public BattleController(IBattleView battleView)
+        public IBattleView BattleView { get; private set; }
+
+        public void InitializeBattle(IBattleView battleView)
         {
             BattleView = battleView;
             StateMachine = new StateMachine<BattleStateEnum, BattleController>();

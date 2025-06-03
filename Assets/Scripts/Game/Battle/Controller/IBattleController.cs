@@ -5,7 +5,8 @@ namespace Game.Battle
     public interface IBattleController
     {
         // 初始化战斗，创建英雄、副本单位、卡牌、圣物等
-        // UniTask InitializeBattle(BattleConfig config);
+        public IBattleView BattleView { get; }
+        void InitializeBattle(IBattleView view);
 
         // 正式开始战斗（可以触发首次回合开始逻辑）
         UniTask StartBattleAsync();

@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -22,6 +23,9 @@ namespace Game.Battle
             await UniTask.WaitUntil(() => gameObject.activeInHierarchy);
 
             Debug.Log("BattleView, and the animation is playing");
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            Debug.Log("BattleView, and the animation Finished");
+
             #region example code for learning
             //play the battle start animation
             // _animator.Play("animation name");

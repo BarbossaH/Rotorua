@@ -5,7 +5,7 @@ using Managers;
 using Models;
 using UnityEngine;
 
-namespace Common
+namespace Common.Repositories
 {
     public interface IPlayerSaveRepository
     {

@@ -1,6 +1,7 @@
 
 using Common;
 using Common.Defs;
+using Common.Repositories;
 using Cysharp.Threading.Tasks;
 using Managers;
 
@@ -20,13 +21,14 @@ public class Bootstrap : MonoBehaviour
 
     private async void Start()
     {
+        //load persistent scene because it contains all mono services, so prepare it as early as possible
+        await SceneLoaderManager.Instance.LoadSceneAsync(SceneName.PersistentScene);
+        //load player save
         await LoadGameSaveData();
-
 
         GameManager.Instance.Init();
 
         //loading the next scene which is login, but here, I should can change the scene name so that I can load any scene
-
         await SceneLoaderManager.Instance.SwitchSceneAsync(SceneName.BootstrapScene, SceneName.TestScene,
             async () =>
             {

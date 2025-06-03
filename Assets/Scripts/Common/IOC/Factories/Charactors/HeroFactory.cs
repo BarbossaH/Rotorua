@@ -1,6 +1,7 @@
 
 namespace Common.Factories
 {
+    using Common.Repositories;
     using Game.Character;
     using UnityEngine;
     public interface IHeroFactory

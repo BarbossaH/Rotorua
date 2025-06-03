@@ -15,14 +15,23 @@ namespace Common
             return _singletonInstances;
         }
 
+        //this is for when there is no instance
         public static void Register(Type interfaceType, Func<object> factory)
         {
             _registrations[interfaceType] = factory;
         }
+        //this is for when there is no instance
         public static void Register<TInterface, TImplementation>() where TImplementation : TInterface, new()
         {
             _registrations[typeof(TInterface)] = () => new TImplementation();
         }
+
+        //this is for when there is an instance, like a game component  
+        public static void RegisterInstance(Type t, object instance)
+        {
+            _singletonInstances[t] = instance;
+        }
+        // public static void RegisterInstance<TInterface>(T)
         public static T GetService<T>()
         {
             return (T)GetService(typeof(T));
@@ -32,6 +41,12 @@ namespace Common
         {
             if (_singletonInstances.TryGetValue(type, out var instance))
             {
+                if (instance is UnityEngine.Object unityObj && unityObj == null)
+                {
+                    Debug.LogWarning($"⚠️ try to get {type.Name}, but it had been destroyed");
+                    _singletonInstances.Remove(type);
+                    return default;
+                }
                 return instance;
             }
 
@@ -53,10 +68,13 @@ namespace Common
         //     }
         //     throw new InvalidOperationException($"Type {typeof(T).Name} is not registered.");
         // }
-
+        public static void UnregisterInstance(Type type)
+        {
+            _singletonInstances.Remove(type);
+        }
         public static void ClearResolved<T>()
         {
-            _singletonInstances.Remove(typeof(T));
+            UnregisterInstance(typeof(T));
         }
 
         //when scope container is needed, the method below should be called

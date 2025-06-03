@@ -2,6 +2,7 @@
 
 namespace Common.Factories
 {
+    using Common.Repositories;
     using Game.CardSystem;
     using Models;
     using UnityEngine;

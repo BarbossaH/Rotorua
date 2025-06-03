@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Scenes
   m_GUID: 2c49bbfb6c942b048a9bf533da9fd784
   m_SerializeEntries:
+  - m_GUID: a3a26d30246fa9d4d8788a42b661d9be
+    m_Address: PersistentScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - scene
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e852cd6e36c2dd041bff31398dbbc9c9
     m_Address: TestScene
     m_ReadOnly: 0

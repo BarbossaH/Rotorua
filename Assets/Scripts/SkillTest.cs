@@ -1,9 +1,11 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
 using Common.Factories;
+using Common.MonoServices;
 using Common.Repositories;
 using Cysharp.Threading.Tasks;
 using Game.Battle;
@@ -17,7 +19,7 @@ public class ButtonClickHandler : MonoBehaviour
 {
     private Button button;
     private BattleView battleView;
-    private BattleController battleController;
+    private IBattleController battleController;
     void Awake()
     {
         // 获取当前 GameObject 上的 Button 组件
@@ -31,7 +33,10 @@ public class ButtonClickHandler : MonoBehaviour
     }
     private void Start()
     {
-        battleController = new BattleController(battleView);
+        // battleController = new BattleController(battleView);
+        //this controller should be local, not global and single instance
+        battleController = IoCContainer.GetService<IBattleController>();
+        battleController.InitializeBattle(battleView);
     }
     private void OnButtonClick()
     {
@@ -56,9 +61,24 @@ public class ButtonClickHandler : MonoBehaviour
         // CreateMonster();
 
         //Test state machine
-        _ = TestStateMachine();
+        // _ = TestStateMachine();
+        // try
+        // {
+        //     _ = TestStateMachine();
+        // }
+        // catch (Exception e) { Debug.Log(e.Message); }
+
+        //test mono service
+        testMonoService();
     }
 
+    private void testMonoService()
+    {
+        var monoService = IoCContainer.GetService<IFXService>();
+        monoService.TestPlay();
+        var a = IoCContainer.GetService<IAudioService>();
+        a.PlayAudio(null);
+    }
     private async UniTask TestStateMachine()
     {
         await battleController.StartBattleAsync();

@@ -4,7 +4,7 @@ using Managers;
 using Models;
 using UnityEngine;
 
-namespace Common
+namespace Common.Repositories
 {
     [AutoRegisterRepository(typeof(HeroRepository))]
     public class HeroRepository : JsonRepositoryBase<HeroData, HeroJsonConfig>

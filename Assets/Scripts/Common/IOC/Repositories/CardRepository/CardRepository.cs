@@ -4,7 +4,7 @@ using Managers;
 using Models;
 using UnityEngine;
 
-namespace Common
+namespace Common.Repositories
 {
     [AutoRegisterRepository(typeof(CardRepository))]
     public class CardRepository : JsonRepositoryBase<CardData, CardJsonConfig>

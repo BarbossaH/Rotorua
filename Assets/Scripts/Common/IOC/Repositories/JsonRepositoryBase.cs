@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using Managers;
 using UnityEngine;
 
-namespace Common
+namespace Common.Repositories
 {
     public abstract class JsonRepositoryBase<TData, TConfig> : IRepository<TData>
     where TData : class

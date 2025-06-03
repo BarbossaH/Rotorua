@@ -1,4 +1,4 @@
-namespace Common
+namespace Common.Repositories
 {
     using System;
     using System.Collections.Generic;

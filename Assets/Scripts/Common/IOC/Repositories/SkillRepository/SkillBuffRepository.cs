@@ -5,7 +5,7 @@ using Managers;
 using Models;
 using UnityEngine;
 
-namespace Common
+namespace Common.Repositories
 {
     [AutoRegisterRepository(typeof(SkillBuffRepository))]
     public class SkillBuffRepository : JsonRepositoryBase<BuffDataBase, BuffJsonConfig>

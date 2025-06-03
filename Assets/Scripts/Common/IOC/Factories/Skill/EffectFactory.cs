@@ -1,6 +1,7 @@
 namespace Common.Factories
 {
     using System.Collections.Generic;
+    using Common.Repositories;
     using Game.CardSystem;
     using UnityEngine;
 

@@ -6,7 +6,7 @@ using Managers;
 using Models;
 using UnityEngine;
 
-namespace Common
+namespace Common.Repositories
 {
     [AutoRegisterRepository(typeof(SkillEffectRepository))]
     public class SkillEffectRepository : JsonRepositoryBase<EffectDataBase, EffectJsonConfig>
