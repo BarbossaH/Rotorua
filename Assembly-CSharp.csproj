@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Game\Card\SkillEffects\HealEffect.cs" />
     <Compile Include="Assets\Scripts\Defs\GameEvents.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\MonoServices\IMonoSerivce.cs" />
+    <Compile Include="Assets\Scripts\Managers\GamePoolManager\GamePoolManager.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SkillRepository\SkillBuffRepository.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Hero\Hero.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Monster\IntentPicker.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Assets\Scripts\Common\IOC\ScopeContainer.cs" />
     <Compile Include="Assets\Scripts\Game\Character\Monster\MonsterIntent.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillBuffs\TriggerableBuff\FlameBuff.cs" />
+    <Compile Include="Assets\Scripts\Common\GameObjectPool\GameObjectPool.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\MonoServices\FXService.cs" />
     <Compile Include="Assets\Scripts\Managers\HeroManager\HeroManager.cs" />
     <Compile Include="Assets\Scripts\MVC\Model\BaseModel.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="Assets\Scripts\MVC\View\BaseView.cs" />
     <Compile Include="Assets\Scripts\MVC\Controller\BaseController.cs" />
     <Compile Include="Assets\Scripts\Game\Card\SkillBuffs\ContinuousBuff\ShiedBuff.cs" />
+    <Compile Include="Assets\Scripts\Defs\ObjectPoolKey.cs" />
     <Compile Include="Assets\Scripts\Game\Battle\BattleContext.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\SaveDataRepository\PlayerSaveRepository.cs" />
     <Compile Include="Assets\Scripts\Common\IOC\Repositories\JsonRepositoryBase.cs" />

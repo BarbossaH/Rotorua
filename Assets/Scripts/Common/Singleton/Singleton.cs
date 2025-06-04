@@ -12,6 +12,8 @@ namespace Common
             _instance = new T();
         }
         public static T Instance => _instance;
+
+        //the purpose of the Init method is to create a singleton instance and if needed, to initialize certain variables as required
         public virtual void Init() { }
         public virtual void Release() { }
 

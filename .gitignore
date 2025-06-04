@@ -3,6 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 # Unity 项目应忽略的文件和文件夹
+Art/
 Temp/
 Library/
 Logs/
